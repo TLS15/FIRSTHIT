@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://d1skbuyfisbjr"]
+
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Resources/LevelResource.gd" id="1_44q56"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Resources/TowerResource.gd" id="2_1vilc"]
+
+[resource]
+script = ExtResource("1_44q56")
+starting_money = 1000
+metadata/_custom_type_script = "uid://ji335qpbwph3"
