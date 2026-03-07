@@ -6,14 +6,14 @@
 [sub_resource type="Resource" id="Resource_44q56"]
 script = ExtResource("2_1vilc")
 type = 1
-location = Vector2(100, 444)
+location = Vector2(300, 600)
 level = 1
 occupants = 10
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_1vilc"]
 script = ExtResource("2_1vilc")
-location = Vector2(1000, 0)
+location = Vector2(1000, 500)
 level = 1
 occupants = 10
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
