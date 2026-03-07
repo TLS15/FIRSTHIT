@@ -1,5 +1,6 @@
 extends Node2D
 @export var tower_data: TowerResource
+@export var occupants: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,3 +14,5 @@ func _process(delta: float) -> void:
 func assign_resource(resource: TowerResource):
 	tower_data = resource
 	position = tower_data.location
+	occupants = tower_data.occupants
+	

@@ -3,6 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Scenes/level_manager.tscn" id="1_5yk56"]
 [ext_resource type="Script" uid="uid://dl8vktqvx27ff" path="res://Scripts/game_master.gd" id="1_yy1gc"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_1fa2w"]
+font_size = 68
+
+[sub_resource type="LabelSettings" id="LabelSettings_djvcl"]
+font_size = 68
+
 [node name="GameMaster" type="Node2D" unique_id=1072663693]
 script = ExtResource("1_yy1gc")
 
@@ -21,22 +27,38 @@ offset_bottom = 1080.0
 
 [node name="Start" type="Button" parent="UIMaster/MainMenu" unique_id=126169008]
 layout_mode = 0
-offset_right = 140.0
-offset_bottom = 83.5
+offset_left = 851.0
+offset_top = 409.0
+offset_right = 991.0
+offset_bottom = 492.5
 pivot_offset_ratio = Vector2(0.5, 0.5)
 text = "START"
 
-[node name="Button" type="Button" parent="UIMaster/MainMenu" unique_id=324526744]
-layout_mode = 0
-offset_left = 172.0
-offset_top = 106.0
-offset_right = 470.0
-offset_bottom = 249.0
-
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=1099935868]
-visible = false
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_top = 11.0
+offset_right = 1397.0
+offset_bottom = 433.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=442615738]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 2.0
+offset_right = 1938.0
+offset_bottom = 132.0
+
+[node name="Money" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=870244587]
+layout_mode = 2
+text = "Money: 0"
+label_settings = SubResource("LabelSettings_1fa2w")
+
+[node name="VSeparator" type="VSeparator" parent="UIMaster/UILevel/HBoxContainer" unique_id=623816145]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Population" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=53472215]
+layout_mode = 2
+text = "Total Population: 0"
+label_settings = SubResource("LabelSettings_djvcl")
 
 [connection signal="pressed" from="UIMaster/MainMenu/Start" to="." method="_on_start_pressed"]
