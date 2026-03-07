@@ -3,7 +3,23 @@
 [ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Resources/LevelResource.gd" id="1_44q56"]
 [ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Resources/TowerResource.gd" id="2_1vilc"]
 
+[sub_resource type="Resource" id="Resource_44q56"]
+script = ExtResource("2_1vilc")
+type = 1
+location = Vector2(100, 444)
+level = 1
+occupants = 10
+metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+
+[sub_resource type="Resource" id="Resource_1vilc"]
+script = ExtResource("2_1vilc")
+location = Vector2(1000, 0)
+level = 1
+occupants = 10
+metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+
 [resource]
 script = ExtResource("1_44q56")
+towers = Array[ExtResource("2_1vilc")]([SubResource("Resource_44q56"), SubResource("Resource_1vilc")])
 starting_money = 1000
 metadata/_custom_type_script = "uid://ji335qpbwph3"

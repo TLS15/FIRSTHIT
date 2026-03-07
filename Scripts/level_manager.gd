@@ -11,4 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func load_level(level: LevelResource):
-	pass
+	for tower in level.towers:
+		var instance = load("res://Scenes/castle.tscn").instantiate()
+		add_child(instance)
+		instance.assign_resource(tower)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqecbag5hx2cb"]
 
-[ext_resource type="Script" uid="uid://ctj3byeuf24gb" path="res://castle.gd" id="1_vm22h"]
+[ext_resource type="Script" uid="uid://ctj3byeuf24gb" path="res://Scripts/castle.gd" id="1_vm22h"]
 [ext_resource type="Texture2D" uid="uid://cfth4q4hsm3e2" path="res://Sprites/sprite1.png" id="1_xtwgx"]
 
 [node name="Castle" type="Node2D" unique_id=1087816798]

@@ -1,5 +1,5 @@
 extends Node2D
-
+@export var tower_data: TowerResource
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_start_pressed() -> void:
-	$LevelManager.load_level()
+func assign_resource(resource: TowerResource):
+	tower_data = resource
+	position = tower_data.location

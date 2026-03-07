@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bljoimapnq3kd"]
 
-[ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://level_manager.tscn" id="1_5yk56"]
-[ext_resource type="Script" uid="uid://dl8vktqvx27ff" path="res://game_master.gd" id="1_yy1gc"]
+[ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Scenes/level_manager.tscn" id="1_5yk56"]
+[ext_resource type="Script" uid="uid://dl8vktqvx27ff" path="res://Scripts/game_master.gd" id="1_yy1gc"]
 
 [node name="GameMaster" type="Node2D" unique_id=1072663693]
 script = ExtResource("1_yy1gc")
@@ -16,25 +16,22 @@ offset_bottom = 1080.0
 
 [node name="MainMenu" type="Control" parent="UIMaster" unique_id=36939912]
 anchors_preset = 0
-offset_top = -8.0
 offset_right = 1920.0
-offset_bottom = 1072.0
+offset_bottom = 1080.0
 
 [node name="Start" type="Button" parent="UIMaster/MainMenu" unique_id=126169008]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -41.75
-offset_right = 70.0
-offset_bottom = 41.75
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 83.5
 pivot_offset_ratio = Vector2(0.5, 0.5)
 text = "START"
+
+[node name="Button" type="Button" parent="UIMaster/MainMenu" unique_id=324526744]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 106.0
+offset_right = 470.0
+offset_bottom = 249.0
 
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=1099935868]
 visible = false

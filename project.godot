@@ -13,14 +13,12 @@ config_version=5
 config/name="FIRSTHIT"
 run/main_scene="uid://bljoimapnq3kd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/icon.svg"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
-window/size/borderless=true
 
 [physics]
 
