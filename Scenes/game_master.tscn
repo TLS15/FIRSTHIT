@@ -49,13 +49,6 @@ layout_mode = 2
 oversampling_override = 1.0
 title = "Select Level"
 accessibility_name = "Select Level"
-item_count = 3
-item_0/text = "Level1"
-item_0/id = 0
-item_1/text = "Level2"
-item_1/id = 1
-item_2/text = "Level3"
-item_2/id = 2
 script = ExtResource("3_djvcl")
 
 [node name="SelectLevel" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=126169008]

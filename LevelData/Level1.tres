@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [resource]
 script = ExtResource("1_44q56")
+level_index = 1
 towers = Array[ExtResource("2_1vilc")]([SubResource("Resource_44q56"), SubResource("Resource_1vilc")])
 starting_money = 1000
 metadata/_custom_type_script = "uid://ji335qpbwph3"

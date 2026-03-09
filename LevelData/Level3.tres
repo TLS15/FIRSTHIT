@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://b21m7k8k55nh"]
+
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Resources/LevelResource.gd" id="1_73218"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Resources/TowerResource.gd" id="2_f22t0"]
+
+[sub_resource type="Resource" id="Resource_73218"]
+script = ExtResource("2_f22t0")
+location = Vector2(899, 900)
+metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+
+[sub_resource type="Resource" id="Resource_f22t0"]
+script = ExtResource("2_f22t0")
+location = Vector2(777, 777)
+metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+
+[resource]
+script = ExtResource("1_73218")
+level_index = 3
+towers = Array[ExtResource("2_f22t0")]([SubResource("Resource_73218"), SubResource("Resource_f22t0")])
+starting_money = 300.0
+metadata/_custom_type_script = "uid://ji335qpbwph3"
