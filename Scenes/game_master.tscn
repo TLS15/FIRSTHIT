@@ -14,6 +14,7 @@ font_size = 68
 script = ExtResource("1_yy1gc")
 
 [node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
+process_mode = 4
 position = Vector2(0, 2)
 
 [node name="UIMaster" type="Control" parent="." unique_id=1970694081]
@@ -21,11 +22,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="MainMenu" type="Control" parent="UIMaster" unique_id=36939912]
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIMaster/MainMenu" unique_id=34326842]
 layout_mode = 1
@@ -51,11 +54,6 @@ title = "Select Level"
 accessibility_name = "Select Level"
 script = ExtResource("3_djvcl")
 
-[node name="SelectLevel" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=126169008]
-visible = false
-layout_mode = 2
-text = "START"
-
 [node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=929830691]
 layout_mode = 2
 text = "SETTINGS"
@@ -69,6 +67,7 @@ anchors_preset = 0
 offset_top = 11.0
 offset_right = 1397.0
 offset_bottom = 433.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=442615738]
 layout_mode = 0
@@ -92,5 +91,4 @@ text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_djvcl")
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
-[connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/SelectLevel" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

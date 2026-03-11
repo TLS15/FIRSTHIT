@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_ynaq2"]
 script = ExtResource("2_ixqcx")
-location = Vector2(888, 0)
+location = Vector2(888, 888)
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [resource]

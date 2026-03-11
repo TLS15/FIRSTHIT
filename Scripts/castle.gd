@@ -16,3 +16,12 @@ func assign_resource(resource: TowerResource):
 	position = tower_data.location
 	occupants = tower_data.occupants
 	
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	while event.is_pressed():
+		print("is pressed")
+
+
+func _on_area_2d_mouse_entered() -> void:
+	print("mouse is in area")

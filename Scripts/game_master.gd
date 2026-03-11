@@ -7,21 +7,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
-func _on_start_pressed() -> void:
-	#var level: LevelResource = load("res://LevelData/Level1.tres")
-	#$LevelManager.load_level(level)
-	pass
-	
-	
-
+	pass	
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-
 func _on_select_level_index_pressed(index: int) -> void:
 	var level: LevelResource = load("res://LevelData/Level" + str(index + 1) + ".tres")
 	$LevelManager.load_level(level)
+	$LevelManager.process_mode=Node.PROCESS_MODE_INHERIT

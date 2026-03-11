@@ -3,8 +3,20 @@
 [ext_resource type="Script" uid="uid://ctj3byeuf24gb" path="res://Scripts/castle.gd" id="1_vm22h"]
 [ext_resource type="Texture2D" uid="uid://cfth4q4hsm3e2" path="res://Sprites/sprite1.png" id="1_xtwgx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mkv"]
+size = Vector2(36.5, 65)
+
 [node name="Castle" type="Node2D" unique_id=1087816798]
 script = ExtResource("1_vm22h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=697158687]
 texture = ExtResource("1_xtwgx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1367296142]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1218601835]
+position = Vector2(-0.25, 21.5)
+shape = SubResource("RectangleShape2D_r1mkv")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
