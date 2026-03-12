@@ -13,10 +13,6 @@ font_size = 68
 [node name="GameMaster" type="Node2D" unique_id=1072663693]
 script = ExtResource("1_yy1gc")
 
-[node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
-process_mode = 4
-position = Vector2(0, 2)
-
 [node name="UIMaster" type="Control" parent="." unique_id=1970694081]
 layout_mode = 3
 anchors_preset = 0
@@ -51,6 +47,7 @@ layout_mode = 2
 [node name="SelectLevel" type="PopupMenu" parent="UIMaster/MainMenu/VBoxContainer/Levels" unique_id=576266424]
 oversampling_override = 1.0
 title = "Select Level"
+visible = true
 accessibility_name = "Select Level"
 script = ExtResource("3_djvcl")
 
@@ -89,6 +86,8 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_djvcl")
+
+[node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

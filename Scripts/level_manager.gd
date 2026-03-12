@@ -6,6 +6,7 @@ var towers_assigned: int = 0
 var id_awaiting_connection = -1
 var tower_connections := {}
 var connection_lines = []
+var towers = []
 
 @export var money: float = 0
 @export var population: int
@@ -22,6 +23,7 @@ func tick():
 	population += calc_reproduction()
 	$"../UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
 	$"../UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
+	check_win_condition()
 	
 func calc_revenue() -> float:
 	return 10.0 * TICK_TIME
@@ -39,6 +41,7 @@ func load_level(level: LevelResource):
 		instance.tower_id = towers_assigned
 		towers_assigned += 1
 		instance.press_received.connect(on_tower_press_received)
+		towers.append(instance)
 		population += instance.occupants
 		
 func on_tower_press_received(id: int):
@@ -48,7 +51,7 @@ func on_tower_press_received(id: int):
 		var instance = load("res://Scenes/Connection_Line.tscn").instantiate()
 		add_child(instance)
 		connection_lines.append(instance)
-		#instance.position = get_global_mouse_position()
+		
 	else:
 		connection_lines[-1].dragging = false
 		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
@@ -58,4 +61,12 @@ func on_tower_press_received(id: int):
 			tower_key_value.append(id)
 		id_awaiting_connection = -1
 		
+func check_win_condition() -> bool:
+	# Conquered all towers
+	var fulfilled = true
+	for tower in towers:
+		if tower.affiliation  != TowerResource.Players.BLUE:
+			fulfilled = false
+	print(fulfilled)
 	
+	return fulfilled

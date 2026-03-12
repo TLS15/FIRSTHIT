@@ -2,7 +2,7 @@ extends PopupMenu
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void: # removing the underscore breaks the function
 	var levels_available: int = ResourceLoader.list_directory("res://LevelData").size()
 	
 	var i: int = 0

@@ -3,7 +3,7 @@ var start_point
 @export var dragging = true
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void: # removing the underscore breaks the functions
 	start_point = get_global_mouse_position()
 	set_point_position(0, get_local_mouse_position())
 
