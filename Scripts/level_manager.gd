@@ -50,7 +50,7 @@ func on_tower_press_received(id: int):
 		connection_lines.append(instance)
 		#instance.position = get_global_mouse_position()
 	else:
-		
+		connection_lines[-1].dragging = false
 		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
 		if tower_key_value.has(id):
 			tower_key_value.erase(id)
