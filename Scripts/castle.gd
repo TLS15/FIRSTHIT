@@ -1,6 +1,12 @@
 extends Node2D
+@export var tower_id: int
 @export var tower_data: TowerResource
 @export var occupants: int
+@export var available_connections: int = 50
+var connections: Array[int]
+
+signal press_received(tower_id)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,9 +25,8 @@ func assign_resource(resource: TowerResource):
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	while event.is_pressed():
-		print("is pressed")
+	if event.is_pressed():
+		#print("is pressed")
+		emit_signal("press_received", tower_id)
 
-
-func _on_area_2d_mouse_entered() -> void:
-	print("mouse is in area")
+		

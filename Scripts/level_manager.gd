@@ -2,6 +2,10 @@ extends Node2D
 
 const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
+var towers_assigned: int = 0
+var id_awaiting_connection = -1
+var tower_connections := {}
+var connection_lines = []
 
 @export var money: float = 0
 @export var population: int
@@ -32,4 +36,26 @@ func load_level(level: LevelResource):
 		var instance = load("res://Scenes/castle.tscn").instantiate()
 		add_child(instance)
 		instance.assign_resource(tower)
+		instance.tower_id = towers_assigned
+		towers_assigned += 1
+		instance.press_received.connect(on_tower_press_received)
 		population += instance.occupants
+		
+func on_tower_press_received(id: int):
+	print("print received")
+	if id_awaiting_connection == -1:
+		id_awaiting_connection = id
+		var instance = load("res://Scenes/Connection_Line.tscn").instantiate()
+		add_child(instance)
+		connection_lines.append(instance)
+		#instance.position = get_global_mouse_position()
+	else:
+		
+		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
+		if tower_key_value.has(id):
+			tower_key_value.erase(id)
+		else:
+			tower_key_value.append(id)
+		id_awaiting_connection = -1
+		
+	
