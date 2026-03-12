@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
+
+[ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://LevelMaker/level_tester.gd" id="1_n5pd5"]
+[ext_resource type="Resource" uid="uid://d1skbuyfisbjr" path="res://LevelData/Level1.tres" id="2_t3f06"]
+[ext_resource type="Script" uid="uid://djnsk3b14e0mk" path="res://Scripts/select_level.gd" id="3_ctvhw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yopi2"]
+font_size = 68
+
+[sub_resource type="LabelSettings" id="LabelSettings_81omt"]
+font_size = 68
+
+[node name="LevelTester" type="Node2D" unique_id=837912548]
+process_mode = 3
+script = ExtResource("1_n5pd5")
+level = ExtResource("2_t3f06")
+
+[node name="UIMaster" type="Control" parent="." unique_id=6579418]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="MainMenu" type="Control" parent="UIMaster" unique_id=207771457]
+visible = false
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIMaster/MainMenu" unique_id=2140019701]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -50.5
+offset_right = 41.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Levels" type="MenuBar" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1695322509]
+layout_mode = 2
+
+[node name="SelectLevel" type="PopupMenu" parent="UIMaster/MainMenu/VBoxContainer/Levels" unique_id=1233229516]
+oversampling_override = 1.0
+title = "Select Level"
+visible = true
+accessibility_name = "Select Level"
+script = ExtResource("3_ctvhw")
+
+[node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1637007774]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=409290020]
+layout_mode = 2
+text = "QUIT"
+
+[node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
+anchors_preset = 0
+offset_top = 11.0
+offset_right = 1397.0
+offset_bottom = 433.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=1595842271]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 2.0
+offset_right = 1938.0
+offset_bottom = 132.0
+
+[node name="Money" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=1447595836]
+layout_mode = 2
+text = "Money: 0"
+label_settings = SubResource("LabelSettings_yopi2")
+
+[node name="VSeparator" type="VSeparator" parent="UIMaster/UILevel/HBoxContainer" unique_id=452399481]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Population" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=250885010]
+layout_mode = 2
+text = "Total Population: 0"
+label_settings = SubResource("LabelSettings_81omt")
