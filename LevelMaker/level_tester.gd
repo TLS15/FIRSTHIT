@@ -27,7 +27,8 @@ func tick():
 	population += calc_reproduction()
 	$"UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
 	$"UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
-	check_win_condition()
+	#check_win_condition()
+
 	
 func calc_revenue() -> float:
 	return 10.0 * TICK_TIME
@@ -74,3 +75,11 @@ func check_win_condition() -> bool:
 	print(fulfilled)
 	
 	return fulfilled
+
+
+func _on_editor_state_changed() -> void:
+	request_ready()
+
+
+func _on_property_list_changed() -> void:
+	request_ready()
