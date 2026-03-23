@@ -13,6 +13,7 @@ var towers = []
 @export var level: LevelResource
 
 func _ready() -> void:
+	print("Level is ready")
 	load_level(level)
 
 func _process(delta):

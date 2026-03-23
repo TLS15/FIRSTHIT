@@ -64,9 +64,8 @@ text = "QUIT"
 
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
 anchors_preset = 0
-offset_top = 11.0
 offset_right = 1397.0
-offset_bottom = 433.0
+offset_bottom = 422.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=1595842271]
@@ -89,6 +88,59 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_81omt")
+
+[node name="Control" type="Control" parent="UIMaster" unique_id=336654464]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AddTower" type="Button" parent="UIMaster/Control" unique_id=971616716]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 494.0
+offset_right = 308.0
+offset_bottom = 508.0
+text = "Add Tower"
+
+[node name="Window" type="Window" parent="UIMaster/Control" unique_id=993051646]
+oversampling_override = 1.0
+title = "Add Tower"
+position = Vector2i(500, 423)
+size = Vector2i(200, 200)
+
+[node name="Button" type="Button" parent="UIMaster/Control/Window" unique_id=59088313]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Confirm"
+
+[node name="Button2" type="Button" parent="UIMaster/Control/Window" unique_id=137026490]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 60.0
+grow_vertical = 0
+text = "Cancel
+"
+
+[node name="Teams" type="ItemList" parent="UIMaster/Control/Window" unique_id=1678152569]
+offset_right = 40.0
+offset_bottom = 40.0
+allow_reselect = true
+auto_width = true
+auto_height = true
+item_count = 4
+item_0/text = "Blue"
+item_1/text = "Red"
+item_2/text = "Green"
+item_3/text = "Yellow"
 
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
