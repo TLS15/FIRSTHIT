@@ -13,7 +13,6 @@ var towers = []
 @export var level: LevelResource
 
 func _ready() -> void:
-	print("Level is ready")
 	load_level(level)
 
 func _process(delta):
@@ -41,6 +40,9 @@ func load_level(level: LevelResource):
 	money = level.starting_money
 	
 	for tower in level.towers:
+		load_tower(tower)
+		
+func load_tower(tower: TowerResource):
 		var instance = load("res://Scenes/castle.tscn").instantiate()
 		add_child(instance)
 		instance.assign_resource(tower)
@@ -49,7 +51,7 @@ func load_level(level: LevelResource):
 		instance.press_received.connect(on_tower_press_received)
 		towers.append(instance)
 		population += instance.occupants
-		
+	
 func on_tower_press_received(id: int):
 	print("print received")
 	if id_awaiting_connection == -1:
@@ -84,3 +86,7 @@ func _on_editor_state_changed() -> void:
 
 func _on_property_list_changed() -> void:
 	request_ready()
+
+
+func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
+	load_tower(towerData)
