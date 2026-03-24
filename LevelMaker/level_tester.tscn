@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://d1skbuyfisbjr" path="res://LevelData/Level1.tres" id="2_t3f06"]
+[ext_resource type="Resource" uid="uid://4vd6eidg7j7b" path="res://CustomLevelData/data.tres" id="2_yopi2"]
 [ext_resource type="Script" uid="uid://djnsk3b14e0mk" path="res://Scripts/select_level.gd" id="3_ctvhw"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://LevelMaker/add_tower.gd" id="4_yopi2"]
 
@@ -14,7 +14,7 @@ font_size = 68
 [node name="LevelTester" type="Node2D" unique_id=837912548]
 process_mode = 3
 script = ExtResource("1_n5pd5")
-level = ExtResource("2_t3f06")
+level = ExtResource("2_yopi2")
 
 [node name="UIMaster" type="Control" parent="." unique_id=6579418]
 layout_mode = 3
@@ -22,6 +22,14 @@ anchors_preset = 0
 offset_right = 43.0
 offset_bottom = 59.0
 mouse_filter = 2
+
+[node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 538.0
+offset_right = 219.0
+offset_bottom = 569.0
+text = "QUIT"
 
 [node name="MainMenu" type="Control" parent="UIMaster" unique_id=207771457]
 visible = false
@@ -46,6 +54,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Levels" type="MenuBar" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1695322509]
+visible = false
 layout_mode = 2
 
 [node name="SelectLevel" type="PopupMenu" parent="UIMaster/MainMenu/VBoxContainer/Levels" unique_id=1233229516]
@@ -56,12 +65,9 @@ accessibility_name = "Select Level"
 script = ExtResource("3_ctvhw")
 
 [node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1637007774]
+visible = false
 layout_mode = 2
 text = "SETTINGS"
-
-[node name="Quit" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=409290020]
-layout_mode = 2
-text = "QUIT"
 
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
 anchors_preset = 0
@@ -92,16 +98,16 @@ label_settings = SubResource("LabelSettings_81omt")
 
 [node name="AddTower" type="Control" parent="UIMaster" unique_id=336654464]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 28.0
+offset_bottom = 26.0
 script = ExtResource("4_yopi2")
 
 [node name="Add" type="Button" parent="UIMaster/AddTower" unique_id=971616716]
 layout_mode = 0
-offset_left = 236.0
-offset_top = 494.0
-offset_right = 308.0
-offset_bottom = 508.0
+offset_left = 137.0
+offset_top = 485.0
+offset_right = 228.0
+offset_bottom = 516.0
 text = "Add Tower"
 
 [node name="Window" type="Window" parent="UIMaster/AddTower" unique_id=993051646]
@@ -191,11 +197,52 @@ max_value = 1080.0
 value = 555.0
 custom_arrow_step = 10.0
 
+[node name="Population" type="SpinBox" parent="UIMaster" unique_id=562406730]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 120.0
+offset_right = 686.5
+offset_bottom = 151.0
+custom_arrow_step = 5.0
+
+[node name="StartingMoney" type="SpinBox" parent="UIMaster" unique_id=114921562]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 120.0
+offset_right = 223.5
+offset_bottom = 151.0
+max_value = 1000.0
+custom_arrow_step = 10.0
+
+[node name="SaveLevel" type="Button" parent="UIMaster" unique_id=264842661]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 431.0
+offset_right = 235.0
+offset_bottom = 462.0
+text = "Save Level"
+
+[node name="ReloadLevel" type="Button" parent="UIMaster" unique_id=706861366]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 382.0
+offset_right = 243.0
+offset_bottom = 413.0
+text = "Reload Level"
+
+[node name="Towers" type="Node2D" parent="." unique_id=750227807]
+
+[node name="Node2D" type="Node2D" parent="Towers" unique_id=1406181593]
+
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
+[connection signal="pressed" from="UIMaster/Quit" to="." method="_on_quit_pressed"]
 [connection signal="tower_configured" from="UIMaster/AddTower" to="." method="_on_add_tower_tower_configured"]
 [connection signal="pressed" from="UIMaster/AddTower/Add" to="UIMaster/AddTower" method="_on_add_pressed"]
+[connection signal="close_requested" from="UIMaster/AddTower/Window" to="UIMaster/AddTower" method="_on_window_close_requested"]
 [connection signal="pressed" from="UIMaster/AddTower/Window/Confirm" to="UIMaster/AddTower" method="_on_confirm_pressed"]
 [connection signal="pressed" from="UIMaster/AddTower/Window/Close" to="UIMaster/AddTower" method="_on_close_pressed"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/Teams" to="UIMaster/AddTower" method="_on_teams_item_selected"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/TowerType" to="UIMaster/AddTower" method="_on_tower_type_item_selected"]
+[connection signal="pressed" from="UIMaster/SaveLevel" to="." method="_on_save_level_pressed"]
+[connection signal="pressed" from="UIMaster/ReloadLevel" to="." method="reload_level"]

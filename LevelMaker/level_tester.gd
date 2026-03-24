@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D # Make levels saveable as resource
 
 const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
@@ -11,6 +11,7 @@ var towers = []
 @export var money: float = 0
 @export var population: int
 @export var level: LevelResource
+
 
 func _ready() -> void:
 	load_level(level)
@@ -37,14 +38,18 @@ func calc_reproduction() -> int:
 	return 1
 	
 func load_level(level: LevelResource):
+	
 	money = level.starting_money
 	
+	for child in $Towers.get_children():
+		child.queue_free()
+		
 	for tower in level.towers:
 		load_tower(tower)
 		
 func load_tower(tower: TowerResource):
 		var instance = load("res://Scenes/castle.tscn").instantiate()
-		add_child(instance)
+		$Towers.add_child(instance)
 		instance.assign_resource(tower)
 		instance.tower_id = towers_assigned
 		towers_assigned += 1
@@ -69,6 +74,8 @@ func on_tower_press_received(id: int):
 			tower_key_value.append(id)
 		id_awaiting_connection = -1
 		
+	
+		
 func check_win_condition() -> bool:
 	# Conquered all towers
 	var fulfilled = true
@@ -90,3 +97,15 @@ func _on_property_list_changed() -> void:
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
 	load_tower(towerData)
+
+
+func _on_save_level_pressed() -> void: # Cant save to res
+	ResourceSaver.save(level, "res://CustomLevelData/data.tres")
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+
+
+func reload_level() -> void:
+	load_level(level)

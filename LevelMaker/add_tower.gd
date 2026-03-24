@@ -46,3 +46,7 @@ func _on_teams_item_selected(index: int) -> void:
 
 func _on_tower_type_item_selected(index: int) -> void:
 	towerType = $Window/TowerType.get_item_text(index)
+
+
+func _on_window_close_requested() -> void:
+	$Window.hide()
