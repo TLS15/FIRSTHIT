@@ -109,3 +109,12 @@ func _on_quit_pressed() -> void:
 
 func reload_level() -> void:
 	load_level(level)
+
+
+func _on_load_custom_level_pressed() -> void:
+	$UIMaster/FileDialog.show()
+
+
+func _on_file_dialog_file_selected(path: String) -> void:
+	load_level(load(path))
+	

@@ -51,6 +51,10 @@ visible = true
 accessibility_name = "Select Level"
 script = ExtResource("3_djvcl")
 
+[node name="LevelMaker" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1739036598]
+layout_mode = 2
+text = "Level Maker"
+
 [node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=929830691]
 layout_mode = 2
 text = "SETTINGS"
@@ -90,4 +94,5 @@ label_settings = SubResource("LabelSettings_djvcl")
 [node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
+[connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/LevelMaker" to="." method="_on_level_maker_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

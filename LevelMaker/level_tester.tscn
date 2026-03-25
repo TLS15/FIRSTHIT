@@ -230,6 +230,19 @@ offset_right = 243.0
 offset_bottom = 413.0
 text = "Reload Level"
 
+[node name="LoadCustomLevel" type="Button" parent="UIMaster" unique_id=1648233762]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 333.0
+offset_right = 291.0
+offset_bottom = 364.0
+text = "Load Custom Level"
+
+[node name="FileDialog" type="FileDialog" parent="UIMaster" unique_id=1074185836]
+title = "Open a File"
+file_mode = 0
+filters = PackedStringArray("*.tres")
+
 [node name="Towers" type="Node2D" parent="." unique_id=750227807]
 
 [node name="Node2D" type="Node2D" parent="Towers" unique_id=1406181593]
@@ -246,3 +259,5 @@ text = "Reload Level"
 [connection signal="item_selected" from="UIMaster/AddTower/Window/TowerType" to="UIMaster/AddTower" method="_on_tower_type_item_selected"]
 [connection signal="pressed" from="UIMaster/SaveLevel" to="." method="_on_save_level_pressed"]
 [connection signal="pressed" from="UIMaster/ReloadLevel" to="." method="reload_level"]
+[connection signal="pressed" from="UIMaster/LoadCustomLevel" to="." method="_on_load_custom_level_pressed"]
+[connection signal="file_selected" from="UIMaster/FileDialog" to="." method="_on_file_dialog_file_selected"]
