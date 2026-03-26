@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://4vd6eidg7j7b" path="res://CustomLevelData/data.tres" id="2_yopi2"]
-[ext_resource type="Script" uid="uid://djnsk3b14e0mk" path="res://Scripts/select_level.gd" id="3_ctvhw"]
+[ext_resource type="Resource" path="res://CustomLevelData/data.tres" id="2_yopi2"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://LevelMaker/add_tower.gd" id="4_yopi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yopi2"]
@@ -16,6 +15,8 @@ process_mode = 3
 script = ExtResource("1_n5pd5")
 level = ExtResource("2_yopi2")
 
+[node name="Towers" type="Node2D" parent="." unique_id=750227807]
+
 [node name="UIMaster" type="Control" parent="." unique_id=6579418]
 layout_mode = 3
 anchors_preset = 0
@@ -23,56 +24,69 @@ offset_right = 43.0
 offset_bottom = 59.0
 mouse_filter = 2
 
-[node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
+[node name="SaveLevel" type="Control" parent="UIMaster" unique_id=1207014921]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveLevel" type="Button" parent="UIMaster/SaveLevel" unique_id=264842661]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 538.0
-offset_right = 219.0
-offset_bottom = 569.0
-text = "QUIT"
+offset_top = 431.0
+offset_right = 235.0
+offset_bottom = 462.0
+text = "Save Level"
 
-[node name="MainMenu" type="Control" parent="UIMaster" unique_id=207771457]
-visible = false
+[node name="Population" type="SpinBox" parent="UIMaster/SaveLevel" unique_id=562406730]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 151.0
+offset_right = 686.5
+offset_bottom = 182.0
+custom_arrow_step = 5.0
+
+[node name="StartingMoney" type="SpinBox" parent="UIMaster/SaveLevel" unique_id=114921562]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 151.0
+offset_right = 223.5
+offset_bottom = 182.0
+max_value = 1000.0
+custom_arrow_step = 10.0
+
+[node name="LoadLevel" type="Control" parent="UIMaster" unique_id=45314047]
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
+offset_left = 8.0
+offset_top = 59.0
+offset_right = 32.0
+offset_bottom = 67.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIMaster/MainMenu" unique_id=2140019701]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -50.5
-offset_right = 41.0
-offset_bottom = 50.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
+[node name="FileDialog" type="FileDialog" parent="UIMaster/LoadLevel" unique_id=1074185836]
+title = "Open a File"
+file_mode = 0
+root_subfolder = "res://CustomLevelData/"
+filters = PackedStringArray("*.tres")
 
-[node name="Levels" type="MenuBar" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1695322509]
-visible = false
-layout_mode = 2
+[node name="LoadCustomLevel" type="Button" parent="UIMaster/LoadLevel" unique_id=1648233762]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 262.0
+offset_right = 283.0
+offset_bottom = 293.0
+text = "Load Custom Level"
 
-[node name="SelectLevel" type="PopupMenu" parent="UIMaster/MainMenu/VBoxContainer/Levels" unique_id=1233229516]
-oversampling_override = 1.0
-title = "Select Level"
-visible = true
-accessibility_name = "Select Level"
-script = ExtResource("3_ctvhw")
-
-[node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=1637007774]
-visible = false
-layout_mode = 2
-text = "SETTINGS"
+[node name="ReloadLevel" type="Button" parent="UIMaster/LoadLevel" unique_id=706861366]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 318.0
+offset_right = 235.0
+offset_bottom = 349.0
+text = "Reload Level"
 
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
 anchors_preset = 0
 offset_right = 1387.0
-offset_bottom = 132.0
+offset_bottom = 100.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=1595842271]
@@ -95,6 +109,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_81omt")
+
+[node name="MousePosition" type="Label" parent="UIMaster/UILevel" unique_id=478594095]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="AddTower" type="Control" parent="UIMaster" unique_id=336654464]
 anchors_preset = 0
@@ -197,59 +216,20 @@ max_value = 1080.0
 value = 555.0
 custom_arrow_step = 10.0
 
-[node name="Population" type="SpinBox" parent="UIMaster" unique_id=562406730]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 120.0
-offset_right = 686.5
-offset_bottom = 151.0
-custom_arrow_step = 5.0
-
-[node name="StartingMoney" type="SpinBox" parent="UIMaster" unique_id=114921562]
+[node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 120.0
-offset_right = 223.5
-offset_bottom = 151.0
-max_value = 1000.0
-custom_arrow_step = 10.0
-
-[node name="SaveLevel" type="Button" parent="UIMaster" unique_id=264842661]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 431.0
-offset_right = 235.0
-offset_bottom = 462.0
-text = "Save Level"
-
-[node name="ReloadLevel" type="Button" parent="UIMaster" unique_id=706861366]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 382.0
-offset_right = 243.0
-offset_bottom = 413.0
-text = "Reload Level"
-
-[node name="LoadCustomLevel" type="Button" parent="UIMaster" unique_id=1648233762]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 333.0
-offset_right = 291.0
-offset_bottom = 364.0
-text = "Load Custom Level"
-
-[node name="FileDialog" type="FileDialog" parent="UIMaster" unique_id=1074185836]
-title = "Open a File"
-file_mode = 0
-filters = PackedStringArray("*.tres")
-
-[node name="Towers" type="Node2D" parent="." unique_id=750227807]
-
-[node name="Node2D" type="Node2D" parent="Towers" unique_id=1406181593]
+offset_top = 538.0
+offset_right = 219.0
+offset_bottom = 569.0
+text = "QUIT"
 
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
-[connection signal="pressed" from="UIMaster/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="UIMaster/SaveLevel/SaveLevel" to="." method="_on_save_level_pressed"]
+[connection signal="file_selected" from="UIMaster/LoadLevel/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="UIMaster/LoadLevel/LoadCustomLevel" to="." method="_on_load_custom_level_pressed"]
+[connection signal="pressed" from="UIMaster/LoadLevel/ReloadLevel" to="." method="reload_level"]
 [connection signal="tower_configured" from="UIMaster/AddTower" to="." method="_on_add_tower_tower_configured"]
 [connection signal="pressed" from="UIMaster/AddTower/Add" to="UIMaster/AddTower" method="_on_add_pressed"]
 [connection signal="close_requested" from="UIMaster/AddTower/Window" to="UIMaster/AddTower" method="_on_window_close_requested"]
@@ -257,7 +237,4 @@ filters = PackedStringArray("*.tres")
 [connection signal="pressed" from="UIMaster/AddTower/Window/Close" to="UIMaster/AddTower" method="_on_close_pressed"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/Teams" to="UIMaster/AddTower" method="_on_teams_item_selected"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/TowerType" to="UIMaster/AddTower" method="_on_tower_type_item_selected"]
-[connection signal="pressed" from="UIMaster/SaveLevel" to="." method="_on_save_level_pressed"]
-[connection signal="pressed" from="UIMaster/ReloadLevel" to="." method="reload_level"]
-[connection signal="pressed" from="UIMaster/LoadCustomLevel" to="." method="_on_load_custom_level_pressed"]
-[connection signal="file_selected" from="UIMaster/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="UIMaster/Quit" to="." method="_on_quit_pressed"]

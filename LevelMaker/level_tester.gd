@@ -17,6 +17,7 @@ func _ready() -> void:
 	load_level(level)
 
 func _process(delta):
+	$UIMaster/UILevel/MousePosition.text = "Mouse Position: x: %.0f " % get_global_mouse_position()[0] + "y: %.0f" % get_global_mouse_position()[1]
 	tick_accumulator += delta
 	
 	while tick_accumulator >= TICK_TIME:
@@ -43,7 +44,7 @@ func load_level(level: LevelResource):
 	
 	for child in $Towers.get_children():
 		child.queue_free()
-		
+	population = 0	
 	for tower in level.towers:
 		load_tower(tower)
 		
@@ -96,10 +97,13 @@ func _on_property_list_changed() -> void:
 
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
+	level.towers.append(towerData)
 	load_tower(towerData)
+	
 
 
 func _on_save_level_pressed() -> void: # Cant save to res
+	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
 	ResourceSaver.save(level, "res://CustomLevelData/data.tres")
 
 
@@ -112,9 +116,10 @@ func reload_level() -> void:
 
 
 func _on_load_custom_level_pressed() -> void:
-	$UIMaster/FileDialog.show()
+	$UIMaster/LoadLevel/FileDialog.show()
 
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	load_level(load(path))
+	level = load(path)
+	load_level(level)
 	
