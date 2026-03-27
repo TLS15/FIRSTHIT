@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://bygi5sreep51i"]
 
 [ext_resource type="Script" uid="uid://cp2sycge0jyf8" path="res://Scripts/connection_line.gd" id="1_b0gta"]
-[ext_resource type="Texture2D" uid="uid://qgjgmcl8bnlk" path="res://Sprites/New Piskel.png" id="3_sywoy"]
+[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://TextureTest.gdshader" id="1_sywoy"]
+[ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Sprites/arrow.png" id="2_uoiik"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoiik"]
+shader = ExtResource("1_sywoy")
+shader_parameter/speed = 0.5
+shader_parameter/tile_size = Vector2(2, 1)
 
 [node name="ConnectionLine" type="Line2D" unique_id=664574979]
-scale = Vector2(10, 10)
-points = PackedVector2Array(0, 0, 0, 0)
+material = SubResource("ShaderMaterial_uoiik")
+points = PackedVector2Array(0, 0, 50, 50)
+width = 25.0
 default_color = Color(4.0911138e-07, 0.23137382, 0.23152864, 1)
-texture = ExtResource("3_sywoy")
+texture = ExtResource("2_uoiik")
 texture_mode = 1
 script = ExtResource("1_b0gta")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=388982890]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_sywoy")
-stretch_mode = 5
