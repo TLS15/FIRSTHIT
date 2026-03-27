@@ -1,4 +1,4 @@
-extends Node2D # Make levels saveable as resource
+extends Node2D
 
 const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
@@ -44,7 +44,7 @@ func load_level(level: LevelResource):
 	
 	for child in $Towers.get_children():
 		child.queue_free()
-	population = 0	
+	population = 0
 	for tower in level.towers:
 		load_tower(tower)
 		

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" path="res://CustomLevelData/data.tres" id="2_yopi2"]
+[ext_resource type="Resource" uid="uid://33r2c2ir1oup" path="res://CustomLevelData/data.tres" id="2_yopi2"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://LevelMaker/add_tower.gd" id="4_yopi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yopi2"]

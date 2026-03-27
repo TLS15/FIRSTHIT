@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://urxf1d3b102x"]
+
+[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://TextureTest.gdshader" id="1_y7s1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_230e7"]
+shader = ExtResource("1_y7s1u")
+shader_parameter/speed = 2.0
+shader_parameter/arrow_size_px = 32.0
+shader_parameter/arrow_color = Color(0.2, 0.6, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7s1u"]
+shader = ExtResource("1_y7s1u")
+shader_parameter/speed = 1.0
+shader_parameter/arrow_size_px = 32.0
+shader_parameter/arrow_color = Color(0.2, 0.6, 1, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1722604386]
+material = SubResource("ShaderMaterial_230e7")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2039203849]
+material = SubResource("ShaderMaterial_y7s1u")
+offset_left = 383.0
+offset_top = 187.0
+offset_right = 656.0
+offset_bottom = 304.6252
+rotation = 3.155847
+indeterminate = true
+editor_preview_indeterminate = true
