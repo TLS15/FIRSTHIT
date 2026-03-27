@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Scenes/level_manager.tscn" id="1_5yk56"]
 [ext_resource type="Script" uid="uid://dl8vktqvx27ff" path="res://Scripts/game_master.gd" id="1_yy1gc"]
 [ext_resource type="Script" uid="uid://djnsk3b14e0mk" path="res://Scripts/select_level.gd" id="3_djvcl"]
+[ext_resource type="Texture2D" uid="uid://8y24g4ktrlmh" path="res://Sprites/print-242114518.webp" id="4_i3d8u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1fa2w"]
 font_size = 68
@@ -92,6 +93,12 @@ text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_djvcl")
 
 [node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=108468386]
+z_index = -1
+position = Vector2(962.00006, 547)
+scale = Vector2(2.39375, 1.34375)
+texture = ExtResource("4_i3d8u")
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/LevelMaker" to="." method="_on_level_maker_pressed"]
