@@ -44,21 +44,39 @@ func load_level(level: LevelResource):
 		towers.append(instance)
 		population += instance.occupants
 		
-func on_tower_press_received(id: int):
+func on_tower_press_received(id: int): # This might need a bit of a refactor
 	print("print received")
 	if id_awaiting_connection == -1:
 		id_awaiting_connection = id
-		var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate()
+		var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
 		add_child(instance)
 		connection_lines.append(instance)
 		
-	else:
+	elif id_awaiting_connection != id: # Prevents connecting the tower to itself
+		
 		connection_lines[-1].dragging = false
+		connection_lines[-1].id_origin = id_awaiting_connection
+		connection_lines[-1].id_target = id
+		
 		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
+		
 		if tower_key_value.has(id):
 			tower_key_value.erase(id)
+			
+			var i = 0
+			for line in connection_lines:
+				if line.id_origin == id_awaiting_connection and line.id_target == id:
+					line.queue_free()
+					connection_lines.remove_at(i)
+					
+					connection_lines[-1].queue_free()
+					connection_lines.remove_at(-1)
+					break
+				i += 1
+
 		else:
 			tower_key_value.append(id)
+			
 		id_awaiting_connection = -1
 		
 func check_win_condition() -> bool:
@@ -67,6 +85,20 @@ func check_win_condition() -> bool:
 	for tower in towers:
 		if tower.affiliation  != TowerResource.Players.BLUE:
 			fulfilled = false
-	print(fulfilled)
+	#print(fulfilled)
+	# Reached Money Goal (!TODO)
 	
 	return fulfilled
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			cancel_action()
+
+func cancel_action():
+	print("cancel action")
+	# Cancel Line connection
+	if id_awaiting_connection != -1:
+		connection_lines[-1].queue_free()
+		connection_lines.remove_at(-1)
+		id_awaiting_connection = -1

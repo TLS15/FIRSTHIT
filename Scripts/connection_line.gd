@@ -1,6 +1,9 @@
 extends Line2D
 var start_point
 @export var dragging = true
+@export var id_origin: int
+@export var id_target: int
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: # removing the underscore breaks the functions

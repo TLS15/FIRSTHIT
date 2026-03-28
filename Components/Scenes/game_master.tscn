@@ -15,11 +15,12 @@ font_size = 68
 script = ExtResource("1_yy1gc")
 
 [node name="UIMaster" type="Control" parent="." unique_id=1970694081]
+z_index = -1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="MainMenu" type="Control" parent="UIMaster" unique_id=36939912]
 anchors_preset = 0
@@ -95,7 +96,7 @@ label_settings = SubResource("LabelSettings_djvcl")
 [node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=108468386]
-z_index = -1
+z_index = -2
 position = Vector2(962.00006, 547)
 scale = Vector2(2.39375, 1.34375)
 texture = ExtResource("4_i3d8u")

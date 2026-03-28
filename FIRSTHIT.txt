@@ -5,7 +5,8 @@ Visuals like inifintode, easy to do and looks good
 Visuals:
 	- connection line (done)
 	- Background
-	- 
+	- Units
+	- Towers
 
 
 Tower Types:
@@ -15,6 +16,7 @@ Tower Types:
 
 Game Flow:
 	Towers Initilisation (done)
+	Towers Leveling up
 	Units Production
 	Tower Damage/Health
 	Win Conditions
