@@ -1,27 +1,27 @@
 [gd_scene format=3 uid="uid://urxf1d3b102x"]
 
-[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://TextureTest.gdshader" id="1_y7s1u"]
-[ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Sprites/arrow.png" id="3_2f4bj"]
+[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://Arts/Shaders/TextureTest.gdshader" id="1_y7s1u"]
+[ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Arts/Sprites/arrow.png" id="3_2f4bj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_criny"]
 shader = ExtResource("1_y7s1u")
 shader_parameter/speed = 0.2
-shader_parameter/tiling = Vector2(4, 1)
+shader_parameter/tile_size = Vector2(6, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_230e7"]
 shader = ExtResource("1_y7s1u")
 shader_parameter/speed = 2.0
-shader_parameter/tiling = Vector2(1, 4)
+shader_parameter/tile_size = Vector2(6, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7s1u"]
 shader = ExtResource("1_y7s1u")
 shader_parameter/speed = 1.0
-shader_parameter/tiling = Vector2(1, 4)
+shader_parameter/tile_size = Vector2(6, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xfvj"]
 shader = ExtResource("1_y7s1u")
 shader_parameter/speed = 0.2
-shader_parameter/tiling = Vector2(1, 4)
+shader_parameter/tile_size = Vector2(6, 6)
 
 [node name="Sprite2D" type="Sprite2D" unique_id=225241792]
 texture_repeat = 2

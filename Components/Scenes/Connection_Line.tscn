@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bygi5sreep51i"]
 
 [ext_resource type="Script" uid="uid://cp2sycge0jyf8" path="res://Scripts/connection_line.gd" id="1_b0gta"]
-[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://TextureTest.gdshader" id="1_sywoy"]
-[ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Sprites/arrow.png" id="2_uoiik"]
+[ext_resource type="Shader" uid="uid://bg7h4knlupisi" path="res://Arts/Shaders/TextureTest.gdshader" id="1_sywoy"]
+[ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Arts/Sprites/arrow.png" id="2_uoiik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uoiik"]
 shader = ExtResource("1_sywoy")

@@ -35,7 +35,7 @@ func load_level(level: LevelResource):
 	money = level.starting_money
 	
 	for tower in level.towers:
-		var instance = load("res://Scenes/castle.tscn").instantiate()
+		var instance = load("res://Components/Scenes/castle.tscn").instantiate()
 		add_child(instance)
 		instance.assign_resource(tower)
 		instance.tower_id = towers_assigned
@@ -48,7 +48,7 @@ func on_tower_press_received(id: int):
 	print("print received")
 	if id_awaiting_connection == -1:
 		id_awaiting_connection = id
-		var instance = load("res://Scenes/Connection_Line.tscn").instantiate()
+		var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate()
 		add_child(instance)
 		connection_lines.append(instance)
 		
