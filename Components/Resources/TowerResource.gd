@@ -21,8 +21,8 @@ static func match_team(team: String, tower: TowerResource) -> TowerResource:
 		"Yellow": tower.affiliation = TowerResource.Players.YELLOW
 	return tower
 	
-static func match_type(type: String, tower: TowerResource) -> TowerResource:
-	match type:
+static func match_type(tower_type: String, tower: TowerResource) -> TowerResource:
+	match tower_type:
 		"Offensive": tower.type = TowerResource.TowerType.OFFENSIVE
 		"Defensive": tower.type = TowerResource.TowerType.DEFENSIVE
 		"Economy": tower.type = TowerResource.TowerType.ECONOMY

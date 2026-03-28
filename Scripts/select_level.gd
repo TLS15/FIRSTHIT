@@ -9,7 +9,3 @@ func _ready() -> void: # removing the underscore breaks the function
 	while i < levels_available:
 		i += 1
 		add_item("Level" + str(i))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

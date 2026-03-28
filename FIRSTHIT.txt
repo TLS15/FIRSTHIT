@@ -1,7 +1,31 @@
 FIRSTHIT
 
-- Visuals
-- Tower Types
-- Levels design
-- AI 
-- Units
+Visuals like inifintode, easy to do and looks good
+
+Visuals:
+	- connection line (done)
+	- Background
+	- 
+
+
+Tower Types:
+	- Offensive
+	- Defensive
+	- Economy
+
+Game Flow:
+	Towers Initilisation (done)
+	Units Production
+	Tower Damage/Health
+	Win Conditions
+
+Levels design:
+	- Background
+	- Obstacles
+
+Units:
+	- Triangle
+	- Square
+	- Circle
+
+- AI # Leave this last
