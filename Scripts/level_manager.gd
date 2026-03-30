@@ -50,23 +50,27 @@ func load_level(level: LevelResource):
 		
 func on_tower_press_received(id: int): # This might need a bit of a refactor TODO
 	print("print received")
+	
 	if id_awaiting_connection == -1:
-		id_awaiting_connection = id
-		var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-		add_child(instance)
-		connection_lines.append(instance)
-		
+		if  towers[id].available_connections > 0:
+			id_awaiting_connection = id
+			var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
+			add_child(instance)
+			connection_lines.append(instance)
+	# See this if statment for bugs	
 	elif id_awaiting_connection != id: # Prevents connecting the tower to itself
 		
 		connection_lines[-1].dragging = false
 		connection_lines[-1].id_origin = id_awaiting_connection
 		connection_lines[-1].id_target = id
 		
-		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
+		# The tower with this id is connected to all the towers in the array
+		var connected_towers_array = tower_connections.get_or_add(id_awaiting_connection, []) 
 		
-		if tower_key_value.has(id):
-			tower_key_value.erase(id)
-			
+		if connected_towers_array.has(id): # Towers were connected, so remove the old connection
+			connected_towers_array.erase(id)
+			#towers[id].available_connections += 1
+			towers[id_awaiting_connection].available_connections += 1
 			var i = 0
 			for line in connection_lines:
 				if line.id_origin == id_awaiting_connection and line.id_target == id:
@@ -77,9 +81,10 @@ func on_tower_press_received(id: int): # This might need a bit of a refactor TOD
 					connection_lines.remove_at(-1)
 					break
 				i += 1
-
-		else:
-			tower_key_value.append(id)
+		else: # Towers were not connected 
+			#towers[id].available_connections -= 1
+			towers[id_awaiting_connection].available_connections -= 1
+			connected_towers_array.append(id)
 			
 		id_awaiting_connection = -1
 		

@@ -3,7 +3,7 @@ extends Node2D
 @export var tower_id: int
 @export var tower_data: TowerResource
 @export var occupants: int
-@export var available_connections: int = 50
+@export var available_connections: int = 1
 @export var affiliation: TowerResource.Players
 #@export var health: int
 
@@ -27,7 +27,7 @@ func assign_resource(resource: TowerResource):
 	position = tower_data.location
 	occupants = tower_data.occupants
 	affiliation = tower_data.affiliation
-	$CastleHitbox.set_collision_mask_value(tower_id + 1, false) # This might break with 16 towers or more 
+	$CastleHitbox.set_collision_mask_value(tower_id + 1, false) # This will break with ca. 16 towers or more 
 	
 
 
@@ -52,6 +52,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func spawn_unit():
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
 	unit.set_collision_layer_value(tower_id + 1, true)
+	unit.affiliation = affiliation
 	add_child(unit)
 
 
