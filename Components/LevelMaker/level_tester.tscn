@@ -18,8 +18,6 @@ level = ExtResource("2_fj2dj")
 
 [node name="LevelManager" parent="." unique_id=1413288095 instance=ExtResource("3_a41p1")]
 
-[node name="Towers" type="Node2D" parent="LevelManager" unique_id=750227807]
-
 [node name="UIMaster" type="Control" parent="LevelManager" unique_id=6579418]
 layout_mode = 3
 anchors_preset = 0

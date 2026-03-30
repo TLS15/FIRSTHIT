@@ -37,18 +37,33 @@ func calc_reproduction() -> int:
 	
 func load_level(level: LevelResource):
 	money = level.starting_money
-	
+	population = 0
+	towers_assigned = 0
+
+	# Clear towers
+	for child in $Towers.get_children():
+		child.queue_free()
+
+	towers.clear()
+	tower_connections.clear()
+	for connection_line in connection_lines:
+		connection_line.queue_free()
+	connection_lines.clear()
+
 	for tower in level.towers:
 		load_tower(tower)
 
 func load_tower(tower: TowerResource):
 	var instance = load("res://Components/Scenes/castle.tscn").instantiate()
-	add_child(instance)
+	$Towers.add_child(instance)
+	
 	instance.tower_id = towers_assigned
 	instance.assign_resource(tower)
-	towers_assigned += 1
+	
 	instance.press_received.connect(on_tower_press_received)
+
 	towers.append(instance)
+	towers_assigned += 1
 	population += instance.occupants
 		
 func on_tower_press_received(id: int):
