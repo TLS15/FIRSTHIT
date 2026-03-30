@@ -75,8 +75,6 @@ func on_tower_press_received(id: int):
 			tower_key_value.append(id)
 		id_awaiting_connection = -1
 		
-	
-		
 func check_win_condition() -> bool:
 	# Conquered all towers
 	var fulfilled = true
@@ -104,7 +102,7 @@ func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
 
 func _on_save_level_pressed() -> void: # Cant save to res
 	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
-	ResourceSaver.save(level, "res://Data/CustomLevelData/data.tres")
+	ResourceSaver.save(level, "res://Data/LevelData/Level1.tres")
 
 
 func _on_quit_pressed() -> void:

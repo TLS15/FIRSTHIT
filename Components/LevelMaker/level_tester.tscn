@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://33r2c2ir1oup" path="res://Data/CustomLevelData/data.tres" id="2_yopi2"]
+[ext_resource type="Resource" uid="uid://d1skbuyfisbjr" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yopi2"]
@@ -13,7 +13,7 @@ font_size = 68
 [node name="LevelTester" type="Node2D" unique_id=837912548]
 process_mode = 3
 script = ExtResource("1_n5pd5")
-level = ExtResource("2_yopi2")
+level = ExtResource("2_fj2dj")
 
 [node name="Towers" type="Node2D" parent="." unique_id=750227807]
 
@@ -64,7 +64,7 @@ offset_bottom = 67.0
 [node name="FileDialog" type="FileDialog" parent="UIMaster/LoadLevel" unique_id=1074185836]
 title = "Open a File"
 file_mode = 0
-root_subfolder = "res://Data/CustomLevelData/"
+root_subfolder = "res://Data"
 filters = PackedStringArray("*.tres")
 
 [node name="LoadCustomLevel" type="Button" parent="UIMaster/LoadLevel" unique_id=1648233762]

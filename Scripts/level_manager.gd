@@ -65,12 +65,9 @@ func on_tower_press_received(id: int):
 	_finalize_connection(id)
 	
 func _start_connection(id: int):
-	#if towers[id].available_connections <= 0:
-		#return
-
 	id_awaiting_connection = id
 
-	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
+	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
 	add_child(instance)
 	connection_lines.append(instance)
 		
@@ -82,7 +79,7 @@ func _finalize_connection(target_id: int):
 	line.id_origin = origin_id
 	line.id_target = target_id
 
-	var connected_towers_array = tower_connections.get_or_add(origin_id, [])
+	var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
 
 	if connected_towers_array.has(target_id):
 		_remove_connection(origin_id, target_id)
@@ -109,7 +106,7 @@ func _remove_connection(origin_id: int, target_id: int):
 			line.queue_free()
 			connection_lines.remove_at(i)
 			break
-		
+
 func _cancel_current_connection():
 	if connection_lines.size() > 0:
 		var last = connection_lines.pop_back()
@@ -140,3 +137,9 @@ func cancel_action():
 		connection_lines[-1].queue_free()
 		connection_lines.remove_at(-1)
 		id_awaiting_connection = -1
+
+
+func _on_timer_timeout() -> void:
+	for tower in towers:
+		for target_id in tower_connections.get_or_add(tower.tower_id, []):
+			tower.spawn_unit(towers[target_id].position)
