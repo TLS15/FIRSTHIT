@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://ckb8h0evbdae"]
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://ixxeerjoqvxs"]
 
 [ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_44q56"]
 [ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_1vilc"]
@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_1vilc"]
 script = ExtResource("2_1vilc")
-location = Vector2(631, 184)
+location = Vector2(898, 169)
 level = 1
 occupants = 10
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
@@ -22,24 +22,24 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 [sub_resource type="Resource" id="Resource_ejs3y"]
 script = ExtResource("2_1vilc")
 type = 1
-location = Vector2(419, 359)
+location = Vector2(415, 300)
 affiliation = 2
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_pllpa"]
 script = ExtResource("2_1vilc")
-location = Vector2(645, 418)
+location = Vector2(891, 296)
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_wf1ep"]
 script = ExtResource("2_1vilc")
-location = Vector2(419, 527)
+location = Vector2(416, 417)
 affiliation = 1
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_qxh3j"]
 script = ExtResource("2_1vilc")
-location = Vector2(650, 567)
+location = Vector2(889, 423)
 affiliation = 2
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 

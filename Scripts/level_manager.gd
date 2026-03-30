@@ -21,8 +21,8 @@ func _process(delta):
 func tick():
 	money += calc_revenue()
 	population += calc_reproduction()
-	$"../UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
-	$"../UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
+	$"../LevelManager/UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
+	$"../LevelManager/UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
 	check_win_condition()
 	
 func calc_revenue() -> float:
@@ -39,17 +39,20 @@ func load_level(level: LevelResource):
 	money = level.starting_money
 	
 	for tower in level.towers:
-		var instance = load("res://Components/Scenes/castle.tscn").instantiate()
-		add_child(instance)
-		instance.tower_id = towers_assigned
-		instance.assign_resource(tower)
-		towers_assigned += 1
-		instance.press_received.connect(on_tower_press_received)
-		towers.append(instance)
-		population += instance.occupants
+		load_tower(tower)
+
+func load_tower(tower: TowerResource):
+	var instance = load("res://Components/Scenes/castle.tscn").instantiate()
+	add_child(instance)
+	instance.tower_id = towers_assigned
+	instance.assign_resource(tower)
+	towers_assigned += 1
+	instance.press_received.connect(on_tower_press_received)
+	towers.append(instance)
+	population += instance.occupants
 		
 func on_tower_press_received(id: int):
-	print("print received")
+	#print("print received")
 
 	# Step 1: start connection
 	if id_awaiting_connection == -1:

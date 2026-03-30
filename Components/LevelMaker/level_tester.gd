@@ -1,9 +1,11 @@
 extends Node2D
 
 const TICK_TIME := 1.0 / 5.0
+
 var tick_accumulator := 0.0
 var towers_assigned: int = 0
 var id_awaiting_connection = -1
+
 var tower_connections := {}
 var connection_lines = []
 var towers = []
@@ -14,93 +16,208 @@ var towers = []
 
 
 func _ready() -> void:
-	load_level(level)
+	$LevelManager.load_level(level)
+	$LevelManager.process_mode=Node.PROCESS_MODE_INHERIT
 
-func _process(delta):
-	$UIMaster/UILevel/MousePosition.text = "Mouse Position: x: %.0f " % get_global_mouse_position()[0] + "y: %.0f" % get_global_mouse_position()[1]
-	tick_accumulator += delta
-	
-	while tick_accumulator >= TICK_TIME:
-		tick()
-		tick_accumulator -= TICK_TIME
 
-func tick():
-	money += calc_revenue()
-	population += calc_reproduction()
-	$"UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
-	$"UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
+#func _process(delta):
+	## Debug mouse position
+	#$UIMaster/UILevel/MousePosition.text = "Mouse Position: x: %.0f y: %.0f" % [
+		#get_global_mouse_position().x,
+		#get_global_mouse_position().y
+	#]
+#
+	#tick_accumulator += delta
+	#
+	#while tick_accumulator >= TICK_TIME:
+		#tick()
+		#tick_accumulator -= TICK_TIME
+#
+#
+#func tick():
+	#money += calc_revenue()
+	#population += calc_reproduction()
+#
+	#$UIMaster/UILevel/HBoxContainer/Money.text = "Money: %.0f" % money
+	#$UIMaster/UILevel/HBoxContainer/Population.text = "Population: %d" % population
+#
 	#check_win_condition()
+#
+#
+#func calc_revenue() -> float:
+	#return 10.0 * TICK_TIME
+#
+#
+#func calc_reproduction() -> int:
+	#var result = 0
+	#for tower in towers:
+		#result += tower.occupants
+	#return result - population
+#
+#
+## ========================
+## LEVEL LOADING
+## ========================
+#
+#func load_level(level: LevelResource):
+	#money = level.starting_money
+	#population = 0
+	#towers_assigned = 0
+#
+	## Clear towers
+	#for child in $Towers.get_children():
+		#child.queue_free()
+#
+	#towers.clear()
+	#tower_connections.clear()
+	#connection_lines.clear()
+#
+	#for tower in level.towers:
+		#load_tower(tower)
+#
+#
+#func load_tower(tower: TowerResource):
+	#var instance = load("res://Components/Scenes/castle.tscn").instantiate()
+	#$Towers.add_child(instance)
+	#
+	#instance.tower_id = towers_assigned
+	#instance.assign_resource(tower)
+	#
+	#instance.press_received.connect(on_tower_press_received)
+#
+	#towers.append(instance)
+	#towers_assigned += 1
+	#population += instance.occupants
+#
+#
+## ========================
+## CONNECTION SYSTEM (FULL)
+## ========================
+#
+#func on_tower_press_received(id: int):
+	##print("press received")
+#
+	## Step 1: start connection
+	#if id_awaiting_connection == -1:
+		#_start_connection(id)
+		#return
+#
+	## Step 2: prevent self-connection
+	#if id_awaiting_connection == id:
+		#_cancel_current_connection()
+		#return
+#
+	## Step 3: finalize
+	#_finalize_connection(id)
+#
+#
+#func _start_connection(id: int):
+	#id_awaiting_connection = id
+#
+	#var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
+	#add_child(instance)
+	#connection_lines.append(instance)
+#
+#
+#func _finalize_connection(target_id: int):
+	#var origin_id = id_awaiting_connection
+	#var line = connection_lines.back()
+#
+	#line.dragging = false
+	#line.id_origin = origin_id
+	#line.id_target = target_id
+#
+	#var connected: Array = tower_connections.get_or_add(origin_id, [])
+#
+	#if connected.has(target_id):
+		#_remove_connection(origin_id, target_id)
+		#_cancel_current_connection()
+	#else:
+		#_add_connection(origin_id, target_id)
+#
+		#if towers[origin_id].available_connections < 0:
+			#_remove_connection(origin_id, target_id)
+#
+	#id_awaiting_connection = -1
+#
+#
+#func _add_connection(origin_id: int, target_id: int):
+	#towers[origin_id].available_connections -= 1
+	#tower_connections[origin_id].append(target_id)
+#
+#
+#func _remove_connection(origin_id: int, target_id: int):
+	#tower_connections[origin_id].erase(target_id)
+	#towers[origin_id].available_connections += 1
+#
+	#for i in connection_lines.size():
+		#var line = connection_lines[i]
+		#if line.id_origin == origin_id and line.id_target == target_id:
+			#line.queue_free()
+			#connection_lines.remove_at(i)
+			#break
+#
+#
+#func _cancel_current_connection():
+	#if connection_lines.size() > 0:
+		#var last = connection_lines.pop_back()
+		#last.queue_free()
+#
+	#id_awaiting_connection = -1
+#
+#
+## ========================
+## INPUT
+## ========================
+#
+#func _input(event):
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			#cancel_action()
+#
+#
+#func cancel_action():
+	#print("cancel action")
+#
+	#if id_awaiting_connection != -1:
+		#_cancel_current_connection()
+#
+#
+## ========================
+## GAME LOOP EVENTS
+## ========================
+#
+#func _on_timer_timeout() -> void:
+	#for tower in towers:
+		#for target_id in tower_connections.get_or_add(tower.tower_id, []):
+			#tower.spawn_unit(towers[target_id].position)
+#
+#
+## ========================
+## WIN CONDITION
+## ========================
+#
+#func check_win_condition() -> bool:
+	#var fulfilled = true
+#
+	#for tower in towers:
+		#if tower.affiliation != TowerResource.Players.BLUE:
+			#fulfilled = false
+#
+	#return fulfilled
 
-	
-func calc_revenue() -> float:
-	return 10.0 * TICK_TIME
-	
-func calc_reproduction() -> int:
-	return 1
-	
-func load_level(level: LevelResource):
-	
-	money = level.starting_money
-	
-	for child in $Towers.get_children():
-		child.queue_free()
-	population = 0
-	for tower in level.towers:
-		load_tower(tower)
-		
-func load_tower(tower: TowerResource):
-		var instance = load("res://Components/Scenes/castle.tscn").instantiate()
-		$Towers.add_child(instance)
-		instance.assign_resource(tower)
-		instance.tower_id = towers_assigned
-		towers_assigned += 1
-		instance.press_received.connect(on_tower_press_received)
-		towers.append(instance)
-		population += instance.occupants
-	
-func on_tower_press_received(id: int):
-	print("print received")
-	if id_awaiting_connection == -1:
-		id_awaiting_connection = id
-		var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate()
-		add_child(instance)
-		connection_lines.append(instance)
-		
-	else:
-		connection_lines[-1].dragging = false
-		var tower_key_value = tower_connections.get_or_add(id_awaiting_connection, [])
-		if tower_key_value.has(id):
-			tower_key_value.erase(id)
-		else:
-			tower_key_value.append(id)
-		id_awaiting_connection = -1
-		
-func check_win_condition() -> bool:
-	# Conquered all towers
-	var fulfilled = true
-	for tower in towers:
-		if tower.affiliation  != TowerResource.Players.BLUE:
-			fulfilled = false
-	print(fulfilled)
-	
-	return fulfilled
 
-
-func _on_editor_state_changed() -> void:
-	request_ready()
-
-
-func _on_property_list_changed() -> void:
-	request_ready()
+# ========================
+# EDITOR / UI FUNCTIONS
+# ========================
 
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
 	level.towers.append(towerData)
-	load_tower(towerData)
-	
+	$LevelManager.load_tower(towerData)
 
 
-func _on_save_level_pressed() -> void: # Cant save to res
+func _on_save_level_pressed() -> void:
 	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
 	ResourceSaver.save(level, "res://Data/LevelData/Level1.tres")
 
@@ -110,7 +227,7 @@ func _on_quit_pressed() -> void:
 
 
 func reload_level() -> void:
-	load_level(level)
+	$LevelManager.load_level(level)
 
 
 func _on_load_custom_level_pressed() -> void:
@@ -119,5 +236,4 @@ func _on_load_custom_level_pressed() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	level = load(path)
-	load_level(level)
-	
+	$LevelManager.load_level(level)

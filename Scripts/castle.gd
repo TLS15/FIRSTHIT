@@ -27,14 +27,14 @@ func assign_resource(resource: TowerResource):
 	
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		print("is pressed")
+		#print("is pressed")
 		emit_signal("press_received", tower_id)
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		dragging = event.pressed
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("castle entered")
+	#print("castle entered")
 	if area.affiliation != affiliation:
 		occupants -= 1
 	else:  
