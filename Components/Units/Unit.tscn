@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dqas2l5o2k1it"]
+
+[ext_resource type="Script" uid="uid://tpmo3enp1pam" path="res://Components/Units/unit.gd" id="1_24wva"]
+[ext_resource type="Texture2D" uid="uid://dnfx7uo3kxjx8" path="res://Arts/Sprites/Triangle Unit.png" id="1_omq2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vishr"]
+size = Vector2(99, 102)
+
+[node name="Unit" type="Area2D" unique_id=1603061150]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_24wva")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=770785013]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vishr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1362420021]
+texture = ExtResource("1_omq2m")

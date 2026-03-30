@@ -95,7 +95,7 @@ label_settings = SubResource("LabelSettings_djvcl")
 
 [node name="LevelManager" parent="." unique_id=837912548 instance=ExtResource("1_5yk56")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=108468386]
+[node name="Background" type="Sprite2D" parent="." unique_id=108468386]
 z_index = -2
 position = Vector2(962.00006, 547)
 scale = Vector2(2.39375, 1.34375)

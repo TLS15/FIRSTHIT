@@ -12,11 +12,19 @@ script = ExtResource("1_vm22h")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=697158687]
 texture = ExtResource("1_xtwgx")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1367296142]
+[node name="CastleHitbox" type="Area2D" parent="." unique_id=1367296142]
+collision_mask = 65535
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1218601835]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CastleHitbox" unique_id=1218601835]
 position = Vector2(-1.5, 10.5)
 shape = SubResource("RectangleShape2D_r1mkv")
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[node name="Timer" type="Timer" parent="." unique_id=2026864510]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="CastleHitbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="input_event" from="CastleHitbox" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CastleHitbox" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

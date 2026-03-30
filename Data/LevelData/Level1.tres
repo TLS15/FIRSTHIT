@@ -9,6 +9,7 @@ type = 1
 location = Vector2(500, 666)
 level = 1
 occupants = 10
+affiliation = 1
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [sub_resource type="Resource" id="Resource_1vilc"]
@@ -22,6 +23,7 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 script = ExtResource("2_1vilc")
 type = 1
 location = Vector2(500, 300)
+affiliation = 2
 metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [resource]

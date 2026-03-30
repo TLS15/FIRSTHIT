@@ -29,7 +29,11 @@ func calc_revenue() -> float:
 	return 10.0 * TICK_TIME
 	
 func calc_reproduction() -> int:
-	return 1
+	var result = 0
+	for tower in towers:
+		result += tower.occupants
+		
+	return result - population
 	
 func load_level(level: LevelResource):
 	money = level.starting_money
@@ -37,14 +41,14 @@ func load_level(level: LevelResource):
 	for tower in level.towers:
 		var instance = load("res://Components/Scenes/castle.tscn").instantiate()
 		add_child(instance)
-		instance.assign_resource(tower)
 		instance.tower_id = towers_assigned
+		instance.assign_resource(tower)
 		towers_assigned += 1
 		instance.press_received.connect(on_tower_press_received)
 		towers.append(instance)
 		population += instance.occupants
 		
-func on_tower_press_received(id: int): # This might need a bit of a refactor
+func on_tower_press_received(id: int): # This might need a bit of a refactor TODO
 	print("print received")
 	if id_awaiting_connection == -1:
 		id_awaiting_connection = id

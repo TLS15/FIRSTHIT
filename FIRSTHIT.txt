@@ -2,6 +2,8 @@ FIRSTHIT
 
 Visuals like inifintode, easy to do and looks good
 
+Currently working on: "Gameflow/Units"
+
 Visuals:
 	- connection line (done)
 	- Background
@@ -15,11 +17,11 @@ Tower Types:
 	- Economy
 
 Game Flow:
-	Towers Initilisation (done)
-	Towers Leveling up
-	Units Production
-	Tower Damage/Health
-	Win Conditions
+	- Towers Initilisation (done)
+	- Towers Leveling up
+	- Units Production
+	- Tower Damage/Health
+	- Win Conditions
 
 Levels design:
 	- Background
