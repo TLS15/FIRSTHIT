@@ -48,46 +48,75 @@ func load_level(level: LevelResource):
 		towers.append(instance)
 		population += instance.occupants
 		
-func on_tower_press_received(id: int): # This might need a bit of a refactor TODO
+func on_tower_press_received(id: int):
 	print("print received")
-	
+
+	# Step 1: start connection
 	if id_awaiting_connection == -1:
-		if  towers[id].available_connections > 0:
-			id_awaiting_connection = id
-			var instance = load("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-			add_child(instance)
-			connection_lines.append(instance)
-	# See this if statment for bugs	
-	elif id_awaiting_connection != id: # Prevents connecting the tower to itself
+		_start_connection(id)
+		return
+
+	# Step 2: prevent self-connection
+	if id_awaiting_connection == id:
+		_cancel_current_connection()
+		return
+
+	# Step 3: finalize connection
+	_finalize_connection(id)
+	
+func _start_connection(id: int):
+	#if towers[id].available_connections <= 0:
+		#return
+
+	id_awaiting_connection = id
+
+	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
+	add_child(instance)
+	connection_lines.append(instance)
 		
-		connection_lines[-1].dragging = false
-		connection_lines[-1].id_origin = id_awaiting_connection
-		connection_lines[-1].id_target = id
+func _finalize_connection(target_id: int):
+	var origin_id = id_awaiting_connection
+	var line = connection_lines.back()
+	
+	line.dragging = false
+	line.id_origin = origin_id
+	line.id_target = target_id
+
+	var connected_towers_array = tower_connections.get_or_add(origin_id, [])
+
+	if connected_towers_array.has(target_id):
+		_remove_connection(origin_id, target_id)
+		_cancel_current_connection()
+	else:
+		_add_connection(origin_id, target_id)
+		if towers[origin_id].available_connections < 0:
+			_remove_connection(origin_id, target_id)
 		
-		# The tower with this id is connected to all the towers in the array
-		var connected_towers_array = tower_connections.get_or_add(id_awaiting_connection, []) 
+
+	id_awaiting_connection = -1
+	
+func _add_connection(origin_id: int, target_id: int):
+	towers[origin_id].available_connections -= 1
+	tower_connections[origin_id].append(target_id)
+	
+func _remove_connection(origin_id: int, target_id: int):
+	tower_connections[origin_id].erase(target_id)
+	towers[origin_id].available_connections += 1
+
+	for i in connection_lines.size():
+		var line = connection_lines[i]
+		if line.id_origin == origin_id and line.id_target == target_id:
+			line.queue_free()
+			connection_lines.remove_at(i)
+			break
 		
-		if connected_towers_array.has(id): # Towers were connected, so remove the old connection
-			connected_towers_array.erase(id)
-			#towers[id].available_connections += 1
-			towers[id_awaiting_connection].available_connections += 1
-			var i = 0
-			for line in connection_lines:
-				if line.id_origin == id_awaiting_connection and line.id_target == id:
-					line.queue_free()
-					connection_lines.remove_at(i)
-					
-					connection_lines[-1].queue_free()
-					connection_lines.remove_at(-1)
-					break
-				i += 1
-		else: # Towers were not connected 
-			#towers[id].available_connections -= 1
-			towers[id_awaiting_connection].available_connections -= 1
-			connected_towers_array.append(id)
-			
-		id_awaiting_connection = -1
-		
+func _cancel_current_connection():
+	if connection_lines.size() > 0:
+		var last = connection_lines.pop_back()
+		last.queue_free()
+
+	id_awaiting_connection = -1
+	
 func check_win_condition() -> bool:
 	# Conquered all towers
 	var fulfilled = true
