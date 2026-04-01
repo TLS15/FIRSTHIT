@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://dfbx3i33potqo"]
+
+[ext_resource type="Script" uid="uid://ca1dsjd3w2csp" path="res://Components/Resources/UnitResource.gd" id="1_108up"]
+[ext_resource type="Texture2D" uid="uid://dnfx7uo3kxjx8" path="res://Arts/Sprites/Triangle Unit.png" id="2_c3c5l"]
+
+[resource]
+script = ExtResource("1_108up")
+health = 30
+attack = 30
+sprite = ExtResource("2_c3c5l")
+metadata/_custom_type_script = "uid://ca1dsjd3w2csp"

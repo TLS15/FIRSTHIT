@@ -7,9 +7,10 @@ extends Area2D
 @export var affiliation: TowerResource.Players
 #@export var health: int
 
+
 var connections: Array[int]
 var dragging := false
-
+var level: int = 1
 signal press_received(tower_id)
 
 func _process(delta):
@@ -22,13 +23,16 @@ func assign_resource(resource: TowerResource):
 	tower_data = resource
 	position = tower_data.location
 	occupants = tower_data.occupants
-	affiliation = tower_data.affiliation
-	#set_collision_layer_value(tower_id + 1, true) # This will break with ca. 16 towers or more 
+	affiliation = tower_data.affiliation 
 
 
 func spawn_unit(target_tower):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
-	#unit.set_collision_mask_value(tower_id + 1, false)
+	match level:
+		1: unit.assign_resource(load("res://Components/Units/Triangle.tres"))
+		2: unit.assign_resource(load("res://Components/Units/Square.tres"))
+		3: unit.assign_resource(load("res://Components/Units/Circle.tres"))
+	
 	unit.affiliation = affiliation
 	unit.origin_tower = self
 	unit.target_tower = target_tower
@@ -46,10 +50,15 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 func interact(attack, team):
 	if team == affiliation:
 		occupants += attack / 10
+		if occupants < 10:
+			level = 1
+		elif occupants < 20:
+			level = 2
+		else:
+			level = 3
+
 	else:
 		occupants -= attack / 10
-func reinforce(reinforcment_points: int):
-	occupants += reinforcment_points / 10
-
-func damage(damage: int):
-	occupants -= damage / 10
+		if occupants < 0:
+			occupants *= -1
+			affiliation = team

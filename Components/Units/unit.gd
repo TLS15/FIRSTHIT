@@ -26,7 +26,11 @@ func _process(delta: float) -> void:
 		target_tower.interact(attack, affiliation)
 		queue_free()
 
-
+func assign_resource(resource: UnitResource):
+	health = resource.health
+	attack = resource.attack
+	$Sprite2D.texture = resource.sprite
+	
 func _on_area_entered(area: Area2D) -> void:
 	if area.affiliation != affiliation and area.target_tower == origin_tower and area.origin_tower == target_tower:
 		area.interact(attack, affiliation)
