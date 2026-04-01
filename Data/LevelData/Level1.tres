@@ -1,50 +1,26 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://ixxeerjoqvxs"]
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://0hj7ifpykrpb"]
 
-[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_44q56"]
-[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_1vilc"]
-
-[sub_resource type="Resource" id="Resource_44q56"]
-script = ExtResource("2_1vilc")
-type = 1
-location = Vector2(414, 177)
-level = 1
-occupants = 10
-affiliation = 3
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
-
-[sub_resource type="Resource" id="Resource_1vilc"]
-script = ExtResource("2_1vilc")
-location = Vector2(898, 169)
-level = 1
-occupants = 10
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
-
-[sub_resource type="Resource" id="Resource_ejs3y"]
-script = ExtResource("2_1vilc")
-type = 1
-location = Vector2(415, 300)
-affiliation = 2
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_pllpa"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_wf1ep"]
 
 [sub_resource type="Resource" id="Resource_pllpa"]
-script = ExtResource("2_1vilc")
-location = Vector2(891, 296)
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+resource_local_to_scene = true
+script = ExtResource("2_wf1ep")
+type = 1
+location = Vector2(948, 250)
+level = 1
+occupants = 10
 
 [sub_resource type="Resource" id="Resource_wf1ep"]
-script = ExtResource("2_1vilc")
-location = Vector2(416, 417)
-affiliation = 1
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
-
-[sub_resource type="Resource" id="Resource_qxh3j"]
-script = ExtResource("2_1vilc")
-location = Vector2(889, 423)
-affiliation = 2
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+script = ExtResource("2_wf1ep")
+type = 1
+location = Vector2(963, 401)
+level = 1
+occupants = 10
 
 [resource]
-script = ExtResource("1_44q56")
+resource_local_to_scene = true
+script = ExtResource("1_pllpa")
 level_index = 1
-towers = Array[ExtResource("2_1vilc")]([SubResource("Resource_44q56"), SubResource("Resource_1vilc"), SubResource("Resource_ejs3y"), SubResource("Resource_pllpa"), SubResource("Resource_wf1ep"), SubResource("Resource_qxh3j")])
+towers = Array[ExtResource("2_wf1ep")]([SubResource("Resource_pllpa"), SubResource("Resource_wf1ep")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"

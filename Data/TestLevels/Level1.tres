@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://d32ljuunj2an2"]
+[gd_resource type="Resource" script_class="LevelResource" format=3]
 
-[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_yccub"]
-[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_kyeen"]
+[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_xthne"]
+[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_m2w8n"]
 
 [sub_resource type="Resource" id="Resource_0kwnp"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(421, 184)
 level = 1
@@ -13,7 +13,7 @@ occupants = 10
 
 [sub_resource type="Resource" id="Resource_2dn3y"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(713, 180)
 level = 1
@@ -22,7 +22,7 @@ affiliation = 2
 
 [sub_resource type="Resource" id="Resource_e1cti"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(417, 300)
 level = 1
@@ -31,7 +31,7 @@ affiliation = 1
 
 [sub_resource type="Resource" id="Resource_lw4ra"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(708, 285)
 level = 1
@@ -40,7 +40,7 @@ affiliation = 3
 
 [sub_resource type="Resource" id="Resource_wr0dm"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(417, 408)
 level = 1
@@ -48,7 +48,7 @@ occupants = 10
 
 [sub_resource type="Resource" id="Resource_ok1yb"]
 resource_local_to_scene = true
-script = ExtResource("2_kyeen")
+script = ExtResource("2_m2w8n")
 type = 1
 location = Vector2(706, 396)
 level = 1
@@ -57,8 +57,8 @@ affiliation = 2
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_yccub")
+script = ExtResource("1_xthne")
 level_index = 1
-towers = Array[ExtResource("2_kyeen")]([SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y"), SubResource("Resource_e1cti"), SubResource("Resource_lw4ra"), SubResource("Resource_wr0dm"), SubResource("Resource_ok1yb")])
+towers = Array[ExtResource("2_m2w8n")]([SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y"), SubResource("Resource_e1cti"), SubResource("Resource_lw4ra"), SubResource("Resource_wr0dm"), SubResource("Resource_ok1yb")])
 starting_money = 1000.0
 metadata/_custom_type_script = "uid://ji335qpbwph3"

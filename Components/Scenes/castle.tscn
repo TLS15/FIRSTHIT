@@ -6,20 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mkv"]
 size = Vector2(39, 87)
 
-[node name="Castle" type="Node2D" unique_id=1087816798]
+[node name="Castle" type="Area2D" unique_id=1367296142]
+z_index = 3
+collision_mask = 65535
 script = ExtResource("1_vm22h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=697158687]
 texture = ExtResource("1_xtwgx")
 
-[node name="CastleHitbox" type="Area2D" parent="." unique_id=1367296142]
-collision_mask = 65535
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CastleHitbox" unique_id=1218601835]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218601835]
 position = Vector2(-1.5, 10.5)
 shape = SubResource("RectangleShape2D_r1mkv")
 
-[connection signal="area_entered" from="CastleHitbox" to="." method="_on_area_2d_area_entered"]
-[connection signal="input_event" from="CastleHitbox" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="CastleHitbox" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -213,13 +213,14 @@ func _ready() -> void:
 
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
-	level.towers.append(towerData)
+	towerData.resource_local_to_scene = true
+	level.towers.append(towerData) 
 	$LevelManager.load_tower(towerData)
 
 
 func _on_save_level_pressed() -> void:
-	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
-	ResourceSaver.save(level, "res://Data/LevelData/Level1.tres")
+	$UIMaster/SaveLevel/SaveFolderSelection.show()
+	
 
 
 func _on_quit_pressed() -> void:
@@ -237,3 +238,20 @@ func _on_load_custom_level_pressed() -> void:
 func _on_file_dialog_file_selected(path: String) -> void:
 	level = load(path)
 	$LevelManager.load_level(level)
+
+
+func _on_save_folder_selection_file_selected(path: String) -> void:
+	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
+	ResourceSaver.save(level, path)
+
+
+func _on_remove_tower_area_entered(area: Area2D) -> void:
+	print("remove tower")
+	for i in range($LevelManager.towers.size()):
+		if $LevelManager.towers[i].tower_id == area.tower_id:
+			$LevelManager.towers.remove_at(i)
+			level.towers.remove_at(i)
+			break
+	
+	
+	area.queue_free()

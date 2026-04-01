@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://ixxeerjoqvxs" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
+[ext_resource type="Resource" uid="uid://0hj7ifpykrpb" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Components/Scenes/level_manager.tscn" id="3_a41p1"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Arts/Sprites/icon.svg" id="4_3x8je"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yopi2"]
@@ -11,26 +12,27 @@ font_size = 68
 [sub_resource type="LabelSettings" id="LabelSettings_81omt"]
 font_size = 68
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq345"]
+size = Vector2(101, 83)
+
 [node name="LevelTester" type="Node2D" unique_id=837912548]
 process_mode = 3
 script = ExtResource("1_n5pd5")
 level = ExtResource("2_fj2dj")
 
-[node name="LevelManager" parent="." unique_id=1413288095 instance=ExtResource("3_a41p1")]
-
-[node name="UIMaster" type="Control" parent="LevelManager" unique_id=6579418]
+[node name="UIMaster" type="Control" parent="." unique_id=6579418]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 43.0
 offset_bottom = 59.0
 mouse_filter = 2
 
-[node name="SaveLevel" type="Control" parent="LevelManager/UIMaster" unique_id=1207014921]
+[node name="SaveLevel" type="Control" parent="UIMaster" unique_id=1207014921]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SaveLevel" type="Button" parent="LevelManager/UIMaster/SaveLevel" unique_id=264842661]
+[node name="SaveLevel" type="Button" parent="UIMaster/SaveLevel" unique_id=264842661]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 431.0
@@ -38,7 +40,7 @@ offset_right = 235.0
 offset_bottom = 462.0
 text = "Save Level"
 
-[node name="Population" type="SpinBox" parent="LevelManager/UIMaster/SaveLevel" unique_id=562406730]
+[node name="Population" type="SpinBox" parent="UIMaster/SaveLevel" unique_id=562406730]
 layout_mode = 0
 offset_left = 600.0
 offset_top = 151.0
@@ -46,7 +48,7 @@ offset_right = 686.5
 offset_bottom = 182.0
 custom_arrow_step = 5.0
 
-[node name="StartingMoney" type="SpinBox" parent="LevelManager/UIMaster/SaveLevel" unique_id=114921562]
+[node name="StartingMoney" type="SpinBox" parent="UIMaster/SaveLevel" unique_id=114921562]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 151.0
@@ -55,20 +57,23 @@ offset_bottom = 182.0
 max_value = 1000.0
 custom_arrow_step = 10.0
 
-[node name="LoadLevel" type="Control" parent="LevelManager/UIMaster" unique_id=45314047]
+[node name="SaveFolderSelection" type="FileDialog" parent="UIMaster/SaveLevel" unique_id=1023902565]
+root_subfolder = "res://Data/"
+
+[node name="LoadLevel" type="Control" parent="UIMaster" unique_id=45314047]
 anchors_preset = 0
 offset_left = 8.0
 offset_top = 59.0
 offset_right = 32.0
 offset_bottom = 67.0
 
-[node name="FileDialog" type="FileDialog" parent="LevelManager/UIMaster/LoadLevel" unique_id=1074185836]
+[node name="FileDialog" type="FileDialog" parent="UIMaster/LoadLevel" unique_id=1074185836]
 title = "Open a File"
 file_mode = 0
 root_subfolder = "res://Data"
 filters = PackedStringArray("*.tres")
 
-[node name="LoadCustomLevel" type="Button" parent="LevelManager/UIMaster/LoadLevel" unique_id=1648233762]
+[node name="LoadCustomLevel" type="Button" parent="UIMaster/LoadLevel" unique_id=1648233762]
 layout_mode = 0
 offset_left = 129.0
 offset_top = 262.0
@@ -76,7 +81,7 @@ offset_right = 283.0
 offset_bottom = 293.0
 text = "Load Custom Level"
 
-[node name="ReloadLevel" type="Button" parent="LevelManager/UIMaster/LoadLevel" unique_id=706861366]
+[node name="ReloadLevel" type="Button" parent="UIMaster/LoadLevel" unique_id=706861366]
 layout_mode = 0
 offset_left = 129.0
 offset_top = 318.0
@@ -84,45 +89,45 @@ offset_right = 235.0
 offset_bottom = 349.0
 text = "Reload Level"
 
-[node name="UILevel" type="Control" parent="LevelManager/UIMaster" unique_id=988945793]
+[node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
 anchors_preset = 0
 offset_right = 1387.0
 offset_bottom = 100.0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelManager/UIMaster/UILevel" unique_id=1595842271]
+[node name="HBoxContainer" type="HBoxContainer" parent="UIMaster/UILevel" unique_id=1595842271]
 layout_mode = 0
 offset_left = 134.0
 offset_top = 2.0
 offset_right = 1938.0
 offset_bottom = 132.0
 
-[node name="Money" type="Label" parent="LevelManager/UIMaster/UILevel/HBoxContainer" unique_id=1447595836]
+[node name="Money" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=1447595836]
 layout_mode = 2
 text = "Money: 0"
 label_settings = SubResource("LabelSettings_yopi2")
 
-[node name="VSeparator" type="VSeparator" parent="LevelManager/UIMaster/UILevel/HBoxContainer" unique_id=452399481]
+[node name="VSeparator" type="VSeparator" parent="UIMaster/UILevel/HBoxContainer" unique_id=452399481]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Population" type="Label" parent="LevelManager/UIMaster/UILevel/HBoxContainer" unique_id=250885010]
+[node name="Population" type="Label" parent="UIMaster/UILevel/HBoxContainer" unique_id=250885010]
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_81omt")
 
-[node name="MousePosition" type="Label" parent="LevelManager/UIMaster/UILevel" unique_id=478594095]
+[node name="MousePosition" type="Label" parent="UIMaster/UILevel" unique_id=478594095]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="AddTower" type="Control" parent="LevelManager/UIMaster" unique_id=336654464]
+[node name="AddTower" type="Control" parent="UIMaster" unique_id=336654464]
 anchors_preset = 0
 offset_right = 28.0
 offset_bottom = 26.0
 script = ExtResource("4_yopi2")
 
-[node name="Add" type="Button" parent="LevelManager/UIMaster/AddTower" unique_id=971616716]
+[node name="Add" type="Button" parent="UIMaster/AddTower" unique_id=971616716]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 485.0
@@ -130,14 +135,14 @@ offset_right = 228.0
 offset_bottom = 516.0
 text = "Add Tower"
 
-[node name="Window" type="Window" parent="LevelManager/UIMaster/AddTower" unique_id=993051646]
+[node name="Window" type="Window" parent="UIMaster/AddTower" unique_id=993051646]
 oversampling_override = 1.0
 title = "Add Tower"
 position = Vector2i(500, 423)
 size = Vector2i(400, 200)
 visible = false
 
-[node name="Confirm" type="Button" parent="LevelManager/UIMaster/AddTower/Window" unique_id=59088313]
+[node name="Confirm" type="Button" parent="UIMaster/AddTower/Window" unique_id=59088313]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -149,7 +154,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Confirm"
 
-[node name="Close" type="Button" parent="LevelManager/UIMaster/AddTower/Window" unique_id=137026490]
+[node name="Close" type="Button" parent="UIMaster/AddTower/Window" unique_id=137026490]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -159,7 +164,7 @@ grow_vertical = 0
 text = "Cancel
 "
 
-[node name="Teams" type="ItemList" parent="LevelManager/UIMaster/AddTower/Window" unique_id=1678152569]
+[node name="Teams" type="ItemList" parent="UIMaster/AddTower/Window" unique_id=1678152569]
 offset_right = 40.0
 offset_bottom = 40.0
 allow_reselect = true
@@ -171,7 +176,7 @@ item_1/text = "Red"
 item_2/text = "Green"
 item_3/text = "Yellow"
 
-[node name="TowerType" type="ItemList" parent="LevelManager/UIMaster/AddTower/Window" unique_id=568298852]
+[node name="TowerType" type="ItemList" parent="UIMaster/AddTower/Window" unique_id=568298852]
 offset_left = 100.0
 offset_right = 189.0
 offset_bottom = 62.0
@@ -182,7 +187,7 @@ item_count = 2
 item_0/text = "Offensive"
 item_1/text = "Defensive"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelManager/UIMaster/AddTower/Window" unique_id=25045102]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIMaster/AddTower/Window" unique_id=25045102]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -190,12 +195,12 @@ offset_left = -94.0
 offset_bottom = 136.0
 grow_horizontal = 0
 
-[node name="Occupants" type="SpinBox" parent="LevelManager/UIMaster/AddTower/Window/VBoxContainer" unique_id=1410068968]
+[node name="Occupants" type="SpinBox" parent="UIMaster/AddTower/Window/VBoxContainer" unique_id=1410068968]
 clip_contents = true
 layout_mode = 2
 value = 10.0
 
-[node name="Level" type="SpinBox" parent="LevelManager/UIMaster/AddTower/Window/VBoxContainer" unique_id=1229348924]
+[node name="Level" type="SpinBox" parent="UIMaster/AddTower/Window/VBoxContainer" unique_id=1229348924]
 clip_contents = true
 layout_mode = 2
 min_value = 1.0
@@ -203,21 +208,21 @@ max_value = 3.0
 value = 1.0
 rounded = true
 
-[node name="PositionX" type="SpinBox" parent="LevelManager/UIMaster/AddTower/Window/VBoxContainer" unique_id=98572958]
+[node name="PositionX" type="SpinBox" parent="UIMaster/AddTower/Window/VBoxContainer" unique_id=98572958]
 clip_contents = true
 layout_mode = 2
 max_value = 1920.0
 value = 555.0
 custom_arrow_step = 10.0
 
-[node name="PositionY" type="SpinBox" parent="LevelManager/UIMaster/AddTower/Window/VBoxContainer" unique_id=733681614]
+[node name="PositionY" type="SpinBox" parent="UIMaster/AddTower/Window/VBoxContainer" unique_id=733681614]
 clip_contents = true
 layout_mode = 2
 max_value = 1080.0
 value = 555.0
 custom_arrow_step = 10.0
 
-[node name="Quit" type="Button" parent="LevelManager/UIMaster" unique_id=409290020]
+[node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 538.0
@@ -225,22 +230,39 @@ offset_right = 219.0
 offset_bottom = 569.0
 text = "QUIT"
 
-[node name="Timer" type="Timer" parent="LevelManager/UIMaster" unique_id=1979808991]
+[node name="Timer" type="Timer" parent="UIMaster" unique_id=1979808991]
 wait_time = 3.0
 autostart = true
 
+[node name="RemoveTower" type="Area2D" parent="UIMaster" unique_id=1289854456]
+collision_mask = 65535
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UIMaster/RemoveTower" unique_id=278509313]
+position = Vector2(191, 267)
+shape = SubResource("RectangleShape2D_pq345")
+
+[node name="Sprite2D" type="Sprite2D" parent="UIMaster/RemoveTower" unique_id=1149682840]
+position = Vector2(190, 267)
+scale = Vector2(0.78906244, 0.5664059)
+texture = ExtResource("4_3x8je")
+
+[node name="LevelManager" parent="." unique_id=1413288095 instance=ExtResource("3_a41p1")]
+
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
-[connection signal="pressed" from="LevelManager/UIMaster/SaveLevel/SaveLevel" to="." method="_on_save_level_pressed"]
-[connection signal="file_selected" from="LevelManager/UIMaster/LoadLevel/FileDialog" to="." method="_on_file_dialog_file_selected"]
-[connection signal="pressed" from="LevelManager/UIMaster/LoadLevel/LoadCustomLevel" to="." method="_on_load_custom_level_pressed"]
-[connection signal="pressed" from="LevelManager/UIMaster/LoadLevel/ReloadLevel" to="." method="reload_level"]
-[connection signal="tower_configured" from="LevelManager/UIMaster/AddTower" to="." method="_on_add_tower_tower_configured"]
-[connection signal="pressed" from="LevelManager/UIMaster/AddTower/Add" to="LevelManager/UIMaster/AddTower" method="_on_add_pressed"]
-[connection signal="close_requested" from="LevelManager/UIMaster/AddTower/Window" to="LevelManager/UIMaster/AddTower" method="_on_window_close_requested"]
-[connection signal="pressed" from="LevelManager/UIMaster/AddTower/Window/Confirm" to="LevelManager/UIMaster/AddTower" method="_on_confirm_pressed"]
-[connection signal="pressed" from="LevelManager/UIMaster/AddTower/Window/Close" to="LevelManager/UIMaster/AddTower" method="_on_close_pressed"]
-[connection signal="item_selected" from="LevelManager/UIMaster/AddTower/Window/Teams" to="LevelManager/UIMaster/AddTower" method="_on_teams_item_selected"]
-[connection signal="item_selected" from="LevelManager/UIMaster/AddTower/Window/TowerType" to="LevelManager/UIMaster/AddTower" method="_on_tower_type_item_selected"]
-[connection signal="pressed" from="LevelManager/UIMaster/Quit" to="." method="_on_quit_pressed"]
-[connection signal="timeout" from="LevelManager/UIMaster/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="UIMaster/SaveLevel/SaveLevel" to="." method="_on_save_level_pressed"]
+[connection signal="file_selected" from="UIMaster/SaveLevel/SaveFolderSelection" to="." method="_on_save_folder_selection_file_selected"]
+[connection signal="file_selected" from="UIMaster/LoadLevel/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="UIMaster/LoadLevel/LoadCustomLevel" to="." method="_on_load_custom_level_pressed"]
+[connection signal="pressed" from="UIMaster/LoadLevel/ReloadLevel" to="." method="reload_level"]
+[connection signal="tower_configured" from="UIMaster/AddTower" to="." method="_on_add_tower_tower_configured"]
+[connection signal="pressed" from="UIMaster/AddTower/Add" to="UIMaster/AddTower" method="_on_add_pressed"]
+[connection signal="close_requested" from="UIMaster/AddTower/Window" to="UIMaster/AddTower" method="_on_window_close_requested"]
+[connection signal="pressed" from="UIMaster/AddTower/Window/Confirm" to="UIMaster/AddTower" method="_on_confirm_pressed"]
+[connection signal="pressed" from="UIMaster/AddTower/Window/Close" to="UIMaster/AddTower" method="_on_close_pressed"]
+[connection signal="item_selected" from="UIMaster/AddTower/Window/Teams" to="UIMaster/AddTower" method="_on_teams_item_selected"]
+[connection signal="item_selected" from="UIMaster/AddTower/Window/TowerType" to="UIMaster/AddTower" method="_on_tower_type_item_selected"]
+[connection signal="pressed" from="UIMaster/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="UIMaster/Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="UIMaster/RemoveTower" to="." method="_on_remove_tower_area_entered"]

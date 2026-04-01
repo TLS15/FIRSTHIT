@@ -21,3 +21,10 @@ func _process(delta: float) -> void:
 	var speed: float = 50.0 
 
 	global_position = global_position.move_toward(target_position, speed * delta)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.affiliation == affiliation:
+		area.reinforce()
+	else:
+		area.damage()
