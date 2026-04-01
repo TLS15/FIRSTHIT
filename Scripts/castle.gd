@@ -23,14 +23,15 @@ func assign_resource(resource: TowerResource):
 	position = tower_data.location
 	occupants = tower_data.occupants
 	affiliation = tower_data.affiliation
-	set_collision_mask_value(tower_id + 1, false) # This will break with ca. 16 towers or more 
+	#set_collision_layer_value(tower_id + 1, true) # This will break with ca. 16 towers or more 
 
 
-func spawn_unit(target_position: Vector2):
+func spawn_unit(target_tower):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
-	unit.set_collision_layer_value(tower_id + 1, true)
+	#unit.set_collision_mask_value(tower_id + 1, false)
 	unit.affiliation = affiliation
-	unit.target_position = target_position
+	unit.origin_tower = self
+	unit.target_tower = target_tower
 	add_child(unit)
 
 
@@ -42,13 +43,13 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		dragging = event.pressed
 
+func interact(attack, team):
+	if team == affiliation:
+		occupants += attack / 10
+	else:
+		occupants -= attack / 10
+func reinforce(reinforcment_points: int):
+	occupants += reinforcment_points / 10
 
-func _on_area_entered(area: Area2D) -> void:
-	print("castle entered")
-	
-	#if area.affiliation != affiliation:
-		#occupants -= 1
-	#else:  
-		#occupants += 1
-		#
-	#area.queue_free()
+func damage(damage: int):
+	occupants -= damage / 10

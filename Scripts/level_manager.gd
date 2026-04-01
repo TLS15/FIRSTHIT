@@ -160,4 +160,4 @@ func cancel_action():
 func _on_timer_timeout() -> void:
 	for tower in towers:
 		for target_id in tower_connections.get_or_add(tower.tower_id, []):
-			tower.spawn_unit(towers[target_id].position)
+			tower.spawn_unit(towers[target_id])

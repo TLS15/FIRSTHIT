@@ -1,10 +1,11 @@
 extends Area2D
 
 @export var health: int = 30
-@export var damage: int = 30
+@export var attack: int = 30
 @export var affiliation: TowerResource.Players
-var target_position = Vector2(0, 0)
 
+var origin_tower
+var target_tower
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,11 +21,26 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var speed: float = 50.0 
 
-	global_position = global_position.move_toward(target_position, speed * delta)
+	global_position = global_position.move_toward(target_tower.position, speed * delta)
+	if global_position == target_tower.position:
+		target_tower.interact(attack, affiliation)
+		queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.affiliation == affiliation:
-		area.reinforce()
+	if area.affiliation != affiliation and area.target_tower == origin_tower and area.origin_tower == target_tower:
+		area.interact(attack, affiliation)
+
+func reinforce(reinforcment_points: int):
+	health += reinforcment_points
+
+func damage(attack: int):
+	health -= attack
+	if health < 1:
+		queue_free()
+	
+func interact(attack, team):
+	if team == affiliation:
+		reinforce(attack)
 	else:
-		area.damage()
+		damage(attack)

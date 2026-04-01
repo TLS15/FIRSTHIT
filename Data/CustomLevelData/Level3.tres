@@ -1,21 +1,63 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://ci6e030icjp26"]
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://cmtbgfq2hi6df"]
 
 [ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_50m7v"]
 [ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_wf0y8"]
 
-[sub_resource type="Resource" id="Resource_73218"]
+[sub_resource type="Resource" id="Resource_0kwnp"]
+resource_local_to_scene = true
 script = ExtResource("2_wf0y8")
-location = Vector2(899, 900)
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+type = 1
+location = Vector2(421, 184)
+level = 1
+occupants = 10
 
-[sub_resource type="Resource" id="Resource_f22t0"]
+[sub_resource type="Resource" id="Resource_2dn3y"]
+resource_local_to_scene = true
 script = ExtResource("2_wf0y8")
-location = Vector2(777, 777)
-metadata/_custom_type_script = "uid://bhbikuqcdsttw"
+type = 1
+location = Vector2(713, 180)
+level = 1
+occupants = 10
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_e1cti"]
+resource_local_to_scene = true
+script = ExtResource("2_wf0y8")
+type = 1
+location = Vector2(417, 300)
+level = 1
+occupants = 10
+affiliation = 1
+
+[sub_resource type="Resource" id="Resource_lw4ra"]
+resource_local_to_scene = true
+script = ExtResource("2_wf0y8")
+type = 1
+location = Vector2(708, 285)
+level = 1
+occupants = 10
+affiliation = 3
+
+[sub_resource type="Resource" id="Resource_wr0dm"]
+resource_local_to_scene = true
+script = ExtResource("2_wf0y8")
+type = 1
+location = Vector2(417, 408)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_ok1yb"]
+resource_local_to_scene = true
+script = ExtResource("2_wf0y8")
+type = 1
+location = Vector2(706, 396)
+level = 1
+occupants = 10
+affiliation = 2
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_50m7v")
-level_index = 3
-towers = Array[ExtResource("2_wf0y8")]([SubResource("Resource_73218"), SubResource("Resource_f22t0")])
-starting_money = 300.0
+level_index = 1
+towers = Array[ExtResource("2_wf0y8")]([SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y"), SubResource("Resource_e1cti"), SubResource("Resource_lw4ra"), SubResource("Resource_wr0dm"), SubResource("Resource_ok1yb")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"
