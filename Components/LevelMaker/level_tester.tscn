@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://0hj7ifpykrpb" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
+[ext_resource type="Resource" uid="uid://cmwxxypdcqmc6" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Components/Scenes/level_manager.tscn" id="3_a41p1"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Arts/Sprites/icon.svg" id="4_3x8je"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
@@ -90,6 +90,7 @@ offset_bottom = 349.0
 text = "Reload Level"
 
 [node name="UILevel" type="Control" parent="UIMaster" unique_id=988945793]
+visible = false
 anchors_preset = 0
 offset_right = 1387.0
 offset_bottom = 100.0
@@ -115,11 +116,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_81omt")
-
-[node name="MousePosition" type="Label" parent="UIMaster/UILevel" unique_id=478594095]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="AddTower" type="Control" parent="UIMaster" unique_id=336654464]
 anchors_preset = 0
@@ -221,6 +217,11 @@ layout_mode = 2
 max_value = 1080.0
 value = 555.0
 custom_arrow_step = 10.0
+
+[node name="MousePosition" type="Label" parent="UIMaster/AddTower" unique_id=478594095]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
 layout_mode = 0

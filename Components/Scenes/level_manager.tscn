@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://lnjlxhofcuys" path="res://Scripts/level_manager.gd" id="1_fvluo"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_4k4r3"]
+font_size = 68
+
+[sub_resource type="LabelSettings" id="LabelSettings_20ua4"]
+font_size = 68
+
 [node name="LevelManager" type="Node2D" unique_id=837912548]
-process_mode = 4
 script = ExtResource("1_fvluo")
 
 [node name="Timer" type="Timer" parent="." unique_id=445225050]
@@ -11,5 +16,34 @@ wait_time = 3.0
 autostart = true
 
 [node name="Towers" type="Node2D" parent="." unique_id=484807508]
+
+[node name="UILevel" type="Control" parent="." unique_id=607524172]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 11.0
+offset_right = 1292.0
+offset_bottom = 141.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILevel" unique_id=1201040428]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 2.0
+offset_right = 1292.0
+offset_bottom = 132.0
+
+[node name="Money" type="Label" parent="UILevel/HBoxContainer" unique_id=2012955555]
+layout_mode = 2
+text = "Money: 0"
+label_settings = SubResource("LabelSettings_4k4r3")
+
+[node name="VSeparator" type="VSeparator" parent="UILevel/HBoxContainer" unique_id=604986874]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Population" type="Label" parent="UILevel/HBoxContainer" unique_id=1791748879]
+layout_mode = 2
+text = "Total Population: 0"
+label_settings = SubResource("LabelSettings_20ua4")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -71,3 +71,4 @@ func interact(unit):
 		if occupants < 0:
 			occupants *= -1
 			affiliation = unit.affiliation
+			$"../../../LevelManager".check_win_condition()

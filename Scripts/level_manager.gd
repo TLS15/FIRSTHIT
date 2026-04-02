@@ -21,9 +21,8 @@ func _process(delta):
 func tick():
 	money += calc_revenue()
 	population += calc_reproduction()
-	$"../UIMaster/UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
-	$"../UIMaster/UILevel/HBoxContainer/Population".text = "Population: " + str(population)
-	check_win_condition()
+	$"./UILevel/HBoxContainer/Money".text = "Money: %.0f" % money
+	$"./UILevel/HBoxContainer/Population".text = "Population: " + str(population)
 	
 func calc_revenue() -> float:
 	return 10.0 * TICK_TIME
@@ -67,7 +66,7 @@ func load_tower(tower: TowerResource):
 	population += instance.occupants
 		
 func on_tower_press_received(id: int):
-	print("print received")
+	#print("print received")
 
 	# Step 1: start connection
 	if id_awaiting_connection == -1:
@@ -145,7 +144,7 @@ func check_win_condition() -> bool:
 	for tower in towers:
 		if tower.affiliation  != TowerResource.Players.BLUE:
 			fulfilled = false
-	#print(fulfilled)
+	print(fulfilled)
 	# Reached Money Goal (!TODO)
 	
 	return fulfilled
