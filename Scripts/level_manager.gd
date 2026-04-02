@@ -113,11 +113,13 @@ func _finalize_connection(target_id: int):
 func _add_connection(origin_id: int, target_id: int):
 	towers[origin_id].available_connections -= 1
 	tower_connections[origin_id].append(target_id)
-	
-func _remove_connection(origin_id: int, target_id: int):
-	tower_connections[origin_id].erase(target_id)
-	towers[origin_id].available_connections += 1
+	towers[origin_id].connections.append(get_tower_through_id(target_id))	
 
+func _remove_connection(origin_id: int, target_id: int):
+	towers[origin_id].available_connections += 1
+	tower_connections[origin_id].erase(target_id)
+	towers[origin_id].connections.erase(get_tower_through_id(target_id))
+	
 	for i in connection_lines.size():
 		var line = connection_lines[i]
 		if line.id_origin == origin_id and line.id_target == target_id:
@@ -132,6 +134,11 @@ func _cancel_current_connection():
 
 	id_awaiting_connection = -1
 	
+func get_tower_through_id(id: int):
+	for tower in towers:
+		if tower.tower_id == id:
+			return tower
+
 func check_win_condition() -> bool:
 	# Conquered all towers
 	var fulfilled = true
@@ -156,8 +163,7 @@ func cancel_action():
 		connection_lines.remove_at(-1)
 		id_awaiting_connection = -1
 
-
 func _on_timer_timeout() -> void:
 	for tower in towers:
 		for target_id in tower_connections.get_or_add(tower.tower_id, []):
-			tower.spawn_unit(towers[target_id])
+			tower.spawn_unit(towers[target_id], tower.level)

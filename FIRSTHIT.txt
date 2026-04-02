@@ -7,7 +7,7 @@ Currently working on: "Gameflow/Units"
 Visuals:
 	- connection line (done)
 	- Background
-	- Units
+	- Units (done)
 	- Towers
 
 
@@ -18,9 +18,9 @@ Tower Types:
 
 Game Flow:
 	- Towers Initilisation (done)
-	- Towers Leveling up
+	- Towers Leveling up (done)
 	- Units Production (done)
-	- Tower Damage/Health
+	- Tower Damage/Health (done)
 	- Win Conditions
 
 Levels design:
@@ -28,8 +28,8 @@ Levels design:
 	- Obstacles
 
 Units:
-	- Triangle
-	- Square
-	- Circle
+	- Triangle (done)
+	- Square (done)
+	- Circle (done)
 
 - AI # Leave this last

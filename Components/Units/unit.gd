@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 
 	global_position = global_position.move_toward(target_tower.position, speed * delta)
 	if global_position == target_tower.position:
-		target_tower.interact(attack, affiliation)
-		queue_free()
+		target_tower.interact(self)
+		
 
 func assign_resource(resource: UnitResource):
 	health = resource.health
@@ -45,6 +45,10 @@ func damage(attack: int):
 	
 func interact(attack, team):
 	if team == affiliation:
-		reinforce(attack)
+		if target_tower.occupants >= 50:
+			origin_tower = target_tower
+			target_tower = origin_tower.connections[randi() % origin_tower.connections.size]
+		else:
+			reinforce(attack)
 	else:
 		damage(attack)
