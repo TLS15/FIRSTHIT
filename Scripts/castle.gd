@@ -2,10 +2,10 @@ extends Area2D
 
 @export var tower_id: int
 @export var tower_data: TowerResource
-@export var occupants: int
-@export var available_connections: int = 2
+@export var health: int
+@export var available_connections: int = 1
 @export var affiliation: TowerResource.Players
-#@export var health: int
+
 
 
 var connections: Array
@@ -15,7 +15,7 @@ var level: int = 1
 signal press_received(tower_id)
 
 func _process(delta):
-	$Occupants.text = str(occupants)
+
 	if dragging:
 		tower_data.location = get_global_mouse_position()
 		global_position = tower_data.location # This keeps them synced 
@@ -23,9 +23,17 @@ func _process(delta):
 func assign_resource(resource: TowerResource):
 	tower_data = resource
 	position = tower_data.location
-	occupants = tower_data.occupants
-	affiliation = tower_data.affiliation 
+	set_health(tower_data.occupants)
+	set_affiliation(tower_data.affiliation) 
+	
 
+func set_affiliation(aff: int):
+	affiliation = aff
+	match aff:
+		0: $HealthBar.set_self_modulate(Color.DARK_BLUE)
+		1: $HealthBar.set_self_modulate(Color.GREEN)
+		2: $HealthBar.set_self_modulate(Color.DARK_RED)
+		3: $HealthBar.set_self_modulate(Color.YELLOW)
 
 func spawn_unit(target_tower, unit_level: int):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
@@ -48,27 +56,40 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		dragging = event.pressed
 
+
+func set_level(num: int):
+	level = num
+	available_connections = num
+	$HealthBar.max_value = 10 + 20 * num
+	if level == 3:
+		$Upgrade.hide()
+
+func set_health(hp: int):
+	health = hp
+	$HealthBar.value = hp
+	$Health.text = str(hp)
+
 func interact(unit):
 	if unit.affiliation == affiliation:
-		occupants += unit.attack / 10
-		if occupants < 10:
-			level = 1
-			unit.queue_free()
-		elif occupants < 20:
-			level = 2
-			unit.queue_free()
-		elif occupants < 50:
-			level = 3
-			unit.queue_free()
-		else:
-			occupants = 50
+		set_health(health + unit.attack / 10)
+		if health > 10 + 20 * level:
+			set_health(10 + 20 * level)
 			if connections.size() != 0:
-				unit.target_tower = connections[randi() % connections.size()]
+				unit.target_tower = connections[randi() % connections.size()] # idk if origin updated
+				unit.origin_tower = self
+		else:
+			unit.queue_free()
 
 	else:
 		unit.queue_free()
-		occupants -= unit.attack / 10
-		if occupants < 0:
-			occupants *= -1
-			affiliation = unit.affiliation
+		set_health(health - unit.attack / 10)
+		if health < 0:
+			set_health(-health)
+			set_affiliation(unit.affiliation)
 			$"../../../LevelManager".check_win_condition()
+
+
+func _on_upgrade_pressed() -> void:
+	if $"../../../LevelManager".money > 50:
+		$"../../../LevelManager".money -= 50
+		set_level(level + 1)

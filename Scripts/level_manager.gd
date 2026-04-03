@@ -30,7 +30,7 @@ func calc_revenue() -> float:
 func calc_reproduction() -> int:
 	var result = 0
 	for tower in towers:
-		result += tower.occupants
+		result += tower.health
 		
 	return result - population
 	
@@ -63,7 +63,7 @@ func load_tower(tower: TowerResource):
 
 	towers.append(instance)
 	towers_assigned += 1
-	population += instance.occupants
+	population += instance.health
 		
 func on_tower_press_received(id: int):
 	#print("print received")

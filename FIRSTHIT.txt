@@ -6,14 +6,15 @@ Currently working on: "Gameflow/Units"
 
 Visuals:
 	- connection line (done)
-	- Background
+	- Backgrounds
 	- Units (done)
 	- Towers
+	- Obstacles
 
 
 Tower Types:
 	- Offensive
-	- Defensive
+	- Defensive // create levels where the only way to beat this tower is create a cycle of towers to store troops
 	- Economy
 
 
@@ -34,7 +35,7 @@ Menus:
 Levels design:
 	- Background
 	- Obstacles
- - Some with lots/few of towers
+	- Some with lots/few of towers
 
 Units:
 	- Triangle (done)
@@ -68,4 +69,3 @@ Fortify weak towers
 Launch attack throw Frontline tower
 Upgrade defensive towers if no enemy weak towers
 Upgrade attack towers that are attacking enemy weak towers
-
