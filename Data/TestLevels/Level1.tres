@@ -1,64 +1,66 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3]
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://b5xk7yw5trmyi"]
 
-[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_xthne"]
-[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_m2w8n"]
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_xthne"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_m2w8n"]
 
-[sub_resource type="Resource" id="Resource_0kwnp"]
+[sub_resource type="Resource" id="Resource_qxh3j"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(421, 184)
 level = 1
 occupants = 10
 
-[sub_resource type="Resource" id="Resource_2dn3y"]
+[sub_resource type="Resource" id="Resource_1lnvg"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(713, 180)
 level = 1
 occupants = 10
 affiliation = 2
 
-[sub_resource type="Resource" id="Resource_e1cti"]
+[sub_resource type="Resource" id="Resource_527s1"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(417, 300)
 level = 1
 occupants = 10
 affiliation = 1
 
-[sub_resource type="Resource" id="Resource_lw4ra"]
+[sub_resource type="Resource" id="Resource_d5n7q"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(708, 285)
 level = 1
 occupants = 10
 affiliation = 3
 
-[sub_resource type="Resource" id="Resource_wr0dm"]
+[sub_resource type="Resource" id="Resource_rtmwn"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(417, 408)
 level = 1
 occupants = 10
 
-[sub_resource type="Resource" id="Resource_ok1yb"]
+[sub_resource type="Resource" id="Resource_h644l"]
 resource_local_to_scene = true
 script = ExtResource("2_m2w8n")
-type = 1
 location = Vector2(706, 396)
 level = 1
 occupants = 10
 affiliation = 2
 
+[sub_resource type="Resource" id="Resource_pllpa"]
+resource_local_to_scene = true
+script = ExtResource("2_m2w8n")
+type = 1
+location = Vector2(555, 555)
+level = 1
+occupants = 10
+affiliation = 1
+
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_xthne")
 level_index = 1
-towers = Array[ExtResource("2_m2w8n")]([SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y"), SubResource("Resource_e1cti"), SubResource("Resource_lw4ra"), SubResource("Resource_wr0dm"), SubResource("Resource_ok1yb")])
-starting_money = 1000.0
+towers = Array[ExtResource("2_m2w8n")]([SubResource("Resource_qxh3j"), SubResource("Resource_1lnvg"), SubResource("Resource_527s1"), SubResource("Resource_d5n7q"), SubResource("Resource_rtmwn"), SubResource("Resource_h644l"), SubResource("Resource_pllpa")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"

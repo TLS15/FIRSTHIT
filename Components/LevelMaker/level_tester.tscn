@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://cmwxxypdcqmc6" path="res://Data/LevelData/Level1.tres" id="2_fj2dj"]
+[ext_resource type="Resource" path="res://Data/TestLevels/Level1.tres" id="2_3x8je"]
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Components/Scenes/level_manager.tscn" id="3_a41p1"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Arts/Sprites/icon.svg" id="4_3x8je"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
@@ -18,7 +18,7 @@ size = Vector2(101, 83)
 [node name="LevelTester" type="Node2D" unique_id=837912548]
 process_mode = 3
 script = ExtResource("1_n5pd5")
-level = ExtResource("2_fj2dj")
+level = ExtResource("2_3x8je")
 
 [node name="UIMaster" type="Control" parent="." unique_id=6579418]
 layout_mode = 3
@@ -236,7 +236,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="RemoveTower" type="Area2D" parent="UIMaster" unique_id=1289854456]
-collision_mask = 65535
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UIMaster/RemoveTower" unique_id=278509313]

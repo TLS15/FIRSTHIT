@@ -42,6 +42,7 @@ func init_offensive():
 
 func init_defensive():
 	$Defensive.show()
+	$DefensiveArea.monitoring = true
 	
 func init_economic():
 	$Economic.show()
@@ -119,3 +120,13 @@ func _on_upgrade_pressed() -> void:
 func _on_spawn_timer_timeout() -> void:
 	for tower in connections:
 		spawn_unit(tower, level)
+
+func spawn_bullet(unit):
+	var instance = load("res://Components/Scenes/bullet.tscn").instantiate()
+	instance.target_unit = unit
+	add_child(instance)
+
+func _on_defensive_area_area_entered(area: Area2D) -> void:
+	if area.affiliation != affiliation:
+		spawn_bullet(area)
+	

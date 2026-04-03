@@ -3,33 +3,64 @@
 [ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_n7hvv"]
 [ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_cefoo"]
 
-[sub_resource type="Resource" id="Resource_pllpa"]
+[sub_resource type="Resource" id="Resource_dplfv"]
 resource_local_to_scene = true
 script = ExtResource("2_cefoo")
-type = 1
-location = Vector2(948, 250)
+location = Vector2(421, 184)
 level = 1
 occupants = 10
 
-[sub_resource type="Resource" id="Resource_0kwnp"]
+[sub_resource type="Resource" id="Resource_dfslm"]
 resource_local_to_scene = true
 script = ExtResource("2_cefoo")
-type = 1
-location = Vector2(548, 414)
+location = Vector2(713, 180)
+level = 1
+occupants = 10
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_ayjhf"]
+resource_local_to_scene = true
+script = ExtResource("2_cefoo")
+location = Vector2(417, 300)
+level = 1
+occupants = 10
+affiliation = 1
+
+[sub_resource type="Resource" id="Resource_1i2jh"]
+resource_local_to_scene = true
+script = ExtResource("2_cefoo")
+location = Vector2(708, 285)
+level = 1
+occupants = 10
+affiliation = 3
+
+[sub_resource type="Resource" id="Resource_nnmu3"]
+resource_local_to_scene = true
+script = ExtResource("2_cefoo")
+location = Vector2(417, 408)
 level = 1
 occupants = 10
 
-[sub_resource type="Resource" id="Resource_2dn3y"]
+[sub_resource type="Resource" id="Resource_mbqao"]
+resource_local_to_scene = true
+script = ExtResource("2_cefoo")
+location = Vector2(706, 396)
+level = 1
+occupants = 10
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_tbbjx"]
 resource_local_to_scene = true
 script = ExtResource("2_cefoo")
 type = 1
-location = Vector2(542, 515)
+location = Vector2(555, 555)
 level = 1
 occupants = 10
+affiliation = 1
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_n7hvv")
 level_index = 1
-towers = Array[ExtResource("2_cefoo")]([SubResource("Resource_pllpa"), SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y")])
+towers = Array[ExtResource("2_cefoo")]([SubResource("Resource_dplfv"), SubResource("Resource_dfslm"), SubResource("Resource_ayjhf"), SubResource("Resource_1i2jh"), SubResource("Resource_nnmu3"), SubResource("Resource_mbqao"), SubResource("Resource_tbbjx")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"
