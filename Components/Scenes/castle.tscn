@@ -71,6 +71,10 @@ rotation = 3.1415927
 scale = Vector2(0.09607143, 0.12714285)
 texture = ExtResource("2_n7ycl")
 
+[node name="ShootingCooldownTimer" type="Timer" parent="." unique_id=529522019]
+wait_time = 2.0
+autostart = true
+
 [node name="DefensiveArea" type="Area2D" parent="." unique_id=1792257370]
 collision_layer = 0
 collision_mask = 2
@@ -84,4 +88,6 @@ shape = SubResource("CircleShape2D_ur86t")
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ShootingCooldownTimer" to="." method="_on_shooting_cooldown_timer_timeout"]
 [connection signal="area_entered" from="DefensiveArea" to="." method="_on_defensive_area_area_entered"]
+[connection signal="area_exited" from="DefensiveArea" to="." method="_on_defensive_area_area_exited"]

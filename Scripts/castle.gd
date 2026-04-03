@@ -8,6 +8,7 @@ extends Area2D
 @export var type: TowerResource.TowerType
 
 var connections: Array
+var enemy_units_in_range: Array
 
 var dragging := false
 var level: int = 1
@@ -122,11 +123,23 @@ func _on_spawn_timer_timeout() -> void:
 		spawn_unit(tower, level)
 
 func spawn_bullet(unit):
+	
 	var instance = load("res://Components/Scenes/bullet.tscn").instantiate()
 	instance.target_unit = unit
 	add_child(instance)
 
 func _on_defensive_area_area_entered(area: Area2D) -> void:
 	if area.affiliation != affiliation:
-		spawn_bullet(area)
+		enemy_units_in_range.append(area)
+		
 	
+
+
+func _on_defensive_area_area_exited(area: Area2D) -> void:
+	if area.affiliation != affiliation:
+		enemy_units_in_range.erase(area)
+
+
+func _on_shooting_cooldown_timer_timeout() -> void:
+	if enemy_units_in_range.size() > 0:
+		spawn_bullet(enemy_units_in_range[0])

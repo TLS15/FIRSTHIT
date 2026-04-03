@@ -21,5 +21,9 @@ func _process(delta: float) -> void:
 	var speed: float = 150.0 
 	if is_instance_valid(target_unit):
 		global_position = global_position.move_toward(target_unit.global_position, speed * delta)
-		if global_position == target_unit.position:
-			target_unit.interact(self)
+		
+		if global_position.distance_to(target_unit.global_position) < 10:
+			target_unit.damage(attack)
+			queue_free()
+	else:
+		queue_free()

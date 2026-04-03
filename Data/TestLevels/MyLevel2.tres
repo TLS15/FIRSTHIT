@@ -1,10 +1,58 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://b7228qdlg8djr"]
+[gd_resource type="Resource" script_class="LevelResource" format=3]
 
-[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_yxoij"]
-[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_7qvof"]
+[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_yxoij"]
+[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_7qvof"]
+
+[sub_resource type="Resource" id="Resource_yxoij"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(1151, 777)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_7qvof"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(701, 787)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_x821h"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+type = 1
+location = Vector2(934, 618)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_s4x5y"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+type = 1
+location = Vector2(928, 411)
+level = 1
+occupants = 10
+affiliation = 1
+
+[sub_resource type="Resource" id="Resource_7kdg8"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(718, 313)
+level = 1
+occupants = 10
+affiliation = 1
+
+[sub_resource type="Resource" id="Resource_3uw71"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(1132, 278)
+level = 1
+occupants = 10
+affiliation = 1
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_yxoij")
 level_index = 1
+towers = Array[ExtResource("2_7qvof")]([SubResource("Resource_yxoij"), SubResource("Resource_7qvof"), SubResource("Resource_x821h"), SubResource("Resource_s4x5y"), SubResource("Resource_7kdg8"), SubResource("Resource_3uw71")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"
