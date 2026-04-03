@@ -34,7 +34,7 @@ Menus:
 Levels design:
 	- Background
 	- Obstacles
-
+ - Some with lots/few of towers
 
 Units:
 	- Triangle (done)
@@ -42,3 +42,30 @@ Units:
 	- Circle (done)
 
 - AI # Leave this last
+
+
+AI:
+
+Maybe custom AI per level
+Sense: 
+Enemy Towers 
+affiliation
+Occupants
+
+Own Towers:
+Connections
+Occupants 
+Levels
+Health
+
+Think:
+Asses weak towers (weak towers are defensive/offensive with low health/occupants)
+Asses front line towers (Frontline towers are offensive towers that are higher level)
+Asses towers to upgrade
+
+Act:
+Fortify weak towers
+Launch attack throw Frontline tower
+Upgrade defensive towers if no enemy weak towers
+Upgrade attack towers that are attacking enemy weak towers
+
