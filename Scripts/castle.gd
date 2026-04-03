@@ -5,8 +5,7 @@ extends Area2D
 @export var health: int
 @export var available_connections: int = 1
 @export var affiliation: TowerResource.Players
-
-
+@export var type: TowerResource.TowerType
 
 var connections: Array
 
@@ -17,15 +16,36 @@ signal press_received(tower_id)
 func _process(delta):
 
 	if dragging:
-		tower_data.location = get_global_mouse_position()
-		global_position = tower_data.location # This keeps them synced 
+		set_location(get_global_mouse_position()) 
 
 func assign_resource(resource: TowerResource):
 	tower_data = resource
-	position = tower_data.location
+	type = tower_data.type
+	match type:
+		0: init_offensive()
+		1: init_defensive()
+		2: init_economic()
+	
+	
+	set_location(tower_data.location)
 	set_health(tower_data.occupants)
 	set_affiliation(tower_data.affiliation) 
+
+func set_location(pos: Vector2):
+	global_position = pos
+	tower_data.location = pos
 	
+func init_offensive():
+	$Offensive.show()
+	$SpawnTimer.start()
+
+func init_defensive():
+	$Defensive.show()
+	
+func init_economic():
+	$Economic.show()
+
+
 
 func set_affiliation(aff: int):
 	affiliation = aff
@@ -75,7 +95,7 @@ func interact(unit):
 		if health > 10 + 20 * level:
 			set_health(10 + 20 * level)
 			if connections.size() != 0:
-				unit.target_tower = connections[randi() % connections.size()] # idk if origin updated
+				unit.target_tower = connections[randi() % connections.size()]
 				unit.origin_tower = self
 		else:
 			unit.queue_free()
@@ -93,3 +113,8 @@ func _on_upgrade_pressed() -> void:
 	if $"../../../LevelManager".money > 50:
 		$"../../../LevelManager".money -= 50
 		set_level(level + 1)
+
+
+func _on_spawn_timer_timeout() -> void:
+	for tower in connections:
+		spawn_unit(tower, level)

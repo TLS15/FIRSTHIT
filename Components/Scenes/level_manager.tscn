@@ -11,10 +11,6 @@ font_size = 68
 [node name="LevelManager" type="Node2D" unique_id=837912548]
 script = ExtResource("1_fvluo")
 
-[node name="Timer" type="Timer" parent="." unique_id=445225050]
-wait_time = 3.0
-autostart = true
-
 [node name="Towers" type="Node2D" parent="." unique_id=484807508]
 
 [node name="UILevel" type="Control" parent="." unique_id=607524172]
@@ -45,5 +41,3 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_20ua4")
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctj3byeuf24gb" path="res://Scripts/castle.gd" id="1_vm22h"]
 [ext_resource type="Texture2D" uid="uid://cfth4q4hsm3e2" path="res://Arts/Sprites/sprite1.png" id="1_xtwgx"]
+[ext_resource type="Texture2D" uid="uid://bi16ha8oq6ydq" path="res://Arts/Sprites/pixel-art-fantasy-sword-with-ornate-hilt-isolated-on-transparent-background-png.webp" id="2_n7ycl"]
 [ext_resource type="Texture2D" uid="uid://drtara0h0are7" path="res://Arts/Sprites/square.png" id="3_n7ycl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mkv"]
@@ -15,7 +16,8 @@ region = Rect2(32, 96.79999, 64, 15.200012)
 z_index = 3
 script = ExtResource("1_vm22h")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=697158687]
+[node name="Offensive" type="Sprite2D" parent="." unique_id=697158687]
+visible = false
 texture = ExtResource("1_xtwgx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218601835]
@@ -23,7 +25,7 @@ position = Vector2(-1.5, 10.5)
 shape = SubResource("RectangleShape2D_r1mkv")
 
 [node name="Health" type="Label" parent="." unique_id=870184710]
-z_index = 5
+z_index = 4
 offset_left = -6.5
 offset_top = 58.0
 offset_right = 6.5
@@ -50,5 +52,21 @@ texture_under = SubResource("AtlasTexture_n7ycl")
 texture_progress = SubResource("AtlasTexture_n7ycl")
 tint_under = Color(1, 1, 1, 0.39215687)
 
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1408912288]
+wait_time = 3.0
+
+[node name="Defensive" type="Sprite2D" parent="." unique_id=1905766441]
+visible = false
+position = Vector2(-1.2500081, 5.500003)
+scale = Vector2(0.09607143, 0.12714285)
+texture = ExtResource("2_n7ycl")
+
+[node name="Economic" type="Sprite2D" parent="." unique_id=2073970333]
+visible = false
+position = Vector2(-1.2500081, 5.500003)
+scale = Vector2(0.09607143, 0.12714285)
+texture = ExtResource("2_n7ycl")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

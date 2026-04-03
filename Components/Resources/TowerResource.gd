@@ -1,8 +1,8 @@
 extends Resource
 class_name TowerResource
 enum TowerType{
-	DEFENSIVE,
 	OFFENSIVE,
+	DEFENSIVE,
 	ECONOMY,
 }
 

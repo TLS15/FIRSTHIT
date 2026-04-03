@@ -162,7 +162,7 @@ func cancel_action():
 		connection_lines.remove_at(-1)
 		id_awaiting_connection = -1
 
-func _on_timer_timeout() -> void:
-	for tower in towers:
-		for target_id in tower_connections.get_or_add(tower.tower_id, []):
-			tower.spawn_unit(towers[target_id], tower.level)
+#func _on_timer_timeout() -> void:
+	#for tower in towers:
+		#for target_id in tower_connections.get_or_add(tower.tower_id, []):
+			#tower.spawn_unit(towers[target_id], tower.level)
