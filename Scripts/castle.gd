@@ -20,6 +20,7 @@ func _process(delta):
 
 func assign_resource(resource: TowerResource):
 	tower_data = resource
+	
 	type = tower_data.type
 	match type:
 		0: init_offensive()

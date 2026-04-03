@@ -87,6 +87,7 @@ func _start_connection(id: int):
 	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
 	add_child(instance)
 	connection_lines.append(instance)
+	instance.set_point_position(0, get_tower_through_id(id).position)
 		
 func _finalize_connection(target_id: int):
 	var origin_id = id_awaiting_connection
@@ -95,7 +96,8 @@ func _finalize_connection(target_id: int):
 	line.dragging = false
 	line.id_origin = origin_id
 	line.id_target = target_id
-
+	
+	line.set_point_position(1, get_tower_through_id(target_id).position)
 	var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
 
 	if connected_towers_array.has(target_id):
