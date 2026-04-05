@@ -10,6 +10,8 @@ var towers_score = {}
 
 func sense():
 	towers_score.clear()
+	friendly_towers.clear()
+	enemy_towers.clear()
 	
 	towers = $"../../LevelManager".towers
 	for tower in towers:
@@ -38,8 +40,10 @@ func think():
 		
 	
 func act():
+	if weak_point.affiliation == affiliation:
+		weak_point.set_level(weak_point.level + 1)
 	for tower in friendly_towers: 
-		if tower.get_available_connections() > 0 and tower != weak_point:
+		if tower.get_available_connections() > 0 and tower != weak_point and !tower.connections.has(weak_point):
 			connect_towers(tower, weak_point)
 
 func connect_towers(origin, target):
