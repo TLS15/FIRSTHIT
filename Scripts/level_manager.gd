@@ -7,6 +7,7 @@ var id_awaiting_connection = -1
 var tower_connections := {}
 var connection_lines = []
 var towers = []
+var preview_line
 
 @export var money: float = 0
 @export var population: int
@@ -69,7 +70,7 @@ func on_tower_press_received(id: int):
 	#print("print received")
 
 	# Step 1: start connection
-	if id_awaiting_connection == -1:
+	if id_awaiting_connection == -1 and get_tower_through_id(id).affiliation == TowerResource.Players.BLUE:
 		_start_connection(id)
 		return
 
@@ -86,18 +87,19 @@ func _start_connection(id: int):
 
 	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
 	add_child(instance)
-	connection_lines.append(instance)
+	preview_line = instance
 	instance.set_point_position(0, get_tower_through_id(id).position)
 		
 func _finalize_connection(target_id: int):
 	var origin_id = id_awaiting_connection
-	var line = connection_lines.back()
+	var line = preview_line
 	
 	line.dragging = false
 	line.id_origin = origin_id
 	line.id_target = target_id
 	
 	line.set_point_position(1, get_tower_through_id(target_id).position)
+	connection_lines.append(preview_line) # This might interfere with the ai connection through data races
 	var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
 
 	if connected_towers_array.has(target_id):
@@ -151,7 +153,7 @@ func _cancel_current_connection():
 	if connection_lines.size() > 0:
 		var last = connection_lines.pop_back()
 		last.queue_free()
-
+	
 	id_awaiting_connection = -1
 	
 func get_tower_through_id(id: int):
@@ -179,8 +181,7 @@ func cancel_action():
 	print("cancel action")
 	# Cancel Line connection
 	if id_awaiting_connection != -1:
-		connection_lines[-1].queue_free()
-		connection_lines.remove_at(-1)
+		preview_line.queue_free()
 		id_awaiting_connection = -1
 
 #func _on_timer_timeout() -> void:

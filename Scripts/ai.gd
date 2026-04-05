@@ -37,7 +37,7 @@ func think():
 	
 func act():
 	for tower in friendly_towers: 
-		if tower.available_connections > 0:
+		if tower.available_connections > 0 and tower != weak_point:
 			connect_towers(tower, weak_point)
 
 func connect_towers(origin, target):
