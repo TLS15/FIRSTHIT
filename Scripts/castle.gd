@@ -3,7 +3,6 @@ extends Area2D
 @export var tower_id: int
 @export var tower_data: TowerResource
 @export var health: int
-@export var available_connections: int = 1
 @export var affiliation: TowerResource.Players
 @export var type: TowerResource.TowerType
 
@@ -12,12 +11,15 @@ var enemy_units_in_range: Array
 
 var dragging := false
 var level: int = 1
-signal press_received(tower_id)
+signal press_received(tower)
 
 func _process(delta):
 
 	if dragging:
 		set_location(get_global_mouse_position()) 
+
+func get_available_connections():
+	return level - connections.size()
 
 func assign_resource(resource: TowerResource):
 	tower_data = resource
@@ -77,7 +79,7 @@ func spawn_unit(target_tower, unit_level: int):
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		#print("is pressed")
-		emit_signal("press_received", tower_id)
+		emit_signal("press_received", self)
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		dragging = event.pressed
@@ -85,7 +87,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 func set_level(num: int):
 	level = num
-	available_connections = num
+	
 	$HealthBar.max_value = 10 + 20 * num
 	if level == 3:
 		$Upgrade.hide()

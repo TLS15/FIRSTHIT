@@ -9,6 +9,8 @@ var affiliation = TowerResource.Players.RED
 var towers_score = {}
 
 func sense():
+	towers_score.clear()
+	
 	towers = $"../../LevelManager".towers
 	for tower in towers:
 		towers_score.get_or_add(tower, 0)
@@ -37,11 +39,11 @@ func think():
 	
 func act():
 	for tower in friendly_towers: 
-		if tower.available_connections > 0 and tower != weak_point:
+		if tower.get_available_connections() > 0 and tower != weak_point:
 			connect_towers(tower, weak_point)
 
 func connect_towers(origin, target):
-	$"../../LevelManager".ai_add_connection(origin.tower_id, target.tower_id)
+	$"../../LevelManager".add_connection(origin, target)
 
 	
 

@@ -56,7 +56,7 @@ texture_progress = SubResource("AtlasTexture_n7ycl")
 tint_under = Color(1, 1, 1, 0.39215687)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1408912288]
-wait_time = 3.0
+wait_time = 5.0
 
 [node name="Defensive" type="Sprite2D" parent="." unique_id=1905766441]
 visible = false

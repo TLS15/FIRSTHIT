@@ -4,7 +4,9 @@ const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
 var towers_assigned: int = 0
 var id_awaiting_connection = -1
-var tower_connections := {}
+
+var tower_connecting = null
+
 var connection_lines = []
 var towers = []
 var preview_line
@@ -45,7 +47,6 @@ func load_level(level: LevelResource):
 		child.queue_free()
 
 	towers.clear()
-	tower_connections.clear()
 	for connection_line in connection_lines:
 		connection_line.queue_free()
 	connection_lines.clear()
@@ -65,97 +66,144 @@ func load_tower(tower: TowerResource):
 	towers.append(instance)
 	towers_assigned += 1
 	population += instance.health
-		
-func on_tower_press_received(id: int):
-	#print("print received")
 
-	# Step 1: start connection
-	if id_awaiting_connection == -1 and get_tower_through_id(id).affiliation == TowerResource.Players.BLUE:
-		_start_connection(id)
+func create_preview_line(origin):
+	var line = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
+	
+	line.origin = origin
+
+	add_child(line)
+	
+	preview_line = line
+
+func on_tower_press_received(tower):
+	# results: create preview line, destroy preview, create permenant connection, remove permenant connection, do nothing 
+	
+	# If it isn't blue return
+	if (tower.affiliation != TowerResource.Players.BLUE and tower_connecting == null) or (tower_connecting == tower):
 		return
-
-	# Step 2: prevent self-connection
-	if id_awaiting_connection == id:
-		_cancel_current_connection()
+	
+	# Begin connection
+	if tower_connecting == null and tower.affiliation == TowerResource.Players.BLUE:
+		tower_connecting = tower
+		create_preview_line(tower_connecting)
 		return
-
-	# Step 3: finalize connection
-	_finalize_connection(id)
 	
-func _start_connection(id: int):
-	id_awaiting_connection = id
+	# Either create or destroy permenant connection
+	if tower_connecting != null and tower_connecting != tower:
+		preview_line.queue_free()
+		if tower_connecting.connections.has(tower):
+			remove_connection(tower_connecting, tower)
+		elif (tower_connecting.get_available_connections() < 1):
+			cancel_action()
+		else:
+			add_connection(tower_connecting, tower)
+		tower_connecting = null
 
-	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-	add_child(instance)
-	preview_line = instance
-	instance.set_point_position(0, get_tower_through_id(id).position)
-		
-func _finalize_connection(target_id: int):
-	var origin_id = id_awaiting_connection
-	var line = preview_line
+
+func add_connection(origin, target):
+	var line = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
 	
+	line.origin = origin
+	line.target = target
 	line.dragging = false
-	line.id_origin = origin_id
-	line.id_target = target_id
+	connection_lines.append(line)
+	add_child(line)
 	
-	line.set_point_position(1, get_tower_through_id(target_id).position)
-	connection_lines.append(preview_line) # This might interfere with the ai connection through data races
-	var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
+	origin.connections.append(target)
 
-	if connected_towers_array.has(target_id):
-		_remove_connection(origin_id, target_id)
-		_cancel_current_connection()
-	else:
-		_add_connection(origin_id, target_id)
-		if towers[origin_id].available_connections < 0:
-			_remove_connection(origin_id, target_id)
-		
 
-	id_awaiting_connection = -1
-	
-func _add_connection(origin_id: int, target_id: int):
-	towers[origin_id].available_connections -= 1
-	tower_connections[origin_id].append(target_id)
-	towers[origin_id].connections.append(get_tower_through_id(target_id))	
-
-func ai_add_connection(origin_id: int, target_id: int):
-	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-	add_child(instance)
-	connection_lines.append(instance)
-	instance.set_point_position(0, get_tower_through_id(origin_id).position)
-	
-	var line = connection_lines.back()
-	
-	line.dragging = false
-	line.id_origin = origin_id
-	line.id_target = target_id
-	
-	line.set_point_position(1, get_tower_through_id(target_id).position)
-	
-	towers[origin_id].available_connections -= 1
-	tower_connections.get_or_add(origin_id, [])
-	tower_connections[origin_id].append(target_id)
-	towers[origin_id].connections.append(get_tower_through_id(target_id))
-	
-func _remove_connection(origin_id: int, target_id: int):
-	towers[origin_id].available_connections += 1
-	tower_connections[origin_id].erase(target_id)
-	towers[origin_id].connections.erase(get_tower_through_id(target_id))
-	
-	for i in connection_lines.size():
-		var line = connection_lines[i]
-		if line.id_origin == origin_id and line.id_target == target_id:
+func remove_connection(origin, target):
+	for line in connection_lines:
+		if line.origin == origin and line.target == target:
+			connection_lines.erase(line)
 			line.queue_free()
-			connection_lines.remove_at(i)
-			break
+	
+	origin.connections.erase(target)
 
-func _cancel_current_connection():
-	if connection_lines.size() > 0:
-		var last = connection_lines.pop_back()
-		last.queue_free()
-	
-	id_awaiting_connection = -1
-	
+#func _start_connection(id: int):
+	#id_awaiting_connection = id
+#
+	#var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
+	#add_child(instance)
+	#preview_line = instance
+	#instance.set_point_position(0, get_tower_through_id(id).position)
+		#
+#func _finalize_connection(target_id: int):
+	#var origin_id = id_awaiting_connection
+	#var line = preview_line
+	#
+	#line.dragging = false
+	#line.id_origin = origin_id
+	#line.id_target = target_id
+	#
+	#line.set_point_position(1, get_tower_through_id(target_id).position)
+	#connection_lines.append(preview_line) # This might interfere with the ai connection through data races
+	#var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
+#
+	#if connected_towers_array.has(target_id):
+		#_remove_connection(origin_id, target_id)
+		#_cancel_current_connection()
+	#else:
+		#_add_connection(origin_id, target_id)
+		#if towers[origin_id].available_connections < 0:
+			#_remove_connection(origin_id, target_id)
+		#
+#
+	#id_awaiting_connection = -1
+	#
+#func _add_connection(origin_id: int, target_id: int):
+	#towers[origin_id].available_connections -= 1
+	#tower_connections[origin_id].append(target_id)
+	#towers[origin_id].connections.append(get_tower_through_id(target_id))	
+#
+#
+##func ai_add_connection(origin_id: int, target_id: int):
+	##var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
+	##add_child(instance)
+	##connection_lines.append(instance)
+	##instance.set_point_position(0, get_tower_through_id(origin_id).position)
+	##
+	##var line = connection_lines.back()
+	##
+	##line.dragging = false
+	##line.id_origin = origin_id
+	##line.id_target = target_id
+	##
+	##line.set_point_position(1, get_tower_through_id(target_id).position)
+	##
+	##towers[origin_id].available_connections -= 1
+	##tower_connections.get_or_add(origin_id, [])
+	##tower_connections[origin_id].append(target_id)
+	##towers[origin_id].connections.append(get_tower_through_id(target_id))
+#
+##func _remove_connection(origin_id: int, target_id: int):
+	##towers[origin_id].available_connections += 1
+	##tower_connections[origin_id].erase(target_id)
+	##towers[origin_id].connections.erase(get_tower_through_id(target_id))
+	##
+	##for i in connection_lines.size():
+		##var line = connection_lines[i]
+		##if line.id_origin == origin_id and line.id_target == target_id:
+			##line.queue_free()
+			##connection_lines.remove_at(i)
+			##break
+##
+##func _cancel_current_connection():
+	##if connection_lines.size() > 0:
+		##var last = connection_lines.pop_back()
+		##last.queue_free()
+	##
+	##id_awaiting_connection = -1
+	##
+
+func cancel_action():
+	print("cancel action")
+	# Cancel Line connection
+	if tower_connecting != null:
+		preview_line.queue_free()
+		tower_connecting = null
+
 func get_tower_through_id(id: int):
 	for tower in towers:
 		if tower.tower_id == id:
@@ -176,15 +224,3 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			cancel_action()
-
-func cancel_action():
-	print("cancel action")
-	# Cancel Line connection
-	if id_awaiting_connection != -1:
-		preview_line.queue_free()
-		id_awaiting_connection = -1
-
-#func _on_timer_timeout() -> void:
-	#for tower in towers:
-		#for target_id in tower_connections.get_or_add(tower.tower_id, []):
-			#tower.spawn_unit(towers[target_id], tower.level)
