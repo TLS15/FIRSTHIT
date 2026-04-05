@@ -23,13 +23,13 @@ func sense():
 
 	for tower in towers: # score for health
 		towers_score.set(tower, towers_score.get(tower) + tower.health)
-		
+
 		for connected_tower in tower.connections:
 			if connected_tower.affiliation == affiliation: # For each connection 20 score
 				towers_score.set(connected_tower,towers_score.get(connected_tower) + 20)
 			else:
 				towers_score.set(connected_tower,towers_score.get(connected_tower) - 20)
-				
+
 
 func think():
 	var weakest_score = 999

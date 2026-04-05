@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://xavotp6mbyby"]
+
+[ext_resource type="Texture2D" uid="uid://drtara0h0are7" path="res://Arts/Sprites/square.png" id="1_lftox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptddc"]
+size = Vector2(112, 111)
+
+[node name="Obstacle" type="StaticBody2D" unique_id=277637644]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2115550797]
+shape = SubResource("RectangleShape2D_ptddc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1662100659]
+self_modulate = Color(0, 0.56078434, 0.3019608, 1)
+texture = ExtResource("1_lftox")

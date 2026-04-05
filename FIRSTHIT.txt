@@ -61,9 +61,9 @@ Levels
 Health
 
 Think:
-Asses weak towers (weak towers are defensive/offensive with low health/occupants)
+Asses weak towers (weak towers are defensive/offensive with low health/occupants) (done)
 Asses front line towers (Frontline towers are offensive towers that are higher level)
-Asses towers to upgrade
+Asses towers to upgrade (done)
 
 Act:
 Fortify weak towers

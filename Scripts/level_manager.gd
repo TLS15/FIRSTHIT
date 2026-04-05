@@ -97,21 +97,26 @@ func on_tower_press_received(tower):
 		elif (tower_connecting.get_available_connections() < 1):
 			cancel_action()
 		else:
-			add_connection(tower_connecting, tower)
+			$RayCast2D.position = tower_connecting.position
+			$RayCast2D.target_position = tower.position - tower_connecting.position
+			$RayCast2D.force_raycast_update()
+			if $RayCast2D.is_colliding():
+				cancel_action()
+			else:
+				add_connection(tower_connecting, tower)
 		tower_connecting = null
 
 
 func add_connection(origin, target):
 	var line = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
-	
+
 	line.origin = origin
 	line.target = target
 	line.dragging = false
 	connection_lines.append(line)
 	add_child(line)
-	
-	origin.connections.append(target)
 
+	origin.connections.append(target)
 
 func remove_connection(origin, target):
 	for line in connection_lines:

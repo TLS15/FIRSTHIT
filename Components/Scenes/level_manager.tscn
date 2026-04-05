@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lnjlxhofcuys" path="res://Scripts/level_manager.gd" id="1_fvluo"]
 [ext_resource type="Script" uid="uid://cwion18ifnldq" path="res://Scripts/ai.gd" id="2_20ua4"]
+[ext_resource type="PackedScene" uid="uid://xavotp6mbyby" path="res://Components/Scenes/obstacle.tscn" id="2_povlm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4k4r3"]
 font_size = 68
@@ -11,6 +12,15 @@ font_size = 68
 
 [node name="LevelManager" type="Node2D" unique_id=837912548]
 script = ExtResource("1_fvluo")
+
+[node name="Obstacle" parent="." unique_id=603795407 instance=ExtResource("2_povlm")]
+position = Vector2(510, 727)
+
+[node name="Obstacle2" parent="." unique_id=710157384 instance=ExtResource("2_povlm")]
+position = Vector2(622, 673)
+
+[node name="Obstacle3" parent="." unique_id=1175055464 instance=ExtResource("2_povlm")]
+position = Vector2(917, 626)
 
 [node name="Towers" type="Node2D" parent="." unique_id=484807508]
 
@@ -47,6 +57,10 @@ label_settings = SubResource("LabelSettings_20ua4")
 script = ExtResource("2_20ua4")
 
 [node name="proccess" type="Timer" parent="AI" unique_id=1609828991]
+wait_time = 3.0
 autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1224748619]
+collision_mask = 4
 
 [connection signal="timeout" from="AI/proccess" to="AI" method="_on_proccess_timeout"]

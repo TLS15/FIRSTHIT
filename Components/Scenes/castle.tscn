@@ -84,6 +84,7 @@ monitorable = false
 [node name="DefensiveRange" type="CollisionShape2D" parent="DefensiveArea" unique_id=216726297]
 scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_ur86t")
+debug_color = Color(0, 0.6431373, 0.27450982, 0)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
