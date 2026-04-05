@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c22s707xpfnr3"]
 
 [ext_resource type="Script" uid="uid://lnjlxhofcuys" path="res://Scripts/level_manager.gd" id="1_fvluo"]
+[ext_resource type="Script" uid="uid://cwion18ifnldq" path="res://Scripts/ai.gd" id="2_20ua4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4k4r3"]
 font_size = 68
@@ -41,3 +42,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_20ua4")
+
+[node name="AI" type="Node2D" parent="." unique_id=1691702138]
+script = ExtResource("2_20ua4")
+
+[node name="proccess" type="Timer" parent="AI" unique_id=1609828991]
+autostart = true
+
+[connection signal="timeout" from="AI/proccess" to="AI" method="_on_proccess_timeout"]

@@ -13,8 +13,8 @@ Visuals:
 
 
 Tower Types:
-	- Offensive
-	- Defensive // create levels where the only way to beat this tower is create a cycle of towers to store troops
+	- Offensive (done)
+	- Defensive (done)
 	- Economy
 
 
@@ -29,13 +29,14 @@ Game Flow:
 
 
 Menus:
-	- Navigation from levels back to mainmenu
+	- Navigation from levels back to mainmenu (done)
 
 
 Levels design:
 	- Background
 	- Obstacles
 	- Some with lots/few of towers
+	- only way to beat defensive is create a cycle of towers to store troops
 
 Units:
 	- Triangle (done)

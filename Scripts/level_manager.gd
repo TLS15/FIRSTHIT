@@ -116,6 +116,25 @@ func _add_connection(origin_id: int, target_id: int):
 	tower_connections[origin_id].append(target_id)
 	towers[origin_id].connections.append(get_tower_through_id(target_id))	
 
+func ai_add_connection(origin_id: int, target_id: int):
+	var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
+	add_child(instance)
+	connection_lines.append(instance)
+	instance.set_point_position(0, get_tower_through_id(origin_id).position)
+	
+	var line = connection_lines.back()
+	
+	line.dragging = false
+	line.id_origin = origin_id
+	line.id_target = target_id
+	
+	line.set_point_position(1, get_tower_through_id(target_id).position)
+	
+	towers[origin_id].available_connections -= 1
+	tower_connections.get_or_add(origin_id, [])
+	tower_connections[origin_id].append(target_id)
+	towers[origin_id].connections.append(get_tower_through_id(target_id))
+	
 func _remove_connection(origin_id: int, target_id: int):
 	towers[origin_id].available_connections += 1
 	tower_connections[origin_id].erase(target_id)
@@ -148,7 +167,7 @@ func check_win_condition() -> bool:
 			fulfilled = false
 	print(fulfilled)
 	# Reached Money Goal (!TODO)
-	
+
 	return fulfilled
 	
 func _input(event):

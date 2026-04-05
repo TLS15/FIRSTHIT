@@ -244,13 +244,19 @@ func _on_save_folder_selection_file_selected(path: String) -> void:
 	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
 	ResourceSaver.save(level, path)
 
-
+func reset_tower_index():
+	$LevelManager.towers_assigned = towers.size()
+	var i = 0
+	for tower in towers:
+		tower.tower_id = i
+		i += 1
 func _on_remove_tower_area_entered(area: Area2D) -> void:
 	print("remove tower")
 	for i in range($LevelManager.towers.size()):
 		if $LevelManager.towers[i].tower_id == area.tower_id:
 			$LevelManager.towers.remove_at(i)
 			level.towers.remove_at(i)
+			reset_tower_index()
 			break
 	
 	

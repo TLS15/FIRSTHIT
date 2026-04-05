@@ -72,7 +72,7 @@ scale = Vector2(0.09607143, 0.12714285)
 texture = ExtResource("2_n7ycl")
 
 [node name="ShootingCooldownTimer" type="Timer" parent="." unique_id=529522019]
-wait_time = 2.0
+wait_time = 1.5
 autostart = true
 
 [node name="DefensiveArea" type="Area2D" parent="." unique_id=1792257370]

@@ -32,6 +32,7 @@ func assign_resource(resource: TowerResource):
 	set_location(tower_data.location)
 	set_health(tower_data.occupants)
 	set_affiliation(tower_data.affiliation) 
+	set_level(tower_data.level)
 
 func set_location(pos: Vector2):
 	global_position = pos
@@ -57,6 +58,8 @@ func set_affiliation(aff: int):
 		1: $HealthBar.set_self_modulate(Color.GREEN)
 		2: $HealthBar.set_self_modulate(Color.DARK_RED)
 		3: $HealthBar.set_self_modulate(Color.YELLOW)
+		
+	enemy_units_in_range.clear()
 
 func spawn_unit(target_tower, unit_level: int):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
@@ -92,6 +95,9 @@ func set_health(hp: int):
 	$HealthBar.value = hp
 	$Health.text = str(hp)
 
+func get_max_health():
+	return 10 + 20 * level
+
 func interact(unit):
 	if unit.affiliation == affiliation:
 		set_health(health + unit.attack / 10)
@@ -100,6 +106,8 @@ func interact(unit):
 			if connections.size() != 0:
 				unit.target_tower = connections[randi() % connections.size()]
 				unit.origin_tower = self
+			else: 
+				unit.queue_free()
 		else:
 			unit.queue_free()
 
@@ -110,6 +118,7 @@ func interact(unit):
 			set_health(-health)
 			set_affiliation(unit.affiliation)
 			$"../../../LevelManager".check_win_condition()
+
 
 
 func _on_upgrade_pressed() -> void:
@@ -126,14 +135,14 @@ func spawn_bullet(unit):
 	
 	var instance = load("res://Components/Scenes/bullet.tscn").instantiate()
 	instance.target_unit = unit
+	instance.affiliation = affiliation
+	instance.level = level
 	add_child(instance)
 
 func _on_defensive_area_area_entered(area: Area2D) -> void:
 	if area.affiliation != affiliation:
 		enemy_units_in_range.append(area)
 		
-	
-
 
 func _on_defensive_area_area_exited(area: Area2D) -> void:
 	if area.affiliation != affiliation:
