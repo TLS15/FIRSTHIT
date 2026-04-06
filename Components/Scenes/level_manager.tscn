@@ -14,7 +14,8 @@ font_size = 68
 script = ExtResource("1_fvluo")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1224748619]
-collision_mask = 4
+collision_mask = 5
+collide_with_areas = true
 
 [node name="Obstacle" parent="." unique_id=603795407 instance=ExtResource("2_povlm")]
 position = Vector2(510, 727)

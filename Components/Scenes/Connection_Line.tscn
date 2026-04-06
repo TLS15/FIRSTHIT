@@ -17,8 +17,3 @@ default_color = Color(4.0911138e-07, 0.23137382, 0.23152864, 1)
 texture = ExtResource("2_uoiik")
 texture_mode = 1
 script = ExtResource("1_b0gta")
-
-[node name="RayCast" type="RayCast2D" parent="." unique_id=2066130970]
-collision_mask = 5
-hit_from_inside = true
-collide_with_areas = true

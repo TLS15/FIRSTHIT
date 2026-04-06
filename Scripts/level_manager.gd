@@ -79,6 +79,9 @@ func create_preview_line(origin):
 func line_is_colliding(origin, target):
 	$RayCast2D.position = origin.position
 	$RayCast2D.target_position = target.position - origin.position
+	$RayCast2D.clear_exceptions()
+	$RayCast2D.add_exception(origin)
+	$RayCast2D.add_exception(target)
 	$RayCast2D.force_raycast_update()
 	return $RayCast2D.is_colliding()
 	
