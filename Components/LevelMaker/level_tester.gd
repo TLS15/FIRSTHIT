@@ -244,12 +244,15 @@ func _on_save_folder_selection_file_selected(path: String) -> void:
 	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
 	ResourceSaver.save(level, path)
 
+
 func reset_tower_index():
 	$LevelManager.towers_assigned = towers.size()
 	var i = 0
 	for tower in towers:
 		tower.tower_id = i
 		i += 1
+
+
 func _on_remove_tower_area_entered(area: Area2D) -> void:
 	print("remove tower")
 	for i in range($LevelManager.towers.size()):
@@ -261,3 +264,24 @@ func _on_remove_tower_area_entered(area: Area2D) -> void:
 	
 	
 	area.queue_free()
+
+
+func _on_create_terrain_pressed() -> void:
+	$UIMaster.hide()
+	$StopTerrain.show()
+	$CatchInput.mouse_filter = Control.MouseFilter.MOUSE_FILTER_STOP
+
+
+func _on_stop_terrain_pressed() -> void:
+	$UIMaster.show()
+	$StopTerrain.hide()
+	$CatchInput.mouse_filter = Control.MouseFilter.MOUSE_FILTER_IGNORE
+
+
+func _on_catch_input_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		$LevelManager.holding_mouse_button = true
+		#$LevelManager.create_obstacle(get_global_mouse_position())
+	
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.is_pressed():
+		$LevelManager.holding_mouse_button = false

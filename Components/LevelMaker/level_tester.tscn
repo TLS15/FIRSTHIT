@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" path="res://Data/TestLevels/Level1.tres" id="2_3x8je"]
+[ext_resource type="Resource" uid="uid://b5xk7yw5trmyi" path="res://Data/TestLevels/Level1.tres" id="2_3x8je"]
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Components/Scenes/level_manager.tscn" id="3_a41p1"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Arts/Sprites/icon.svg" id="4_3x8je"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
@@ -126,9 +126,9 @@ script = ExtResource("4_yopi2")
 [node name="Add" type="Button" parent="UIMaster/AddTower" unique_id=971616716]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 485.0
+offset_top = 543.0
 offset_right = 228.0
-offset_bottom = 516.0
+offset_bottom = 574.0
 text = "Add Tower"
 
 [node name="Window" type="Window" parent="UIMaster/AddTower" unique_id=993051646]
@@ -223,12 +223,20 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="CreateTerrain" type="Button" parent="UIMaster" unique_id=86912922]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 485.0
+offset_right = 257.0
+offset_bottom = 516.0
+text = "Create Terrain"
+
 [node name="Quit" type="Button" parent="UIMaster" unique_id=409290020]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 538.0
+offset_top = 592.0
 offset_right = 219.0
-offset_bottom = 569.0
+offset_bottom = 623.0
 text = "QUIT"
 
 [node name="Timer" type="Timer" parent="UIMaster" unique_id=1979808991]
@@ -249,6 +257,21 @@ texture = ExtResource("4_3x8je")
 
 [node name="LevelManager" parent="." unique_id=1413288095 instance=ExtResource("3_a41p1")]
 
+[node name="CatchInput" type="Control" parent="." unique_id=1082265336]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1938.0
+offset_bottom = 1077.0
+mouse_filter = 2
+
+[node name="StopTerrain" type="Button" parent="." unique_id=284013272]
+visible = false
+offset_left = 916.0
+offset_top = 895.0
+offset_right = 965.0
+offset_bottom = 926.0
+text = "Done"
+
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
 [connection signal="pressed" from="UIMaster/SaveLevel/SaveLevel" to="." method="_on_save_level_pressed"]
@@ -263,6 +286,9 @@ texture = ExtResource("4_3x8je")
 [connection signal="pressed" from="UIMaster/AddTower/Window/Close" to="UIMaster/AddTower" method="_on_close_pressed"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/Teams" to="UIMaster/AddTower" method="_on_teams_item_selected"]
 [connection signal="item_selected" from="UIMaster/AddTower/Window/TowerType" to="UIMaster/AddTower" method="_on_tower_type_item_selected"]
+[connection signal="pressed" from="UIMaster/CreateTerrain" to="." method="_on_create_terrain_pressed"]
 [connection signal="pressed" from="UIMaster/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="UIMaster/Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="UIMaster/RemoveTower" to="." method="_on_remove_tower_area_entered"]
+[connection signal="gui_input" from="CatchInput" to="." method="_on_catch_input_gui_input"]
+[connection signal="pressed" from="StopTerrain" to="." method="_on_stop_terrain_pressed"]

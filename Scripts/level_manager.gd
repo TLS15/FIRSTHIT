@@ -11,10 +11,14 @@ var connection_lines = []
 var towers = []
 var preview_line
 
+var holding_mouse_button = false
+
 @export var money: float = 0
 @export var population: int
 
 func _process(delta):
+	if holding_mouse_button:
+		create_obstacle(get_global_mouse_position())
 	tick_accumulator += delta
 	
 	while tick_accumulator >= TICK_TIME:
@@ -84,8 +88,7 @@ func line_is_colliding(origin, target):
 	$RayCast2D.add_exception(target)
 	$RayCast2D.force_raycast_update()
 	return $RayCast2D.is_colliding()
-	
-	
+
 func on_tower_press_received(tower):
 	# results: create preview line, destroy preview, create permenant connection, remove permenant connection, do nothing 
 	
@@ -113,7 +116,6 @@ func on_tower_press_received(tower):
 			else:
 				add_connection(tower_connecting, tower)
 		tower_connecting = null
-
 
 func add_connection(origin, target):
 	var line = preload("res://Components/Scenes/Connection_Line.tscn").instantiate()
@@ -239,3 +241,6 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			cancel_action()
+
+func create_obstacle(coords: Vector2i):
+	$TileMapLayer.set_cell($TileMapLayer.local_to_map(coords) ,0,Vector2i(1,1))

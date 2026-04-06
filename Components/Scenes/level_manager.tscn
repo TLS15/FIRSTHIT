@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://c22s707xpfnr3"]
+[gd_scene format=4 uid="uid://c22s707xpfnr3"]
 
 [ext_resource type="Script" uid="uid://lnjlxhofcuys" path="res://Scripts/level_manager.gd" id="1_fvluo"]
 [ext_resource type="Script" uid="uid://cwion18ifnldq" path="res://Scripts/ai.gd" id="2_20ua4"]
-[ext_resource type="PackedScene" uid="uid://xavotp6mbyby" path="res://Components/Scenes/obstacle.tscn" id="2_povlm"]
+[ext_resource type="TileSet" uid="uid://b3ra6ev2exyq6" path="res://Arts/Obstacles.tres" id="4_jadoc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4k4r3"]
 font_size = 68
@@ -20,15 +20,6 @@ script = ExtResource("1_fvluo")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1224748619]
 collision_mask = 5
 collide_with_areas = true
-
-[node name="Obstacle" parent="." unique_id=603795407 instance=ExtResource("2_povlm")]
-position = Vector2(510, 727)
-
-[node name="Obstacle2" parent="." unique_id=710157384 instance=ExtResource("2_povlm")]
-position = Vector2(622, 673)
-
-[node name="Obstacle3" parent="." unique_id=1175055464 instance=ExtResource("2_povlm")]
-position = Vector2(917, 626)
 
 [node name="Towers" type="Node2D" parent="." unique_id=484807508]
 
@@ -80,5 +71,9 @@ offset_right = 461.0
 offset_bottom = 141.0
 text = "You Won!"
 label_settings = SubResource("LabelSettings_povlm")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1917599642]
+tile_map_data = PackedByteArray("AAAjADMAAAABAAEAAAAkADMAAAABAAEAAAAlADMAAAABAAEAAAAlADIAAAABAAEAAAAmADIAAAABAAEAAAAmADEAAAABAAEAAAAnADEAAAABAAEAAAAnADAAAAABAAEAAAAoADAAAAABAAEAAAAoAC8AAAABAAEAAAApAC8AAAABAAEAAAApAC4AAAABAAEAAAApADAAAAABAAEAAAAqAC8AAAABAAEAAAAoADEAAAABAAEAAAAnADIAAAABAAEAAAAoADIAAAABAAEAAAApADEAAAABAAEAAAAqADAAAAABAAEAAAArAC8AAAABAAEAAAArAC4AAAABAAEAAAAqAC4AAAABAAEAAAAmADAAAAABAAEAAAAlADAAAAABAAEAAAAlADEAAAABAAEAAAAkADEAAAABAAEAAAAjADIAAAABAAEAAAAiADMAAAABAAEAAAAiADQAAAABAAEAAAAhADQAAAABAAEAAAAkADIAAAABAAEAAAAnAC8AAAABAAEAAAAiADIAAAABAAEAAAAhADMAAAABAAEAAAAjADQAAAABAAEAAAAhADUAAAABAAEAAAAgADUAAAABAAEAAAAgADQAAAABAAEAAAA3ACsAAAABAAEAAAA4ACsAAAABAAEAAAA5ACsAAAABAAEAAAA6ACsAAAABAAEAAAA6ACwAAAABAAEAAAA7ACwAAAABAAEAAAA8ACwAAAABAAEAAAA9ACwAAAABAAEAAAA+ACwAAAABAAEAAAA+AC0AAAABAAEAAAA9AC0AAAABAAEAAAA8AC0AAAABAAEAAAA4ACwAAAABAAEAAAA5ACwAAAABAAEAAAA8ACsAAAABAAEAAAA9ACsAAAABAAEAAAA+ACsAAAABAAEAAAA/ACsAAAABAAEAAABEAC4AAAABAAEAAABDAC4AAAABAAEAAABBAC0AAAABAAEAAABAACwAAAABAAEAAAA/ACwAAAABAAEAAABCAC4AAAABAAEAAABBAC4AAAABAAEAAABAAC4AAAABAAEAAAA/AC4AAAABAAEAAAA/AC0AAAABAAEAAABAAC0AAAABAAEAAABCADAAAAABAAEAAABDADAAAAABAAEAAABEADAAAAABAAEAAABBADAAAAABAAEAAABAADAAAAABAAEAAABBAC8AAAABAAEAAABCAC8AAAABAAEAAABDAC8AAAABAAEAAABEAC8AAAABAAEAAABAAC8AAAABAAEAAABFADAAAAABAAEAAABFADEAAAABAAEAAABEADEAAAABAAEAAABDADEAAAABAAEAAAA=")
+tile_set = ExtResource("4_jadoc")
 
 [connection signal="timeout" from="AI/proccess" to="AI" method="_on_proccess_timeout"]
