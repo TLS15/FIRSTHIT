@@ -86,8 +86,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 
 func set_level(num: int):
+	if num > 3: 
+		return
 	level = num
-	
 	$HealthBar.max_value = 10 + 20 * num
 	if level == 3:
 		$Upgrade.hide()

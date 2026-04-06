@@ -76,6 +76,13 @@ func create_preview_line(origin):
 	
 	preview_line = line
 
+func line_is_colliding(origin, target):
+	$RayCast2D.position = origin.position
+	$RayCast2D.target_position = target.position - origin.position
+	$RayCast2D.force_raycast_update()
+	return $RayCast2D.is_colliding()
+	
+	
 func on_tower_press_received(tower):
 	# results: create preview line, destroy preview, create permenant connection, remove permenant connection, do nothing 
 	
@@ -97,10 +104,8 @@ func on_tower_press_received(tower):
 		elif (tower_connecting.get_available_connections() < 1):
 			cancel_action()
 		else:
-			$RayCast2D.position = tower_connecting.position
-			$RayCast2D.target_position = tower.position - tower_connecting.position
-			$RayCast2D.force_raycast_update()
-			if $RayCast2D.is_colliding():
+
+			if line_is_colliding(tower, tower_connecting):
 				cancel_action()
 			else:
 				add_connection(tower_connecting, tower)
