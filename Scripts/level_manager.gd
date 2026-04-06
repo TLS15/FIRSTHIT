@@ -230,7 +230,9 @@ func check_win_condition() -> bool:
 			fulfilled = false
 	print(fulfilled)
 	# Reached Money Goal (!TODO)
-
+	if fulfilled:
+		$GameOverWindow.show()
+		
 	return fulfilled
 	
 func _input(event):

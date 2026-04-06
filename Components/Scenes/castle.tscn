@@ -86,6 +86,33 @@ scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_ur86t")
 debug_color = Color(0, 0.6431373, 0.27450982, 0)
 
+[node name="Level" type="Label" parent="." unique_id=1751009839]
+offset_left = -34.0
+offset_top = 37.0
+offset_right = 6.0
+offset_bottom = 60.0
+text = "Lv."
+
+[node name="ColorRect1" type="ColorRect" parent="." unique_id=577199559]
+offset_left = -32.0
+offset_top = -54.0
+offset_right = -14.0
+offset_bottom = -36.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=922171609]
+visible = false
+offset_left = -8.0
+offset_top = -54.0
+offset_right = 10.0
+offset_bottom = -36.0
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=138249660]
+visible = false
+offset_left = 21.0
+offset_top = -54.0
+offset_right = 39.0
+offset_bottom = -36.0
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

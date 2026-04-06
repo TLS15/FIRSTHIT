@@ -14,7 +14,22 @@ var level: int = 1
 signal press_received(tower)
 
 func _process(delta):
-
+	$ColorRect1.color = Color.ALICE_BLUE
+	$ColorRect2.color = Color.ALICE_BLUE
+	$ColorRect3.color = Color.ALICE_BLUE
+	if level == 3:
+		$ColorRect3.show()
+	if level >= 2:
+		$ColorRect2.show()
+	$ColorRect1.show()
+	
+	if get_available_connections() == 3:
+		$ColorRect3.color = Color.AQUA
+	if get_available_connections() >= 2:
+		$ColorRect2.color = Color.AQUA
+	if get_available_connections() >= 1:
+		$ColorRect1.color = Color.AQUA
+	
 	if dragging:
 		set_location(get_global_mouse_position()) 
 
@@ -90,6 +105,7 @@ func set_level(num: int):
 		return
 	level = num
 	$HealthBar.max_value = 10 + 20 * num
+	$Level.text = "Lv. " + str(level)
 	if level == 3:
 		$Upgrade.hide()
 

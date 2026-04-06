@@ -10,6 +10,10 @@ font_size = 68
 [sub_resource type="LabelSettings" id="LabelSettings_20ua4"]
 font_size = 68
 
+[sub_resource type="LabelSettings" id="LabelSettings_povlm"]
+font_size = 100
+font_color = Color(1, 0.043137256, 1, 1)
+
 [node name="LevelManager" type="Node2D" unique_id=837912548]
 script = ExtResource("1_fvluo")
 
@@ -63,5 +67,18 @@ script = ExtResource("2_20ua4")
 [node name="proccess" type="Timer" parent="AI" unique_id=1609828991]
 wait_time = 3.0
 autostart = true
+
+[node name="GameOverWindow" type="PopupPanel" parent="." unique_id=380935465]
+oversampling_override = 1.0
+position = Vector2i(742, 416)
+size = Vector2i(465, 145)
+
+[node name="Label" type="Label" parent="GameOverWindow" unique_id=167671159]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 461.0
+offset_bottom = 141.0
+text = "You Won!"
+label_settings = SubResource("LabelSettings_povlm")
 
 [connection signal="timeout" from="AI/proccess" to="AI" method="_on_proccess_timeout"]

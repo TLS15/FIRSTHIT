@@ -9,7 +9,7 @@ Visuals:
 	- Backgrounds
 	- Units (done)
 	- Towers
-	- Obstacles
+	- Obstacles tiles set
 
 
 Tower Types:
