@@ -45,7 +45,7 @@ func load_level(level: LevelResource):
 	money = level.starting_money
 	population = 0
 	towers_assigned = 0
-
+	$TileMapLayer.tile_map_data = level.terrain_data
 	# Clear towers
 	for child in $Towers.get_children():
 		child.queue_free()

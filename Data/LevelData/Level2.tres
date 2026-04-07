@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3]
+[gd_resource type="Resource" script_class="LevelResource" format=4]
 
 [ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_fn3hp"]
 [ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_ixqcx"]
@@ -68,4 +68,5 @@ occupants = 3
 script = ExtResource("1_fn3hp")
 level_index = 2
 towers = Array[ExtResource("2_ixqcx")]([SubResource("Resource_jq87j"), SubResource("Resource_5ik13"), SubResource("Resource_vnidl"), SubResource("Resource_k2gu8"), SubResource("Resource_htocx"), SubResource("Resource_3dnep"), SubResource("Resource_gm13c"), SubResource("Resource_aw8gs")])
+terrain_data = PackedByteArray("AAAcADIAAAABAAEAAAAcADEAAAABAAEAAAAdADEAAAABAAEAAAAdADAAAAABAAEAAAAeAC8AAAABAAEAAAAfAC4AAAABAAEAAAAgAC0AAAABAAEAAAAhACwAAAABAAEAAAAhACsAAAABAAEAAAAiACsAAAABAAEAAAAjACsAAAABAAEAAAAjACoAAAABAAEAAAAkACoAAAABAAEAAAAlACoAAAABAAEAAAAmACoAAAABAAEAAAAmACkAAAABAAEAAAAnACkAAAABAAEAAAAoACkAAAABAAEAAAApACkAAAABAAEAAAApACgAAAABAAEAAAAqACgAAAABAAEAAAA1ACYAAAABAAEAAAA2ACcAAAABAAEAAAA3ACcAAAABAAEAAAA4ACcAAAABAAEAAAA5ACcAAAABAAEAAAA6ACcAAAABAAEAAAA6ACgAAAABAAEAAAA7ACgAAAABAAEAAAA8ACgAAAABAAEAAAA9ACgAAAABAAEAAAA+ACgAAAABAAEAAAA+ACkAAAABAAEAAAA/ACkAAAABAAEAAABAACkAAAABAAEAAABAACoAAAABAAEAAABBACoAAAABAAEAAABCACoAAAABAAEAAAAgACwAAAABAAEAAAAfACwAAAABAAEAAAAfAC0AAAABAAEAAAAeAC0AAAABAAEAAAAeAC4AAAABAAEAAAAdAC8AAAABAAEAAAAcADAAAAABAAEAAAAcAC8AAAABAAEAAAAdAC4AAAABAAEAAAA=")
 metadata/_custom_type_script = "uid://ji335qpbwph3"

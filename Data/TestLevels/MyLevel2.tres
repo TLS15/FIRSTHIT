@@ -1,58 +1,72 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3]
+[gd_resource type="Resource" script_class="LevelResource" format=4]
 
 [ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_yxoij"]
 [ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_7qvof"]
 
-[sub_resource type="Resource" id="Resource_yxoij"]
+[sub_resource type="Resource" id="Resource_jq87j"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
-location = Vector2(1151, 777)
+location = Vector2(641, 794)
 level = 1
-occupants = 10
+occupants = 30
 
-[sub_resource type="Resource" id="Resource_7qvof"]
+[sub_resource type="Resource" id="Resource_5ik13"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
-location = Vector2(701, 787)
-level = 1
-occupants = 10
+location = Vector2(781, 714)
+level = 2
+occupants = 30
 
-[sub_resource type="Resource" id="Resource_x821h"]
+[sub_resource type="Resource" id="Resource_vnidl"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(925, 773)
+level = 1
+occupants = 30
+
+[sub_resource type="Resource" id="Resource_k2gu8"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
 type = 1
-location = Vector2(934, 618)
+location = Vector2(733, 336)
 level = 1
-occupants = 10
+occupants = 30
+affiliation = 2
 
-[sub_resource type="Resource" id="Resource_s4x5y"]
+[sub_resource type="Resource" id="Resource_htocx"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
-type = 1
-location = Vector2(928, 411)
+location = Vector2(576, 419)
 level = 1
-occupants = 10
-affiliation = 1
+occupants = 3
+affiliation = 2
 
-[sub_resource type="Resource" id="Resource_7kdg8"]
+[sub_resource type="Resource" id="Resource_3dnep"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
-location = Vector2(718, 313)
-level = 1
-occupants = 10
-affiliation = 1
+location = Vector2(669, 515)
+level = 3
+occupants = 55
+affiliation = 2
 
-[sub_resource type="Resource" id="Resource_3uw71"]
+[sub_resource type="Resource" id="Resource_gm13c"]
 resource_local_to_scene = true
 script = ExtResource("2_7qvof")
-location = Vector2(1132, 278)
-level = 1
-occupants = 10
-affiliation = 1
+location = Vector2(847, 437)
+level = 2
+occupants = 30
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_aw8gs"]
+resource_local_to_scene = true
+script = ExtResource("2_7qvof")
+location = Vector2(513, 912)
+level = 2
+occupants = 3
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_yxoij")
-level_index = 1
-towers = Array[ExtResource("2_7qvof")]([SubResource("Resource_yxoij"), SubResource("Resource_7qvof"), SubResource("Resource_x821h"), SubResource("Resource_s4x5y"), SubResource("Resource_7kdg8"), SubResource("Resource_3uw71")])
+level_index = 2
+towers = Array[ExtResource("2_7qvof")]([SubResource("Resource_jq87j"), SubResource("Resource_5ik13"), SubResource("Resource_vnidl"), SubResource("Resource_k2gu8"), SubResource("Resource_htocx"), SubResource("Resource_3dnep"), SubResource("Resource_gm13c"), SubResource("Resource_aw8gs")])
+terrain_data = PackedByteArray("AAAcADIAAAABAAEAAAAcADEAAAABAAEAAAAdADEAAAABAAEAAAAdADAAAAABAAEAAAAeAC8AAAABAAEAAAAfAC4AAAABAAEAAAAgAC0AAAABAAEAAAAhACwAAAABAAEAAAAhACsAAAABAAEAAAAiACsAAAABAAEAAAAjACsAAAABAAEAAAAjACoAAAABAAEAAAAkACoAAAABAAEAAAAlACoAAAABAAEAAAAmACoAAAABAAEAAAAmACkAAAABAAEAAAAnACkAAAABAAEAAAAoACkAAAABAAEAAAApACkAAAABAAEAAAApACgAAAABAAEAAAAqACgAAAABAAEAAAA1ACYAAAABAAEAAAA2ACcAAAABAAEAAAA3ACcAAAABAAEAAAA4ACcAAAABAAEAAAA5ACcAAAABAAEAAAA6ACcAAAABAAEAAAA6ACgAAAABAAEAAAA7ACgAAAABAAEAAAA8ACgAAAABAAEAAAA9ACgAAAABAAEAAAA+ACgAAAABAAEAAAA+ACkAAAABAAEAAAA/ACkAAAABAAEAAABAACkAAAABAAEAAABAACoAAAABAAEAAABBACoAAAABAAEAAABCACoAAAABAAEAAAAgACwAAAABAAEAAAAfACwAAAABAAEAAAAfAC0AAAABAAEAAAAeAC0AAAABAAEAAAAeAC4AAAABAAEAAAAdAC8AAAABAAEAAAAcADAAAAABAAEAAAAcAC8AAAABAAEAAAAdAC4AAAABAAEAAAA=")
 metadata/_custom_type_script = "uid://ji335qpbwph3"
