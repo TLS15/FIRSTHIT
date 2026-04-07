@@ -50,6 +50,10 @@ script = ExtResource("3_djvcl")
 layout_mode = 2
 text = "Level Maker"
 
+[node name="Tutorial" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=404649539]
+layout_mode = 2
+text = "Tutorial"
+
 [node name="Settings" type="Button" parent="UIMaster/MainMenu/VBoxContainer" unique_id=929830691]
 layout_mode = 2
 text = "SETTINGS"
@@ -69,6 +73,15 @@ size_flags_horizontal = 10
 size_flags_vertical = 4
 text = "Main Menu"
 
+[node name="NextLevel" type="Button" parent="UIMaster" unique_id=1483877044]
+visible = false
+layout_mode = 0
+offset_left = 1824.0
+offset_top = 121.0
+offset_right = 1920.0
+offset_bottom = 152.0
+text = "Next Level"
+
 [node name="Background" type="Sprite2D" parent="." unique_id=108468386]
 z_index = -2
 position = Vector2(962.00006, 547)
@@ -77,5 +90,7 @@ texture = ExtResource("4_i3d8u")
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/LevelMaker" to="." method="_on_level_maker_pressed"]
+[connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/MainMenu" to="." method="back_to_mainmenu"]
+[connection signal="pressed" from="UIMaster/NextLevel" to="." method="_on_next_level_pressed"]

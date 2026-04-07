@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bhbikuqcdsttw"
 
 [resource]
 script = ExtResource("1_73218")
-level_index = 3
+level_index = 2
 towers = Array[ExtResource("2_f22t0")]([SubResource("Resource_73218"), SubResource("Resource_f22t0")])
 starting_money = 300.0
 metadata/_custom_type_script = "uid://ji335qpbwph3"

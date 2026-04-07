@@ -4,6 +4,7 @@ const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
 var towers_assigned: int = 0
 var id_awaiting_connection = -1
+var level_index
 
 var tower_connecting = null
 
@@ -11,14 +12,17 @@ var connection_lines = []
 var towers = []
 var preview_line
 
-var holding_mouse_button = false
+var holding_left_mouse_button = false
+var holding_right_mouse_button = false
 
 @export var money: float = 0
 @export var population: int
 
 func _process(delta):
-	if holding_mouse_button:
+	if holding_left_mouse_button:
 		create_obstacle(get_global_mouse_position())
+	if holding_right_mouse_button: 
+		delete_obstacle(get_global_mouse_position())
 	tick_accumulator += delta
 	
 	while tick_accumulator >= TICK_TIME:
@@ -42,6 +46,7 @@ func calc_reproduction() -> int:
 	return result - population
 	
 func load_level(level: LevelResource):
+	level_index = level.level_index
 	money = level.starting_money
 	population = 0
 	towers_assigned = 0
@@ -96,25 +101,21 @@ func on_tower_press_received(tower):
 	if (tower.affiliation != TowerResource.Players.BLUE and tower_connecting == null) or (tower_connecting == tower):
 		return
 	
-	# Begin connection
+	# Begin connection, create preview line
 	if tower_connecting == null and tower.affiliation == TowerResource.Players.BLUE:
 		tower_connecting = tower
 		create_preview_line(tower_connecting)
 		return
 	
-	# Either create or destroy permenant connection
+	#  create or destroy permenant connection, or destroy preview line
 	if tower_connecting != null and tower_connecting != tower:
 		preview_line.queue_free()
 		if tower_connecting.connections.has(tower):
-			remove_connection(tower_connecting, tower)
-		elif (tower_connecting.get_available_connections() < 1):
+			remove_connection(tower_connecting, tower) # destroy permenant connection
+		elif (tower_connecting.get_available_connections() < 1) or (line_is_colliding(tower, tower_connecting)): # Destroy preview line
 			cancel_action()
 		else:
-
-			if line_is_colliding(tower, tower_connecting):
-				cancel_action()
-			else:
-				add_connection(tower_connecting, tower)
+			add_connection(tower_connecting, tower) # add permenant connection
 		tower_connecting = null
 
 func add_connection(origin, target):
@@ -136,81 +137,6 @@ func remove_connection(origin, target):
 	
 	origin.connections.erase(target)
 
-#func _start_connection(id: int):
-	#id_awaiting_connection = id
-#
-	#var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-	#add_child(instance)
-	#preview_line = instance
-	#instance.set_point_position(0, get_tower_through_id(id).position)
-		#
-#func _finalize_connection(target_id: int):
-	#var origin_id = id_awaiting_connection
-	#var line = preview_line
-	#
-	#line.dragging = false
-	#line.id_origin = origin_id
-	#line.id_target = target_id
-	#
-	#line.set_point_position(1, get_tower_through_id(target_id).position)
-	#connection_lines.append(preview_line) # This might interfere with the ai connection through data races
-	#var connected_towers_array: Array = tower_connections.get_or_add(origin_id, [])
-#
-	#if connected_towers_array.has(target_id):
-		#_remove_connection(origin_id, target_id)
-		#_cancel_current_connection()
-	#else:
-		#_add_connection(origin_id, target_id)
-		#if towers[origin_id].available_connections < 0:
-			#_remove_connection(origin_id, target_id)
-		#
-#
-	#id_awaiting_connection = -1
-	#
-#func _add_connection(origin_id: int, target_id: int):
-	#towers[origin_id].available_connections -= 1
-	#tower_connections[origin_id].append(target_id)
-	#towers[origin_id].connections.append(get_tower_through_id(target_id))	
-#
-#
-##func ai_add_connection(origin_id: int, target_id: int):
-	##var instance = preload("res://Components/Scenes/Connection_Line.tscn").instantiate() # should center the connection line
-	##add_child(instance)
-	##connection_lines.append(instance)
-	##instance.set_point_position(0, get_tower_through_id(origin_id).position)
-	##
-	##var line = connection_lines.back()
-	##
-	##line.dragging = false
-	##line.id_origin = origin_id
-	##line.id_target = target_id
-	##
-	##line.set_point_position(1, get_tower_through_id(target_id).position)
-	##
-	##towers[origin_id].available_connections -= 1
-	##tower_connections.get_or_add(origin_id, [])
-	##tower_connections[origin_id].append(target_id)
-	##towers[origin_id].connections.append(get_tower_through_id(target_id))
-#
-##func _remove_connection(origin_id: int, target_id: int):
-	##towers[origin_id].available_connections += 1
-	##tower_connections[origin_id].erase(target_id)
-	##towers[origin_id].connections.erase(get_tower_through_id(target_id))
-	##
-	##for i in connection_lines.size():
-		##var line = connection_lines[i]
-		##if line.id_origin == origin_id and line.id_target == target_id:
-			##line.queue_free()
-			##connection_lines.remove_at(i)
-			##break
-##
-##func _cancel_current_connection():
-	##if connection_lines.size() > 0:
-		##var last = connection_lines.pop_back()
-		##last.queue_free()
-	##
-	##id_awaiting_connection = -1
-	##
 
 func cancel_action():
 	print("cancel action")
@@ -244,3 +170,6 @@ func _input(event):
 
 func create_obstacle(coords: Vector2i):
 	$TileMapLayer.set_cell($TileMapLayer.local_to_map(coords) ,0,Vector2i(1,1))
+
+func delete_obstacle(coords: Vector2i):
+	$TileMapLayer.erase_cell($TileMapLayer.local_to_map(coords))

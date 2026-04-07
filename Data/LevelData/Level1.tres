@@ -61,6 +61,5 @@ affiliation = 1
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_pllpa")
-level_index = 1
 towers = Array[ExtResource("2_wf1ep")]([SubResource("Resource_dplfv"), SubResource("Resource_dfslm"), SubResource("Resource_ayjhf"), SubResource("Resource_1i2jh"), SubResource("Resource_nnmu3"), SubResource("Resource_mbqao"), SubResource("Resource_tbbjx")])
 metadata/_custom_type_script = "uid://ji335qpbwph3"

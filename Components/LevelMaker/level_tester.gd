@@ -35,7 +35,6 @@ func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
 
 func _on_save_level_pressed() -> void:
 	$UIMaster/SaveLevel/SaveFolderSelection.show()
-	
 
 
 func _on_quit_pressed() -> void:
@@ -96,8 +95,13 @@ func _on_stop_terrain_pressed() -> void:
 
 func _on_catch_input_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		$LevelManager.holding_mouse_button = true
-		#$LevelManager.create_obstacle(get_global_mouse_position())
+		$LevelManager.holding_left_mouse_button = true
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.is_pressed():
-		$LevelManager.holding_mouse_button = false
+		$LevelManager.holding_left_mouse_button = false
+	
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+		$LevelManager.holding_right_mouse_button = true
+	
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and !event.is_pressed():
+		$LevelManager.holding_right_mouse_button = false
