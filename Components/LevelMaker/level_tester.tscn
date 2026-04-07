@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dl8kgdtwom0bn"]
 
 [ext_resource type="Script" uid="uid://cwokam4ps8oee" path="res://Components/LevelMaker/level_tester.gd" id="1_n5pd5"]
-[ext_resource type="Resource" uid="uid://2omb2ajtkavj" path="res://Data/TestLevels/Level1.tres" id="2_3x8je"]
 [ext_resource type="PackedScene" uid="uid://c22s707xpfnr3" path="res://Components/Scenes/level_manager.tscn" id="3_a41p1"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Arts/Sprites/icon.svg" id="4_3x8je"]
 [ext_resource type="Script" uid="uid://c5jaxjxxwhi61" path="res://Components/LevelMaker/add_tower.gd" id="4_yopi2"]
@@ -18,7 +17,7 @@ size = Vector2(101, 83)
 [node name="LevelTester" type="Node2D" unique_id=837912548]
 process_mode = 3
 script = ExtResource("1_n5pd5")
-level = ExtResource("2_3x8je")
+level_path = "res://Data/CustomLevelData/Level1.tres"
 
 [node name="UIMaster" type="Control" parent="." unique_id=6579418]
 layout_mode = 3
@@ -272,6 +271,13 @@ offset_right = 965.0
 offset_bottom = 926.0
 text = "Done"
 
+[node name="ToggleAI" type="CheckButton" parent="." unique_id=175269055]
+offset_left = 140.0
+offset_top = 623.0
+offset_right = 260.0
+offset_bottom = 654.0
+text = "Enable AI"
+
 [connection signal="editor_state_changed" from="." to="." method="_on_editor_state_changed"]
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
 [connection signal="pressed" from="UIMaster/SaveLevel/SaveLevel" to="." method="_on_save_level_pressed"]
@@ -292,3 +298,4 @@ text = "Done"
 [connection signal="area_entered" from="UIMaster/RemoveTower" to="." method="_on_remove_tower_area_entered"]
 [connection signal="gui_input" from="CatchInput" to="." method="_on_catch_input_gui_input"]
 [connection signal="pressed" from="StopTerrain" to="." method="_on_stop_terrain_pressed"]
+[connection signal="pressed" from="ToggleAI" to="." method="_on_toggle_ai_pressed"]

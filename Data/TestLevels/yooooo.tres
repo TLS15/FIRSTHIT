@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LevelResource" format=3]
+
+[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_wr5gn"]
+[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_o7qjt"]
+
+[sub_resource type="Resource" id="Resource_kugv7"]
+resource_local_to_scene = true
+script = ExtResource("2_o7qjt")
+type = 1
+location = Vector2(938, 510)
+level = 1
+occupants = 10
+affiliation = 1
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wr5gn")
+level_index = 1
+towers = Array[ExtResource("2_o7qjt")]([SubResource("Resource_kugv7")])
+metadata/_custom_type_script = "uid://ji335qpbwph3"

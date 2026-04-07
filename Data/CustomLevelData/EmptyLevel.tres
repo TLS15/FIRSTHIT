@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelResource" format=3]
+
+[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_3f33q"]
+[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_embgq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3f33q")
+level_index = 1
+metadata/_custom_type_script = "uid://ji335qpbwph3"

@@ -53,6 +53,7 @@ text = "Total Population: 0"
 label_settings = SubResource("LabelSettings_20ua4")
 
 [node name="AI" type="Node2D" parent="." unique_id=1691702138]
+process_mode = 1
 script = ExtResource("2_20ua4")
 
 [node name="proccess" type="Timer" parent="AI" unique_id=1609828991]

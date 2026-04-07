@@ -13,18 +13,15 @@ var towers = []
 @export var money: float = 0
 @export var population: int
 @export var level: LevelResource
-
+@export var level_path: String
 
 func _ready() -> void:
+	level = load(level_path)
 	$LevelManager.load_level(level)
 	$LevelManager.process_mode=Node.PROCESS_MODE_INHERIT
+	$LevelManager/AI.process_mode = Node.PROCESS_MODE_DISABLED
 
 
-
-
-# ========================
-# EDITOR / UI FUNCTIONS
-# ========================
 
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:
@@ -42,6 +39,9 @@ func _on_quit_pressed() -> void:
 
 
 func reload_level() -> void:
+	level = load("res://Data/CustomLevelData/EmptyLevel.tres")
+	$LevelManager.load_level(level)
+	level = load(level_path)
 	$LevelManager.load_level(level)
 
 
@@ -51,13 +51,14 @@ func _on_load_custom_level_pressed() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	level = load(path)
+	level_path = path
 	$LevelManager.load_level(level)
 
 
 func _on_save_folder_selection_file_selected(path: String) -> void:
 	level.starting_money = $UIMaster/SaveLevel/StartingMoney.value
 	level.terrain_data = $LevelManager/TileMapLayer.tile_map_data
-	ResourceSaver.save(level, path)
+	ResourceSaver.save(level, path + ".tres")
 
 
 func reset_tower_index():
@@ -105,3 +106,10 @@ func _on_catch_input_gui_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and !event.is_pressed():
 		$LevelManager.holding_right_mouse_button = false
+
+
+func _on_toggle_ai_pressed() -> void:
+	if $LevelManager/AI.process_mode == Node.PROCESS_MODE_INHERIT:
+		$LevelManager/AI.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		$LevelManager/AI.process_mode = Node.PROCESS_MODE_INHERIT
