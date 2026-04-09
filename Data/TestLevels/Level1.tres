@@ -61,7 +61,6 @@ affiliation = 1
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_xthne")
-level_index = 1
 towers = Array[ExtResource("2_m2w8n")]([SubResource("Resource_xthne"), SubResource("Resource_m2w8n"), SubResource("Resource_0kwnp"), SubResource("Resource_2dn3y"), SubResource("Resource_e1cti"), SubResource("Resource_lw4ra"), SubResource("Resource_wr0dm")])
 terrain_data = PackedByteArray("AAA0ACkAAAABAAEAAAA0ACgAAAABAAEAAAA0ACcAAAABAAEAAAA0ACYAAAABAAEAAAAyACUAAAABAAEAAAAzACUAAAABAAEAAAA1ACUAAAABAAEAAAA2ACYAAAABAAEAAAA3ACYAAAABAAEAAAA4ACYAAAABAAEAAAA=")
 metadata/_custom_type_script = "uid://ji335qpbwph3"

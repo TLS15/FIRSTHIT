@@ -40,8 +40,8 @@ func calc_revenue() -> float:
 	
 func calc_reproduction() -> int:
 	var result = 0
-	for tower in towers:
-		result += tower.health
+	#for tower in towers:
+		#result += tower.health
 		
 	return result - population
 	

@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="LevelResource" format=4 uid="uid://baj7r3t7ovw6t"]
+
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_8rcet"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_yxwj0"]
+
+[sub_resource type="Resource" id="Resource_xp0tk"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+location = Vector2(1330, 938)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_g41ya"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+location = Vector2(421, 940)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_4stro"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+location = Vector2(867, 832)
+level = 1
+occupants = 10
+
+[sub_resource type="Resource" id="Resource_ngktr"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+type = 1
+location = Vector2(879, 461)
+level = 1
+occupants = 10
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_rxnb8"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+type = 1
+location = Vector2(884, 297)
+level = 1
+occupants = 10
+affiliation = 2
+
+[sub_resource type="Resource" id="Resource_g7ma8"]
+resource_local_to_scene = true
+script = ExtResource("2_yxwj0")
+type = 1
+location = Vector2(878, 123)
+level = 1
+occupants = 10
+affiliation = 2
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_8rcet")
+level_index = 3
+towers = Array[ExtResource("2_yxwj0")]([SubResource("Resource_xp0tk"), SubResource("Resource_g41ya"), SubResource("Resource_4stro"), SubResource("Resource_ngktr"), SubResource("Resource_rxnb8"), SubResource("Resource_g7ma8")])
+terrain_data = PackedByteArray("AAAzACQAAAABAAEAAAAyACQAAAABAAEAAAAyACMAAAABAAEAAAAyACIAAAABAAEAAAAxACIAAAABAAEAAAAxACEAAAABAAEAAAAxACAAAAABAAEAAAAwAB8AAAABAAEAAAAwAB4AAAABAAEAAAAwAB0AAAABAAEAAAAwABwAAAABAAEAAAAwABsAAAABAAEAAAAvABsAAAABAAEAAAAvABoAAAABAAEAAAAvABkAAAABAAEAAAAvABgAAAABAAEAAAAvABcAAAABAAEAAAAvABYAAAABAAEAAAAvABUAAAABAAEAAAAwABQAAAABAAEAAAAvABMAAAABAAEAAAAvABIAAAABAAEAAAAvABEAAAABAAEAAAAvABAAAAABAAEAAAAvAA8AAAABAAEAAAAvAA4AAAABAAEAAAAvAA0AAAABAAEAAAAvAAwAAAABAAEAAAAvAAsAAAABAAEAAAAvAAoAAAABAAEAAAAvAAkAAAABAAEAAAAvAAgAAAABAAEAAAA6ACQAAAABAAEAAAA7ACQAAAABAAEAAAA7ACMAAAABAAEAAAA8ACMAAAABAAEAAAA8ACIAAAABAAEAAAA8ACEAAAABAAEAAAA8ACAAAAABAAEAAAA9ACAAAAABAAEAAAA9AB8AAAABAAEAAAA9AB4AAAABAAEAAAA9AB0AAAABAAEAAAA9ABwAAAABAAEAAAA+ABwAAAABAAEAAAA+ABsAAAABAAEAAAA+ABoAAAABAAEAAAA+ABkAAAABAAEAAAA/ABgAAAABAAEAAAA/ABcAAAABAAEAAAA/ABYAAAABAAEAAAA/ABUAAAABAAEAAAA/ABQAAAABAAEAAAA/ABMAAAABAAEAAAA/ABIAAAABAAEAAAA/ABEAAAABAAEAAAA+ABEAAAABAAEAAAA+ABAAAAABAAEAAAA+AA8AAAABAAEAAAA+AA4AAAABAAEAAAA+AA0AAAABAAEAAAA+AAwAAAABAAEAAAA9AAsAAAABAAEAAAA9AAoAAAABAAEAAAA9AAkAAAABAAEAAAA8AAkAAAABAAEAAAA8AAgAAAABAAEAAAA8AAcAAAABAAEAAAA=")
+metadata/_custom_type_script = "uid://ji335qpbwph3"

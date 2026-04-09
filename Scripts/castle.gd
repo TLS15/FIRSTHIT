@@ -148,12 +148,12 @@ func interact(unit):
 		if health < 0:
 			set_health(-health)
 			set_affiliation(unit.affiliation)
-			$"../../../LevelManager".check_win_condition()
+			get_parent().get_parent().check_win_condition()
 
 
 func _on_upgrade_pressed() -> void:
-	if $"../../../LevelManager".money > 50:
-		$"../../../LevelManager".money -= 50
+	if get_parent().get_parent().money > 50:
+		get_parent().get_parent().money -= 50
 		set_level(level + 1)
 
 

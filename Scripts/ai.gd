@@ -15,7 +15,7 @@ func sense():
 	enemy_towers.clear()
 	keys.clear()
 	
-	towers = $"../../LevelManager".towers
+	towers = get_parent().towers
 	for tower in towers:
 		towers_score.get_or_add(tower, 0)
 		if affiliation == tower.affiliation:
@@ -65,9 +65,9 @@ func act():
 					break
 
 func connect_towers(origin, target) -> bool:
-	if $"../../LevelManager".line_is_colliding(origin, target) or origin == target or origin.connections.has(target):
+	if get_parent().line_is_colliding(origin, target) or origin == target or origin.connections.has(target):
 		return false
-	$"../../LevelManager".add_connection(origin, target)
+	get_parent().add_connection(origin, target)
 	return true
 	
 

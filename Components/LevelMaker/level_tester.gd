@@ -13,10 +13,9 @@ var towers = []
 @export var money: float = 0
 @export var population: int
 @export var level: LevelResource
-@export var level_path: String
+
 
 func _ready() -> void:
-	level = load(level_path)
 	$LevelManager.load_level(level)
 	$LevelManager.process_mode=Node.PROCESS_MODE_INHERIT
 	$LevelManager/AI.process_mode = Node.PROCESS_MODE_DISABLED
@@ -39,9 +38,6 @@ func _on_quit_pressed() -> void:
 
 
 func reload_level() -> void:
-	level = load("res://Data/CustomLevelData/EmptyLevel.tres")
-	$LevelManager.load_level(level)
-	level = load(level_path)
 	$LevelManager.load_level(level)
 
 
@@ -51,7 +47,6 @@ func _on_load_custom_level_pressed() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	level = load(path)
-	level_path = path
 	$LevelManager.load_level(level)
 
 
