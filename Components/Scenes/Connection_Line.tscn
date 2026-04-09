@@ -5,15 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://bho0sxpy7tui" path="res://Arts/Sprites/arrow.png" id="2_uoiik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uoiik"]
+resource_local_to_scene = true
 shader = ExtResource("1_sywoy")
 shader_parameter/speed = 0.5
 shader_parameter/tile_size = Vector2(2, 1)
+shader_parameter/color = Vector4(0, 0, 0, 0)
 
 [node name="ConnectionLine" type="Line2D" unique_id=664574979]
+modulate = Color(0.4862745, 0.25882354, 0.65882355, 1)
+self_modulate = Color(0.5294118, 0.4509804, 1, 1)
 material = SubResource("ShaderMaterial_uoiik")
 points = PackedVector2Array(0, 0, 50, 50)
 width = 25.0
-default_color = Color(4.0911138e-07, 0.23137382, 0.23152864, 1)
 texture = ExtResource("2_uoiik")
 texture_mode = 1
 script = ExtResource("1_b0gta")

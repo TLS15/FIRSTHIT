@@ -14,7 +14,7 @@ var level: int = 1
 signal press_received(tower)
 
 
-func _process(delta):
+func _process(_delta):
 	$ColorRect1.color = Color.ALICE_BLUE
 	$ColorRect2.color = Color.ALICE_BLUE
 	$ColorRect3.color = Color.ALICE_BLUE
@@ -70,16 +70,17 @@ func init_economic():
 	$Economic.show()
 
 
-func set_affiliation(aff: int):
+func set_affiliation(aff: TowerResource.Players):
 	affiliation = aff
-	match aff:
-		0: $HealthBar.set_self_modulate(Color.DARK_BLUE)
-		1: $HealthBar.set_self_modulate(Color.GREEN)
-		2: $HealthBar.set_self_modulate(Color.DARK_RED)
-		3: $HealthBar.set_self_modulate(Color.YELLOW)
-		
+	TowerResource.match_color_to_team($HealthBar, affiliation)
+	
 	enemy_units_in_range.clear()
-
+	
+	# Clear connections, reset level
+	for target in connections:
+		get_parent().get_parent().remove_connection(self, target)
+	
+	set_level(1)
 
 func spawn_unit(target_tower, unit_level: int):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
@@ -94,7 +95,7 @@ func spawn_unit(target_tower, unit_level: int):
 	add_child(unit)
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		#print("is pressed")
 		emit_signal("press_received", self)
@@ -109,11 +110,6 @@ func set_level(num: int):
 	level = num
 	$HealthBar.max_value = 10 + 20 * num
 	$Level.text = "Lv. " + str(level)
-	if level == 3:
-		$ColorRect3.show()
-	if level >= 2:
-		$ColorRect2.show()
-	$ColorRect1.show()
 	
 	if level == 3:
 		$Upgrade.hide()

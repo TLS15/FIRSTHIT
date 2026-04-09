@@ -8,7 +8,7 @@ Visuals:
 	- connection line (done)
 	- Backgrounds
 	- Units (done)
-	- Towers
+	- Towers 
 	- Obstacles tiles set
 
 
@@ -25,7 +25,7 @@ Game Flow:
 	- Tower Damage/Health (done)
 	- Units Overflow (done)
 	- Win Conditions
-	- Game Over Screen
+	- Game Over Screen (done)
 
 
 Menus:
@@ -35,15 +35,13 @@ Menus:
 Levels design:
 	- Background
 	- Obstacles
-	- Some with lots/few of towers
-	- only way to beat defensive is create a cycle of towers to store troops
+	- Some with lots of/few towers
+	- only way to beat defensive is create a cycle of towers to store troops (done)
 
 Units:
 	- Triangle (done)
 	- Square (done)
 	- Circle (done)
-
-- AI # Leave this last
 
 
 AI:

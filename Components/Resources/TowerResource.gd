@@ -1,5 +1,12 @@
 extends Resource
 class_name TowerResource
+
+@export var type: TowerType
+@export var location: Vector2
+@export var level: int
+@export var occupants: int
+@export var affiliation: Players
+
 enum TowerType{
 	OFFENSIVE,
 	DEFENSIVE,
@@ -20,7 +27,14 @@ static func match_team(team: String, tower: TowerResource) -> TowerResource:
 		"Red": tower.affiliation = TowerResource.Players.RED
 		"Yellow": tower.affiliation = TowerResource.Players.YELLOW
 	return tower
-	
+
+static func match_color_to_team(sprite, aff: TowerResource.Players):
+	match aff:
+		0: sprite.set_self_modulate(Color.DARK_BLUE)
+		1: sprite.set_self_modulate(Color.GREEN)
+		2: sprite.set_self_modulate(Color.DARK_RED)
+		3: sprite.set_self_modulate(Color.YELLOW)
+
 static func match_type(tower_type: String, tower: TowerResource) -> TowerResource:
 	match tower_type:
 		"Offensive": tower.type = TowerResource.TowerType.OFFENSIVE
@@ -29,8 +43,3 @@ static func match_type(tower_type: String, tower: TowerResource) -> TowerResourc
 		
 	return tower
 	
-@export var type: TowerType
-@export var location: Vector2
-@export var level: int
-@export var occupants: int
-@export var affiliation: Players

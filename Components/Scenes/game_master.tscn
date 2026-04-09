@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bljoimapnq3kd"]
 
 [ext_resource type="Script" uid="uid://dl8vktqvx27ff" path="res://Scripts/game_master.gd" id="1_yy1gc"]
+[ext_resource type="Texture2D" uid="uid://c4qrni8635yt4" path="res://Arts/Sprites/Background.png" id="3_67wqy"]
 [ext_resource type="Script" uid="uid://djnsk3b14e0mk" path="res://Scripts/select_level.gd" id="3_djvcl"]
-[ext_resource type="Texture2D" uid="uid://8y24g4ktrlmh" path="res://Arts/Sprites/print-242114518.webp" id="4_i3d8u"]
 
 [node name="GameMaster" type="Node2D" unique_id=1072663693]
 script = ExtResource("1_yy1gc")
@@ -83,10 +83,11 @@ offset_bottom = 152.0
 text = "Next Level"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=108468386]
+self_modulate = Color(1, 1, 1, 0.6745098)
 z_index = -2
-position = Vector2(962.00006, 547)
+position = Vector2(1112, 523)
 scale = Vector2(2.39375, 1.34375)
-texture = ExtResource("4_i3d8u")
+texture = ExtResource("3_67wqy")
 
 [connection signal="index_pressed" from="UIMaster/MainMenu/VBoxContainer/Levels/SelectLevel" to="." method="_on_select_level_index_pressed"]
 [connection signal="pressed" from="UIMaster/MainMenu/VBoxContainer/LevelMaker" to="." method="_on_level_maker_pressed"]
