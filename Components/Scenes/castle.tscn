@@ -95,22 +95,25 @@ offset_bottom = 60.0
 text = "Lv."
 
 [node name="ColorRect1" type="ColorRect" parent="." unique_id=577199559]
-offset_left = -30.0
-offset_top = -45.0
-offset_right = -12.0
-offset_bottom = -36.0
+offset_left = -43.0
+offset_right = -25.0
+offset_bottom = 9.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=922171609]
-offset_left = -9.0
-offset_top = -45.0
-offset_right = 9.0
-offset_bottom = -36.0
+visible = false
+offset_left = -43.0
+offset_top = 16.0
+offset_right = -25.0
+offset_bottom = 25.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=138249660]
-offset_left = 12.0
-offset_top = -45.0
-offset_right = 30.0
-offset_bottom = -36.0
+visible = false
+offset_left = -43.0
+offset_top = 33.0
+offset_right = -25.0
+offset_bottom = 42.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]

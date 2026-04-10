@@ -77,8 +77,8 @@ func set_affiliation(aff: TowerResource.Players):
 	enemy_units_in_range.clear()
 	
 	# Clear connections, reset level
-	for target in connections:
-		get_parent().get_parent().remove_connection(self, target)
+	while connections.size() > 0:
+		get_parent().get_parent().remove_connection(self, connections[-1])
 	
 	set_level(1)
 
@@ -111,8 +111,20 @@ func set_level(num: int):
 	$HealthBar.max_value = 10 + 20 * num
 	$Level.text = "Lv. " + str(level)
 	
+	$ColorRect2.show()
+	$ColorRect3.show()
+	
+	if level == 1:
+		$ColorRect2.hide()
+	
+	if level <= 2:
+		$ColorRect3.hide()	
+
 	if level == 3:
 		$Upgrade.hide()
+	else:
+		$Upgrade.show()
+	
 
 
 func set_health(hp: int):

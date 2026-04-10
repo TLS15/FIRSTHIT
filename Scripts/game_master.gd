@@ -5,8 +5,10 @@ var levels_archive
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
+
 func _on_select_level_index_pressed(index: int) -> void:
 	load_level_at_path("res://Data/LevelData", index)
+
 
 func load_level_at_path(path: String, index: int):
 	levels_archive = path
@@ -17,8 +19,7 @@ func load_level_at_path(path: String, index: int):
 	$UIMaster/MainMenu/VBoxContainer.hide()
 	$UIMaster/MainMenu/MainMenu.show()
 	$UIMaster/NextLevel.show()
-	
-	
+
 
 func _on_level_maker_pressed() -> void:
 	#load_level_at_path("res://Data/TestLevels/", 0)
@@ -27,12 +28,12 @@ func _on_level_maker_pressed() -> void:
 	$UIMaster/MainMenu/VBoxContainer.hide()
 	$UIMaster/MainMenu/MainMenu.show()
 
+
 func back_to_mainmenu():
 	level_manager_instance.queue_free()
 	$UIMaster/MainMenu/VBoxContainer.show()
 	$UIMaster/MainMenu/MainMenu.hide()
 	$UIMaster/NextLevel.hide()
-	
 
 
 func _on_tutorial_pressed() -> void:

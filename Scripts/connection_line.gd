@@ -14,6 +14,7 @@ func _ready() -> void:
 		3: color = Color.YELLOW
 	material.set_shader_parameter("color", color)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if dragging:
