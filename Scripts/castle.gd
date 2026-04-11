@@ -82,6 +82,7 @@ func set_affiliation(aff: TowerResource.Players):
 	
 	set_level(1)
 
+
 func spawn_unit(target_tower, unit_level: int):
 	var unit = load("res://Components/Units/Unit.tscn").instantiate()
 	match unit_level:
@@ -124,7 +125,6 @@ func set_level(num: int):
 		$Upgrade.hide()
 	else:
 		$Upgrade.show()
-	
 
 
 func set_health(hp: int):

@@ -37,7 +37,7 @@ func tick():
 	
 func calc_revenue() -> float:
 	return 10.0 * TICK_TIME
-	
+
 func calc_reproduction() -> int:
 	var result = 0
 		
@@ -122,8 +122,8 @@ func add_connection(origin, target):
 	line.origin = origin
 	line.target = target
 	line.dragging = false
-	connection_lines.append(line)
-	add_child(line)
+	
+	$ConnectionLines.add_child(line)
 
 	origin.connections.append(target)
 
@@ -134,7 +134,6 @@ func remove_connection(origin, target):
 			line.queue_free()
 	
 	origin.connections.erase(target)
-
 
 func cancel_action():
 	print("cancel action")

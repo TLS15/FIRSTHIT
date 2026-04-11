@@ -6,8 +6,7 @@ var tick_accumulator := 0.0
 var towers_assigned: int = 0
 var id_awaiting_connection = -1
 
-var tower_connections := {}
-var connection_lines = []
+
 var towers = []
 
 @export var money: float = 0
@@ -19,8 +18,6 @@ func _ready() -> void:
 	$LevelManager.load_level(level)
 	$LevelManager.process_mode=Node.PROCESS_MODE_INHERIT
 	$LevelManager/AI.process_mode = Node.PROCESS_MODE_DISABLED
-
-
 
 
 func _on_add_tower_tower_configured(towerData: TowerResource) -> void:

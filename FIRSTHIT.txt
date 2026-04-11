@@ -54,12 +54,11 @@ Occupants
 
 Own Towers:
 Connections
-Occupants 
 Levels
 Health
 
 Think:
-Asses weak towers (weak towers are defensive/offensive with low health/occupants) (done)
+Asses weak towers (weak towers are defensive/offensive with low health) (done)
 Asses front line towers (Frontline towers are offensive towers that are higher level)
 Asses towers to upgrade (done)
 
