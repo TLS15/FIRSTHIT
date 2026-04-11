@@ -1,16 +1,20 @@
 extends Area2D
 
 @export var tower_id: int
+
 @export var tower_data: TowerResource
-@export var health: int
 @export var affiliation: TowerResource.Players
 @export var type: TowerResource.TowerType
+@export var health: int
+@export var level: int
+
+
 
 var connections: Array
 var enemy_units_in_range: Array
 
 var dragging := false
-var level: int = 1
+
 signal press_received(tower)
 
 
@@ -96,15 +100,6 @@ func spawn_unit(target_tower, unit_level: int):
 	add_child(unit)
 
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		#print("is pressed")
-		emit_signal("press_received", self)
-
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
-		dragging = event.pressed
-
-
 func set_level(num: int):
 	if num > 3: 
 		return
@@ -159,6 +154,15 @@ func interact(unit):
 			get_parent().get_parent().check_win_condition()
 
 
+func spawn_bullet(unit):
+	
+	var instance = load("res://Components/Scenes/bullet.tscn").instantiate()
+	instance.target_unit = unit
+	instance.affiliation = affiliation
+	instance.level = level
+	add_child(instance)
+
+
 func _on_upgrade_pressed() -> void:
 	if get_parent().get_parent().money > 50:
 		get_parent().get_parent().money -= 50
@@ -168,15 +172,6 @@ func _on_upgrade_pressed() -> void:
 func _on_spawn_timer_timeout() -> void:
 	for tower in connections:
 		spawn_unit(tower, level)
-
-
-func spawn_bullet(unit):
-	
-	var instance = load("res://Components/Scenes/bullet.tscn").instantiate()
-	instance.target_unit = unit
-	instance.affiliation = affiliation
-	instance.level = level
-	add_child(instance)
 
 
 func _on_defensive_area_area_entered(area: Area2D) -> void:
@@ -192,3 +187,12 @@ func _on_defensive_area_area_exited(area: Area2D) -> void:
 func _on_shooting_cooldown_timer_timeout() -> void:
 	if enemy_units_in_range.size() > 0:
 		spawn_bullet(enemy_units_in_range[0])
+
+
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		#print("is pressed")
+		emit_signal("press_received", self)
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
+		dragging = event.pressed

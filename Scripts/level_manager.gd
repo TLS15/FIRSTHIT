@@ -2,14 +2,12 @@ extends Node2D
 
 const TICK_TIME := 1.0 / 5.0
 var tick_accumulator := 0.0
-var towers_assigned: int = 0
 var id_awaiting_connection = -1
-var level_index
+var level_index: int
 
 var tower_connecting = null
 
-var connection_lines = []
-var towers = []
+
 var preview_line
 
 var holding_left_mouse_button = false
@@ -29,6 +27,11 @@ func _process(delta):
 		tick()
 		tick_accumulator -= TICK_TIME
 
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			cancel_action()
+
 func tick():
 	money += calc_revenue()
 	population += calc_reproduction()
@@ -47,16 +50,16 @@ func load_level(level: LevelResource):
 	level_index = level.level_index
 	money = level.starting_money
 	population = 0
-	towers_assigned = 0
+
 	$TileMapLayer.tile_map_data = level.terrain_data
 	# Clear towers
 	for child in $Towers.get_children():
 		child.queue_free()
 
-	towers.clear()
-	for connection_line in connection_lines:
-		connection_line.queue_free()
-	connection_lines.clear()
+	
+	for line in $ConnectionLines.get_children():
+		line.queue_free()
+	
 
 	for tower in level.towers:
 		load_tower(tower)
@@ -65,13 +68,11 @@ func load_tower(tower: TowerResource):
 	var instance = load("res://Components/Scenes/castle.tscn").instantiate()
 	$Towers.add_child(instance)
 	
-	instance.tower_id = towers_assigned
+	instance.tower_id = $Towers.get_children().size() - 1
 	instance.assign_resource(tower)
 	
 	instance.press_received.connect(on_tower_press_received)
 
-	towers.append(instance)
-	towers_assigned += 1
 	population += instance.health
 
 func create_preview_line(origin):
@@ -128,9 +129,8 @@ func add_connection(origin, target):
 	origin.connections.append(target)
 
 func remove_connection(origin, target):
-	for line in connection_lines:
+	for line in $ConnectionLines.get_children():
 		if line.origin == origin and line.target == target:
-			connection_lines.erase(line)
 			line.queue_free()
 	
 	origin.connections.erase(target)
@@ -143,14 +143,14 @@ func cancel_action():
 		tower_connecting = null
 
 func get_tower_through_id(id: int):
-	for tower in towers:
+	for tower in $Towers.get_children():
 		if tower.tower_id == id:
 			return tower
 
 func check_win_condition() -> bool:
 	# Conquered all towers
 	var fulfilled = true
-	for tower in towers:
+	for tower in $Towers.get_children():
 		if tower.affiliation  != TowerResource.Players.BLUE:
 			fulfilled = false
 	print(fulfilled)
@@ -159,11 +159,6 @@ func check_win_condition() -> bool:
 		$GameOverWindow.show()
 		
 	return fulfilled
-	
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			cancel_action()
 
 func create_obstacle(coords: Vector2i):
 	$TileMapLayer.set_cell($TileMapLayer.local_to_map(coords) ,0,Vector2i(1,1))

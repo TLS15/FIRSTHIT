@@ -1,13 +1,8 @@
 extends Node2D
 
-const TICK_TIME := 1.0 / 5.0
 
-var tick_accumulator := 0.0
-var towers_assigned: int = 0
 var id_awaiting_connection = -1
 
-
-var towers = []
 
 @export var money: float = 0
 @export var population: int
@@ -53,24 +48,23 @@ func _on_save_folder_selection_file_selected(path: String) -> void:
 	ResourceSaver.save(level, path + ".tres")
 
 
-func reset_tower_index():
-	$LevelManager.towers_assigned = towers.size()
-	var i = 0
-	for tower in towers:
-		tower.tower_id = i
-		i += 1
+#func reset_tower_index():
+	#$LevelManager.towers_assigned = towers.size()
+	#var i = 0
+	#for tower in towers:
+		#tower.tower_id = i
+		#i += 1
 
 
 func _on_remove_tower_area_entered(area: Area2D) -> void:
 	print("remove tower")
-	for i in range($LevelManager.towers.size()):
-		if $LevelManager.towers[i].tower_id == area.tower_id:
-			$LevelManager.towers.remove_at(i)
-			level.towers.remove_at(i)
-			reset_tower_index()
-			break
-	
-	
+	#for i in $LevelManager.towers.size():
+		#if $LevelManager.towers[i].tower_id == area.tower_id:
+			#level.towers.remove_at(i)
+			#reset_tower_index()
+			#break
+			
+	level.towers.erase(area)
 	area.queue_free()
 
 

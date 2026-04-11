@@ -15,7 +15,7 @@ func sense():
 	enemy_towers.clear()
 	keys.clear()
 	
-	towers = get_parent().towers
+	towers = $"../Towers".get_children()
 	for tower in towers:
 		towers_score.get_or_add(tower, 0)
 		if affiliation == tower.affiliation:
@@ -39,11 +39,6 @@ func sense():
 	)
 
 func think():
-	#var weakest_score = 999
-	#for tower in towers:
-		#if towers_score.get(tower) < weakest_score:
-			#weakest_score = towers_score.get(tower)
-			#weak_point = tower
 	pass	
 	
 func act():
@@ -53,9 +48,6 @@ func act():
 			tower.set_level(tower.level + 1)
 			break
 
-	#for tower in friendly_towers: 
-		#if tower.get_available_connections() > 0 and tower != weak_point and !tower.connections.has(weak_point):
-			#connect_towers(tower, weak_point)
 	# Try to attack, reinforce the lowest tower
 	
 	for tower in friendly_towers: 
