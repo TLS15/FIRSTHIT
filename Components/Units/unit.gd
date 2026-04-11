@@ -11,7 +11,6 @@ var target_tower
 func _ready() -> void:
 	TowerResource.match_color_to_team($Sprite2D, affiliation)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var speed: float = 50.0 
@@ -19,7 +18,6 @@ func _process(delta: float) -> void:
 	global_position = global_position.move_toward(target_tower.position, speed * delta)
 	if global_position == target_tower.position:
 		target_tower.interact(self)
-		
 
 func assign_resource(resource: UnitResource):
 	health = resource.health

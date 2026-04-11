@@ -1,6 +1,7 @@
 extends Node2D
 var level_manager_instance
-var levels_archive
+var levels_archive: String
+var current_index: int
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -12,6 +13,7 @@ func _on_select_level_index_pressed(index: int) -> void:
 
 func load_level_at_path(path: String, index: int):
 	levels_archive = path
+	current_index = index
 	var level: LevelResource = load(levels_archive + "/Level" + str(index + 1) + ".tres")
 	level_manager_instance = load("res://Components/Scenes/level_manager.tscn").instantiate()
 	add_child(level_manager_instance)
@@ -43,8 +45,7 @@ func _on_tutorial_pressed() -> void:
 func _on_next_level_pressed() -> void:
 	var levels_available: int = ResourceLoader.list_directory(levels_archive).size()
 
-	var index: int = level_manager_instance.level_index 
-	if levels_available - 1 <= index:
-		index = levels_available - 2
+	if levels_available - 1 <= current_index:
+		current_index = levels_available - 2
 	back_to_mainmenu()
-	load_level_at_path(levels_archive, index + 1)
+	load_level_at_path(levels_archive, current_index + 1)

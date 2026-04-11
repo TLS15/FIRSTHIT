@@ -48,23 +48,10 @@ func _on_save_folder_selection_file_selected(path: String) -> void:
 	ResourceSaver.save(level, path + ".tres")
 
 
-#func reset_tower_index():
-	#$LevelManager.towers_assigned = towers.size()
-	#var i = 0
-	#for tower in towers:
-		#tower.tower_id = i
-		#i += 1
-
-
 func _on_remove_tower_area_entered(area: Area2D) -> void:
 	print("remove tower")
-	#for i in $LevelManager.towers.size():
-		#if $LevelManager.towers[i].tower_id == area.tower_id:
-			#level.towers.remove_at(i)
-			#reset_tower_index()
-			#break
-			
-	level.towers.erase(area)
+
+	level.towers.erase(area.tower_data)
 	area.queue_free()
 
 
