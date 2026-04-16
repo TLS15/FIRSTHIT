@@ -2,7 +2,7 @@ FIRSTHIT
 
 Visuals like inifintode, easy to do and looks good
 
-Currently working on: "Gameflow/Units"
+Currently working on: "Visuals/Towers"
 
 Visuals:
 	- connection line (done)
@@ -11,6 +11,10 @@ Visuals:
 	- Towers 
 	- Obstacles tiles set
 
+Sound Design:
+	- Clicking 
+	- Units dying
+	- Tower fallen
 
 Tower Types:
 	- Offensive (done)

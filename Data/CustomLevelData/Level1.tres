@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="LevelResource" format=3]
+[gd_resource type="Resource" script_class="LevelResource" format=3 uid="uid://dtl5d140aktkj"]
 
-[ext_resource type="Script" path="res://Components/Resources/LevelResource.gd" id="1_44q56"]
-[ext_resource type="Script" path="res://Components/Resources/TowerResource.gd" id="2_1vilc"]
+[ext_resource type="Script" uid="uid://ji335qpbwph3" path="res://Components/Resources/LevelResource.gd" id="1_44q56"]
+[ext_resource type="Script" uid="uid://bhbikuqcdsttw" path="res://Components/Resources/TowerResource.gd" id="2_1vilc"]
 
 [sub_resource type="Resource" id="Resource_dplfv"]
 resource_local_to_scene = true

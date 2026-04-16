@@ -151,7 +151,7 @@ func interact(unit):
 		if health < 0:
 			set_health(-health)
 			set_affiliation(unit.affiliation)
-			get_parent().get_parent().check_win_condition()
+			#get_parent().get_parent().check_win_condition()
 
 
 func spawn_bullet(unit):
