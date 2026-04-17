@@ -77,6 +77,12 @@ func init_economic():
 func set_affiliation(aff: TowerResource.Players):
 	affiliation = aff
 	TowerResource.match_color_to_team($HealthBar, affiliation)
+	match affiliation:
+		0: $Offensive.texture = load("res://Arts/Sprites/Tower Colors/Tower_black.png")
+		1: $Offensive.texture = load("res://Arts/Sprites/Tower Colors/Tower_green.png")
+		2: $Offensive.texture = load("res://Arts/Sprites/Tower Colors/Tower_red.png")
+		3: $Offensive.texture = load("res://Arts/Sprites/Tower Colors/Tower_black.png")
+			
 	
 	enemy_units_in_range.clear()
 	
@@ -105,7 +111,7 @@ func set_level(num: int):
 		return
 	level = num
 	$HealthBar.max_value = 10 + 20 * num
-	$Level.text = "Lv. " + str(level)
+	$Level.text = str(level)
 	
 	$ColorRect2.show()
 	$ColorRect3.show()
@@ -125,7 +131,7 @@ func set_level(num: int):
 func set_health(hp: int):
 	health = hp
 	$HealthBar.value = hp
-	$Health.text = str(hp)
+	$HealthBar/Health.text = str(hp)
 
 
 func get_max_health():
@@ -151,7 +157,7 @@ func interact(unit):
 		if health < 0:
 			set_health(-health)
 			set_affiliation(unit.affiliation)
-			#get_parent().get_parent().check_win_condition()
+			get_parent().get_parent().check_win_condition()
 
 
 func spawn_bullet(unit):

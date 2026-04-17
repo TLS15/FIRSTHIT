@@ -47,6 +47,11 @@ Units:
 	- Square (done)
 	- Circle (done)
 
+Testing:
+	- Create automatic testing for various gameplay systems
+	- Input handling
+	- Validity of nodes
+
 
 AI:
 

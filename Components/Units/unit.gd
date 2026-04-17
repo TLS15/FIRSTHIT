@@ -7,11 +7,10 @@ extends Area2D
 var origin_tower
 var target_tower
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	TowerResource.match_color_to_team($Sprite2D, affiliation)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var speed: float = 50.0 
 

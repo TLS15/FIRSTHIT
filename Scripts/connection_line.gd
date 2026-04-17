@@ -14,9 +14,7 @@ func _ready() -> void:
 		3: color = Color.YELLOW
 	material.set_shader_parameter("color", color)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dragging:
 		set_point_position(0, origin.position)
 		set_point_position(1, get_global_mouse_position())
